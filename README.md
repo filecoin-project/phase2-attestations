@@ -87,8 +87,7 @@ Additionally, it should contain each participant's GPG signature of their attest
 
 The participation requirements vary for each of the circuits, but the table below details some sample information from our tests.
 
-| Proof | Ram Req | Storage Req | Est. Completion Time | Challenge File
- Size |
+| Proof | Ram Req | Storage Req | Est. Completion Time | Challenge File Size |
 |---|---|---|---|---|
 | SDR PoRep 32GB  | 250GiB  | 150GiB | 36 hrs | 70GiB |
 | SDR PoRep 64GB  | 250GiB | 150GiB | 36 hrs | 70GiB |
