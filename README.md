@@ -12,5 +12,9 @@ The `Circuit` column in the table below follows the format:
 
 | Filecoin Release | Circuit | Directory Containing Attestations |
 | :---: | :--- | :--- |
-| Mainnet | PoRep-Poseidon-32GiB-e6055a1 | [porep_poseidon_32gib_e60551](https://github.com/DrPeterVanNostrand/phase2-attestations/tree/master/porep_poseidon_32gib_e60551)
-| Mainnet | PoST-Poseidon-32GiB-e6055a1 | [post_poseidon_32gib_e60551](https://github.com/DrPeterVanNostrand/phase2-attestations/tree/master/post_poseidon_32gib_e60551)
+| Mainnet | PoRep-Poseidon-32GiB-e6055a1 | [sdr_porep_poseidon_32gib](/sdr_porep_poseidon_32gib)
+| Mainnet | PoRep-Poseidon-64GiB-e6055a1 | [sdr_porep_poseidon_64gib](/sdr_porep_poseidon_64gib)
+| Mainnet | Windowed-PoST-Poseidon-32GiB-e6055a1 | [windowed_post_poseidon_32gib](/windowed_post_poseidon_32gib)
+| Mainnet | Windowed-PoST-Poseidon-64GiB-e6055a1 | [windowed_post_poseidon_64gib](/windowed_post_poseidon_64gib)
+| Mainnet | Winning-PoST-Poseidon-32GiB-e6055a1 | [winning_post_poseidon_32gib](/winning_post_poseidon_32gib)
+| Mainnet | Winning-PoST-Poseidon-64GiB-e6055a1 | [winning_post_poseidon_64gib](/winning_post_poseidon_64gib)
