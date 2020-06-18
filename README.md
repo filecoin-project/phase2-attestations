@@ -29,7 +29,15 @@ The `Circuit` column in the table below follows the format:
 | Mainnet | Winning-PoST-Poseidon-32GiB-e6055a1 | [winning_post_poseidon_32gib](/winning_post_poseidon_32gib)
 | Mainnet | Winning-PoST-Poseidon-64GiB-e6055a1 | [winning_post_poseidon_64gib](/winning_post_poseidon_64gib)
 
-## Procedure
+## Random Beacon [TODO - do we need this?]
+
+Zcash announced on their ceremony mailing list that they would use the hash of a specific Bitcoin block. They made this announcement before the block was mined. See:
+
+https://github.com/ZcashFoundation/powersoftau-attestations/tree/master/0088
+
+A similar process can be used for this ceremony. Note that mining difficulty has grown since 2018, so there is now slightly less entropy per Bitcoin block hash.
+
+## Procedure [TODO - do we need this?]
 
 There is a coordinator and multiple participants. The ceremony occurs in sequential rounds. Each participant performs one or more rounds at a time. The coordinator decides the order in which the participants act. There can be an indefinite number of rounds.
 
@@ -58,14 +66,6 @@ The resulting public transcript should contain:
  5. `challenge_2`
  6. The random beacon
  7. The final parameters
- 
- ## The random beacon [TODO - do we need this section?]
-
-Zcash announced on their ceremony mailing list that they would use the hash of a specific Bitcoin block. They made this announcement before the block was mined. See:
-
-https://github.com/ZcashFoundation/powersoftau-attestations/tree/master/0088
-
-A similar process can be used for this ceremony. Note that mining difficulty has grown since 2018, so there is now slightly less entropy per Bitcoin block hash.
 
 ## The transcript
 
@@ -114,93 +114,80 @@ A slack channel has been set up to discuss the ceremony - please join the **#fil
 * Ensure you have at least 110 GB of space free on your machine
 * Ensure you have a GPG key set up (instructions [here](https://help.github.com/en/github/authenticating-to-github/generating-a-new-gpg-key))
 
+Prior to their participation window, each participant should install dependencies and build rust-fil-proofs. 
+
+```
+# Install dependencies: rustup, git, ssh, tmux, rsync, gpg, b2sum
+
+# Build the phase2 binary for the commit in the participant’s circuit-id:
+$ git clone https://github.com/filecoin-project/rust-fil-proofs.git
+$ cd rust-fil-proofs
+
+# If the circuit is not in HEAD:
+$ git checkout <commit of circuit>
+$ RUSTFLAGS="-C target-cpu=native" cargo build --release -p filecoin-proofs --bin=phase2
+```
+Additionally, the coordinator may be in touch to ensure you are able to smoothly download files for participation. 
+
 ## Instructions for each participant
 
-First download and compile the required source code:
+At the start of the participant's window they will recieve a URL from which to download the appropriate Phase 2 parameters. 
 
-```bash
-git clone https://github.com/arielgabizon/powersoftau && \
-cd powersoftau && \
-cargo build --release
+For non-China based participants, they should run the following: 
+```
+$ cd <rust-fil-proofs directory>
+$ tmux new -s phase2
+$ aws s3 cp <s3 url for previous participant’s params file> .
 ```
 
-Download the `challenge_nnnn` file from the coordinator. The filename might be something like `challenge_0004`. Rename it to `challenge`:
-
-```bash
-mv challenge_nnnn challenge
+For China based participants, they should run the following: 
+```
+$ cd <rust-fil-proofs directory>
+$ tmux new -s phase2
+$ [TODO - do we need a command here for JDCloud?]
 ```
 
-Run the computation with `challenge` in your working directory:
+Once the file has downloaded, check that the blake2 digest matches the digest in the previous participant's attestation file. This file should be the latest entry in your [circuit's folder](/phase2-attestations#mapping-of-filecoin-releases-to-attestation-files). To generate the blake2 digest, run the following:
+`$ b2sum <previous participant’s phase2 file>`
 
-```bash
-/path/to/powersoftau/target/release/compute_constrained
-```
-
-We actually recommend you record the program output in a file, and later send it to the coordinator; e.g. instead of above, use:
-```bash
-/path/to/powersoftau/target/release/compute_constrained | tee output.log
-```
-
-
-You will see this prompt:
+Once it has been validated that the two digests match, the next contribution can proceed. Running the following command will write two files, one file is the parameters generated from the participant’s entropy and the second is a log file (ending in “.log”). __Note__: the participant will be asked to mash the keys on their keyboard when the contribution program begins.
 
 ```
-Will contribute to accumulator for 2^27 powers of tau
-In total will generate up to 268435455 powers
-Type some random text and press [ENTER] to provide additional entropy...
+$ tmux attach -t phase2
+$ RUST_BACKTRACE=1 ./target/release/phase2 contribute <previous participant’s params file>
 ```
 
-Make sure that it says `2^27 powers of tau`, and then enter random text as prompted. You should try to provide as much entropy as possible from sources which are truly hard to replicate. See below for examples derived from Zcash's own ceremony.
-
-After a few minutes, it will write down the hash of the challenge file:
-```
-`challenge` file contains decompressed points and has a hash:
-    4ef1fd9f f3154310 a773f3a4 fedecfa8
-    14eec883 794e1e2f c7eb8ce4 3173e138
-    0f2426d7 b8c6a097 4bfe3dd3 ae42d018
-    6e0cf742 64b8e6ca c93b0a55 fd3b33bf
-```
-We recommend you keep a record of this hash.
-
-The computation will run for about several hours on a fast machine. Please try your best to avoid electronic surveillance or tampering during this time.
-
-When it is done, you will see something like this:
+Once this phase is complete, the participant has successfully made their contribution. To upload the output parameters to the rsync box, run the following: 
 
 ```
-Finishing writing your contribution to `./response`...
-Done!
+$ tmux attach -t phase2
+$ rsync -vP --append -e "ssh -i <path to SSH private key>" <participant’s params file> response@rsync.kittyhawk.wtf:<participant’s params file>
 
-Your contribution has been written to `./response`
-
-The BLAKE2b hash of `./response` is:
-        12345678 90123456 78901234 56789012
-        12345678 90123456 78901234 56789012
-        0b5337cd bb05970d 4045a88e 55fe5b1d
-        507f5f0e 5c87d756 85b487ed 89a6fb50
-Thank you for your participation, much appreciated! :)
+# If the above command fails midway through the transfer, rerunning it will 
+# resume the file transfer where it left off.
 ```
-Save the hash of the response in a file for your attestation. Upload the response file to the coordinator's server using this command:
 
-`rsync -vP -e "ssh -i $HOME/.ssh/id_rsa" response response@rsync.kittyhawk.wtf:response`
+(Note it will only work if the participant has given the coordinator their ssh public key as required)
 
-(it will only work if you have given the coordinator your ssh public key as required)
+Lastly, to give credibility to the process, the participant must make an attestation of your participation with some link to your real-world identity; *this is essential for the credibility of the ceremony, and you should not sign-up in case you're not comfortable doing this.* To generate an adequate attestation, do the following: 
 
-### Add an attestation
-Finally, to give credibility to the process, you must make an attestation of your participation with some link to your real-world identity; *this is essential for the credibility of the ceremony, and you should not sign-up in case you're not comfortable doing this.*
+```
+# Use the following info to fill out the attestation file. If the phase2
+# files are large, you should run b2sum from a tmux window:
+$ tmux attach -t phase2
+$ b2sum <previous participant’s params file>
+$ b2sum <participant’s params file>
+$ cat <proof>_<hasher>_<sector-size>_<head>_<contribution number>.log
+$ free -h
+$ nproc
+# The attestation file will be named README.md:
+$ vim README.md
 
-Here are a few options for how to do this.
+# Sign the attestation file using a detached signature:
+$ gpg --armor --detach-sign --output README.md.sig README.md
+```
 
-__Markdown Attestation__:
-1. On a branch, create a subfolder inside the [appropriate circuit folder](/README.md#mapping-of-filecoin-releases-to-attestation-files) using your participant number and name e.g.: 
-`sdr_porep_poseidon_32gib/<participant_num>_<your_name>`
-2. Document the process you used in a file named `README.md`, following the template [here](/sample-attestation).
-Please include identifying information like your real name.
-3. Sign the `README.md` with your GPG key, add both files into the subfolder you created (`sdr_porep_poseidon_32gib/<participant_num>_<your_name>_response`), and create a PR to this repo. If you do not know how to submit a PR, you can send the coordinator your README file.
-3. Send the coordinator a link to a public profile of yours, where your GPG public key is listed (e.g. a keybase profile)
-
-__Twitter Attestation__:
-
-If you can't  do the above, simply tweet the hash of your response file, *only do this from a twitter account containing your real name*. Send the coordinator a link to the tweet. See [example](https://twitter.com/IPFSMain/status/1192855448098992129).
+Once both the README.md and README.md.sig are generated, please send these files to the coordinator (either on Slack or to mailto:trustedsetup@protocol.ai). Optionally also publish your contribution hash and gpg fingerprint via public channels.
 
 **PLEASE NOTE: If you do not submit your attestation we will be unable to use your contribution.**
 
