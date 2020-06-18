@@ -191,7 +191,7 @@ Finally, to give credibility to the process, you must make an attestation of you
 Here are a few options for how to do this.
 
 __Markdown Attestation__:
-1. On a branch, create a subfolder inside the appropriate circuit folder using your participant number and name e.g.: 
+1. On a branch, create a subfolder inside the [appropriate circuit folder](/README.md#mapping-of-filecoin-releases-to-attestation-files) using your participant number and name e.g.: 
 `sdr_porep_poseidon_32gib/<participant_num>_<your_name>`
 2. Document the process you used in a file named `README.md`, following the template [here](/sample-attestation).
 Please include identifying information like your real name.
