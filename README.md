@@ -147,7 +147,7 @@ $ tmux new -s phase2
 $ [TODO - do we need a command here for JDCloud?]
 ```
 
-Once the file has downloaded, check that the blake2 digest matches the digest in the previous participant's attestation file. This file should be the latest entry in your [circuit's folder](/phase2-attestations#mapping-of-filecoin-releases-to-attestation-files). To generate the blake2 digest, run the following:
+Once the file has downloaded, check that the blake2 digest matches the digest in the previous participant's attestation file. This file should be the latest entry in your [circuit's folder](https://github.com/filecoin-project/phase2-attestations/#mapping-of-filecoin-releases-to-attestation-files). To generate the blake2 digest, run the following:
 `$ b2sum <previous participant’s phase2 file>`
 
 Once it has been validated that the two digests match, the next contribution can proceed. Running the following command will write two files, one file is the parameters generated from the participant’s entropy and the second is a log file (ending in “.log”). __Note__: the participant will be asked to mash the keys on their keyboard when the contribution program begins.
