@@ -29,14 +29,6 @@ The `Circuit` column in the table below follows the format:
 | Mainnet | Winning-PoST-Poseidon-32GiB-e6055a1 | [winning_post_poseidon_32gib](/winning_post_poseidon_32gib)
 | Mainnet | Winning-PoST-Poseidon-64GiB-e6055a1 | [winning_post_poseidon_64gib](/winning_post_poseidon_64gib)
 
-## Random Beacon [TODO - do we need this?]
-
-Zcash announced on their ceremony mailing list that they would use the hash of a specific Bitcoin block. They made this announcement before the block was mined. See:
-
-https://github.com/ZcashFoundation/powersoftau-attestations/tree/master/0088
-
-A similar process can be used for this ceremony. Note that mining difficulty has grown since 2018, so there is now slightly less entropy per Bitcoin block hash.
-
 ## Procedure [TODO - do we need this?]
 
 There is a coordinator and multiple participants. The ceremony occurs in sequential rounds. Each participant performs one or more rounds at a time. The coordinator decides the order in which the participants act. There can be an indefinite number of rounds.
