@@ -1,151 +1,135 @@
-# Filecoin Trusted Setup Phase 2 
+# Filecoin Trusted-Setup Phase2 Attestations
 
-This repo is a modified structure to the approach the Semaphore team has taken for their Phase 1 of a multi-party trusted setup ceremony based on the Zcash Powers of Tau ceremony for the BN254 curve. We thank them very much for their work and [repo](https://github.com/weijiekoh/perpetualpowersoftau)!
+This repo stores the attestation files for participants in Filecoin's Groth16 parameter generation MPC. This repo is specific to the second phase of the MPC, the participant attestations for Filecoin's trusted-setup Phase1/Powers-of-Tau ceremony can be found in this [repo](https://github.com/arielgabizon/perpetualpowersoftau).
 
-As members of the community might remember, at the end of last year we ran the [first phase](https://github.com/arielgabizon/perpetualpowersoftau) of our trusted setup - securely generate zk-SNARK parameters for circuits of up to 2 ^ 27 (130+ million) constraints, over the [BLS12-381 curve](https://electriccoin.co/blog/new-snark-curve/). We're extremely grateful to all the community members who helped make this possible!
+## Filecoin Circuit Releases
 
-With our powers of tau ceremony complete, we now are ready to generate secure parameters for the circuits we will be using for the Filecoin mainnet launch. For more information, please read our [blog post](https://filecoin.io/blog/trusted-setup-update/) which goes into more detail!
+Each Filecoin circuit release will require a new Phase2 trusted-setup.
 
-As with the powers of tau ceremony, during this second phase the outputs will be trustworhy as long as one party in the ceremony behaves honestly and is not comprimised.
+| Filecoin Release | Circuit | Attestations Directory |
+| :--------------: | :------ | :--------------------- |
+| Mainnet | SDR-PoRep, Poseidon, 32GiB | [`sdr_poseidon_32gib_b288702`](/sdr_poseidon_32gib_b288702)
+| Mainnet | SDR-PoRep, Poseidon, 64GiB | [`sdr_poseidon_64gib_b288702`](/sdr_poseidon_64gib_b288702)
+| Mainnet | Winning-PoSt, Poseidon, 32GiB | [`winning_poseidon_32gib_b288702`](/winning_poseidon_32gib_b288702)
+| Mainnet | Winning-PoSt, Poseidon, 64GiB | [`winning_poseidon_64gib_b288702`](/winning_poseidon_64gib_b288702)
+| Mainnet | Window-PoSt, Poseidon, 32GiB | [`window_poseidon_32gib_b288702`](/window_poseidon_32gib_b288702)
+| Mainnet | Window-PoSt, Poseidon, 64GiB | [`window_poseidon_64gib_b288702`](/window_poseidon_64gib_b288702)
 
-## Trusted-Setup Phase 1 v.s. Phase 2
+## Mainnet Circuits
 
-In Phase 1, we were effectively running one ceremony to generate a set of secure parameters. After the completion of the ceremony, we ran a transition phase to prepare for Phase 2 (the circuit specific portion) of our trusted setup. Since we have 6 circuits we'll be using, we'll be running 6 ceremonies in parallel. For each of these ceremonies, the procedure will be roughly the same as in Phase 1.
+* Circuit Freeze Date: Jun-10-2020
+* Circuit Freeze Commit: [`b288702362e8f14ee0a68fb030774f339266e9a6`](https://github.com/filecoin-project/rust-fil-proofs/tree/b288702362e8f14ee0a68fb030774f339266e9a6)
+* Circuit List:
+    * SDR-PoRep, Poseidon hash function, 32GiB sector-size, circuit-id=`sdr_32gib_poseidon_b288702`
+    * SDR-PoRep, 64GiB sector-size, Poseidon hash function, circuit-id=`sdr_64gib_poseidon_b288702`
+    * Winning-PoSt, Poseidon hash function, 32GiB sector-size, circuit-id=`winning_32gib_poseidon_b288702`
+    * Winning-PoSt, Poseidon hash function, 64GiB sector-size, circuit-id=`winning_64gib_poseidon_b288702`
+    * Window-PoSt, Poseidon hash function, 32GiB sector-size, circuit-id=`window_32gib_poseidon_b288702`
+    * Window-PoSt, Poseidon hash function, 64GiB sector-size, circuit-id=`window_64gib_poseidon_b288702`
 
-## Mapping of Filecoin Releases to Attestation Files
+### Mainnet Participation Logistics
 
-A new trusted-setup Phase 2 will occur prior to Filecoin's mainnet launch and each time
-Filecoin's zk-SNARKs are upgraded during network upgrades. The following table will be used to track
-the contribution attestations of each participant in each trusted-setup.
+The participation requirements for phase2 vary with each circuit, the following table details the
+requirements.
 
-The `Circuit` column in the table below follows the format: 
+| Circuit            | RAM Req | Disk Space Req | Est. Completion Time | Param File Size (Approx.) |
+| ------------------ |---------|----------------|----------------------| --------------------------|
+| SDR-PoRep 32GiB    | 55GB    | 50GB           | 20 hours             | 25GB |
+| SDR-PoRep 64GiB    | 55GB    | 50GB           | 20 hours             | 25GB |
+| Winning-PoSt 32GiB | 1GB     | 0.25GB         | 10 minutes           | 90MB |
+| Winning-PoSt 64GiB | 1GB     | 0.25GB         | 10 minutes           | 90MB |
+| Window-PoSt 32GiB  | 55GB    | 50GB           | 20 hours             | 25GB |
+| Window-PoSt 64GiB  | 55GB    | 50GB           | 20 hours             | 25GB |
 
-| Filecoin Release | Circuit | Directory Containing Attestations |
-| :---: | :--- | :--- |
-| Mainnet | PoRep-Poseidon-32GiB-e6055a1 | [sdr_porep_poseidon_32gib](/sdr_porep_poseidon_32gib)
-| Mainnet | PoRep-Poseidon-64GiB-e6055a1 | [sdr_porep_poseidon_64gib](/sdr_porep_poseidon_64gib)
-| Mainnet | Windowed-PoST-Poseidon-32GiB-e6055a1 | [windowed_post_poseidon_32gib](/windowed_post_poseidon_32gib)
-| Mainnet | Windowed-PoST-Poseidon-64GiB-e6055a1 | [windowed_post_poseidon_64gib](/windowed_post_poseidon_64gib)
-| Mainnet | Winning-PoST-Poseidon-32GiB-e6055a1 | [winning_post_poseidon_32gib](/winning_post_poseidon_32gib)
-| Mainnet | Winning-PoST-Poseidon-64GiB-e6055a1 | [winning_post_poseidon_64gib](/winning_post_poseidon_64gib)
-
-## The transcript
-
-The transcript can be fully verified as long as it is public and that there are no bugs in the code used to generate challenges and responses.
-
-Participants can choose to be anonymous. If they choose to be publicly known, they should own a GPG keypair whose public key is known to be associated with their real-world identity, socially or via any other means.
-
-Given the above, the transcript should contain all the `challenge` and `response` files, and the Blake2b hash of each file.
-
-It should also contain an attestation for each `response`. This is a text file with:
-
-- Blake2b hashes of the `challenge` received and the `response` generated
-- A detailed description of the hardware and software that the participant used to generate the `response`.
-- A detailed description of any security and anti-surveillance measures that the partcipant has used.
-
-Additionally, it should contain each participant's GPG signature of their attestation, so as to assure the public that it was generated by the person who had claimed to have done so.
-
-## Logistics
-
-The participation requirements vary for each of the circuits, but the table below details some sample information from our tests.
-
-| Proof | Ram Req | Disk Space Req | Est. Completion Time | Param File Size (Approx.) |
-|---|---|---|---|---|
-| SDR PoRep 32GB  | 55GB  | 50GB | 20 hrs | 25GB |
-| SDR PoRep 64GB  | 55GB | 50GB | 20 hrs | 25GB |
-| Windowed Post 32GB | 55GB | 50GB | 20 hrs | 25GB |
-| Windowed Post 64GB | 55GB | 50GB | 20 hrs | 25GB |
-| Winning Post 32GB | 1GB | 0.5GB | 10-15 min. | 87MB |
-| Winning Post 64GB | 1GB | 0.5GB | 10-15 min. | 89MB |
-
-
-Each participant can transfer their response to the coordinator via `sftp`. This process is semi-interactive as it this requires either the participant to provide their SSH public key in advance, or the coordinator to send them a private key. Alternatively, they can use any of the following interactive methods:
-
-- BitTorrent
-- IPFS
-- Third-party large-file transfer services like [MASV](https://www.massive.io)
-
-## Coordination
+## Ceremony Coordination
 
 A slack channel has been set up to discuss the ceremony - please join the **#fil-trustedsetup** room in our [Slack](https://join.slack.com/t/filecoinproject/shared_invite/zt-dj58b7fq-weyaTEvjHoYF_ENkQHR6Ig) or email us at trustedsetup@protocol.ai.
 
-## Prereqs for the ceremony
+## Participant Machine Setup
 
-* Set up a Linux machine and install Rust and Cargo following instructions [here](https://www.rust-lang.org).
-* Ensure you have at least 110 GB of space free on your machine
 * Ensure you have a GPG key set up (instructions [here](https://help.github.com/en/github/authenticating-to-github/generating-a-new-gpg-key))
 
-Prior to their participation window, each participant should install dependencies and build rust-fil-proofs. 
+Prior to participation, each participant should:
+1. Install the dependencies `git`, `ssh`, `tmux`, `rsync`, `b2sum`, `gpg`
+2. Install [`rustup`](https://rustup.rs)
+3. Build the Rust crate containing Filecoin's circuits and the phase2 CLI binary [`rust-fil-proofs`](https://github.com/filecoin-project/rust-fil-proofs)
 
 ```
-# Install dependencies: rustup, git, ssh, tmux, rsync, gpg, b2sum
+# Check and install missing dependencies:
+$ which <git, ssh, tmux, rsync, b2sum, gpg>
 
-# Build the phase2 binary for the commit in the participant’s circuit-id:
+# Install rustup (https://rustup.rs):
+$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# Select choice: 1)
+$ source $HOME/.cargo/env
+
+# Build the phase2 binary:
 $ git clone https://github.com/filecoin-project/rust-fil-proofs.git
 $ cd rust-fil-proofs
-
-# If the circuit is not in HEAD:
-$ git checkout <commit of circuit>
-$ RUSTFLAGS="-C target-cpu=native" cargo build --release -p filecoin-proofs --bin=phase2
+$ git checkout phase2-cli-mainnet
+$ RUSTFLAGS="-C target-cpu=native" cargo build --release --bin=phase2
+# On Ubuntu, this may require you to install the build-essential package and OpenCL header files:
+# $ sudo apt update
+# $ sudo apt install build-essential ocl-icd-opencl-dev
+$ cp target/release/phase2 .
 ```
-Additionally, the coordinator may be in touch to ensure you are able to smoothly download files for participation. 
 
-## Instructions for each participant
+## Participation Instructions
 
-At the start of the participant's window they will recieve a URL from which to download the appropriate Phase 2 parameters. 
+At the start of the participant's time window they will recieve a URL from which to download the previous participant's Phase2 parameters. 
 
-For non-China based participants, a link to an AWS hosted copy of the parameters will be provided. For China based participants a link to a JDCloud hosted copy of the parameters will be provided. 
+For non-China based participants, an AWS S3 link to the parameters will be provided. For China based participants, a link to a JDCloud hosted copy of the parameters will be provided. **All phase2 files should be downloaded into the `rust-fil-proofs` directoy that was cloned.**
 
-Once the file has downloaded, check that the blake2 digest matches the digest in the previous participant's attestation file. This file should be the latest entry in your [circuit's folder](https://github.com/filecoin-project/phase2-attestations/#mapping-of-filecoin-releases-to-attestation-files). To generate the blake2 digest, run the following:
-`$ b2sum <previous participant’s phase2 file>`
+Once the phase2 file has been downloaded, the participant should check its blake2 digest against the file's published digest.
 
-Once it has been validated that the two digests match, the next contribution can proceed. Running the following command will write two files, one file is the parameters generated from the participant’s entropy and the second is a log file (ending in “.log”). __Note__: the participant will be asked to mash the keys on their keyboard when the contribution program begins.
+```
+$ tmux new -s phase2
+$ b2sum <downloaded phase2 file>
+```
+
+After the downloaded file's digest has been verified, the participant runs the phase2 contribution code. **You will be asked to randomly mash your keyboard upon running the contribution code, press enter when you have finihsed.** Keyboard mashing is not the only source of contribution entropy. The remainder of your contribution stage will require no further interaction beyond occasionally monitoring the phase2 process.
 
 ```
 $ tmux attach -t phase2
-$ RUST_BACKTRACE=1 ./target/release/phase2 contribute <previous participant’s params file>
+$ RUST_BACKTRACE=1 ./phase2 contribute <downloaded phase2 file>
+# Randomly press keyboard.
 ```
+
+The contribution program will write three files to the `rust-fil-proofs` directory:
+1. The phase2 params file containing your contribution (has no file extension)
+2. A `.log` file containing a copy of the text written to stdout and stderr by `./phase2 contribute`. This log file file contains the time take for each stage of the contribution process. This file should not contain any information that identifies the participant, if it does please edit it. The `.log` file does not contain any secret information with respect to the phase2 contribution process that the participant ran.
+3. A `.contrib` file containing the hash of the participant's contribution. This hash should be made public.
 
 Once this phase is complete, the participant has successfully made their contribution. To upload the output parameters to the rsync box, run the following: 
 
+The participant must send copies of the three files written by `./phase2 contribute` to one of our verification servers via `rsync`.
+
+For, example, if the participant is the first contributor to Filecoin's Winning-PoSt mainnet circuit, they would run the following command to send their files to our server. The participant's SSH privagte-key must correspond to the SSH public-key that the participant provided to the ceremony coordinator. In this example, the three files written by `./phase2 contribute` would be: `winning_poseidon_32gib_b288702_1_small`, `winning_poseidon_32gib_b288702_1_small.log`, and
+`winning_poseidon_32gib_b288702_1_small.contrib`.
+
 ```
 $ tmux attach -t phase2
-$ rsync -vP --append -e "ssh -i <path to SSH private key>" <participant’s params file> response@rsync.kittyhawk.wtf:<participant’s params file>
-
-# If the above command fails midway through the transfer, rerunning it will 
-# resume the file transfer where it left off.
+# If the rsync command fails midway through the file transfer, it can be re-run
+# without modification to resume the file transfer from the point of failure.
+$ rsync -vP --append -e "ssh -i <path to SSH private-key>" \
+      winning_poseidon_32gib_b288702_1* \
+      response@rsync.kittyhawk.wtf:/home/response
 ```
 
-(Note it will only work if the participant has given the coordinator their ssh public key as required)
+Lastly, the participant must GPG sign their contribution using a private-key whose corresponding public-key is publicly available and which can be used to identify the participant. **This is essential for the credibility of the ceremony, you should not sign-up if you are not comfortable doing this.**
 
-Lastly, to give credibility to the process, the participant must make an attestation of your participation with some link to your real-world identity; *this is essential for the credibility of the ceremony, and you should not sign-up in case you're not comfortable doing this.* To generate an adequate attestation, do the following: 
+To sign the `.contrib` contribution file wrote by `./phase2 contribute`, the participant (who in this example was the first contributor for the Winning-PoSt circuit) runs: 
 
 ```
-# Use the following info to fill out the attestation file. If the phase2
-# files are large, you should run b2sum from a tmux window:
-$ tmux attach -t phase2
-$ b2sum <previous participant’s params file>
-$ b2sum <participant’s params file>
-$ cat <proof>_<hasher>_<sector-size>_<head>_<contribution number>.log
-$ free -h
-$ nproc
-# The attestation file will be named README.md:
-$ vim README.md
-
-# Sign the attestation file using a detached signature:
-$ gpg --armor --detach-sign --output README.md.sig README.md
+$ gpg --armor --detach-sign \
+      --output winning_poseidon_32gib_b288702_1_small.contrib.sig \
+      winning_poseidon_32gib_b288702_1_small
 ```
 
-Once both the README.md and README.md.sig are generated, please send these files to the coordinator (either on Slack or to [trustedsetup@protocol.ai](mailto:trustedsetup@protocol.ai)). Optionally also publish your contribution hash and gpg fingerprint via public channels.
+The participant should also fill out and sign an attestation file, a sample is given [here](https://github.com/filecoin-project/phase2-attestations/blob/master/sample-attestation/0000_alice.md).
 
-**PLEASE NOTE: If you do not submit your attestation we will be unable to use your contribution.**
+```
+$ gpg --armor --detach-sign --output attestation.md.sig attestation.md
+```
 
-## Examples of entropy sources
-
-1. `/dev/urandom` from one or more devices
-3. The most recent Bitcoin block hash
-2. Randomly mashing keys on the keyboard  
-5. Asking random people on the street for numbers
-6. Geiger readings of radioactive material. e.g. a radioactive object, which can be anything from a [banana](https://en.wikipedia.org/wiki/Banana_equivalent_dose) to a [Chernobyl fragment](https://www.vice.com/en_us/article/gy8yn7/power-tau-zcash-radioactive-toxic-waste).
-7. Environmental data (e.g. the weather, seismic activity, or readings from the sun)
-
+The participant must send these files and signatures to the coordinator, either by Slack or to [trustedsetup@protocol.ai](mailto:trustedsetup@protocol.ai). The participant should publish their contribution hash `$cat <the .contrib file>` via public channels.
