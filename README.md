@@ -10,7 +10,7 @@ As with the powers of tau ceremony, during this second phase the outputs will be
 
 ## Trusted-Setup Phase 1 v.s. Phase 2
 
-In Phase 1, we were effectively running one ceremony to generate a set of secure parameters. After the completion of the ceremony, we ran a transition phase [TODO - @jake for detail]. With the transition phase complete, we begin Phase 2 to generate secure parameters for each of the circuits we plan to use for Filecoin's mainnet. Since we have 6 circuits we'll be using, we'll be running 6 ceremonies in parallel. For each of these ceremonies, the procedure will be roughly the same as in Phase 1.
+In Phase 1, we were effectively running one ceremony to generate a set of secure parameters. After the completion of the ceremony, we ran a transition phase to prepare for Phase 2 (the circuit specific portion) of our trusted setup. Since we have 6 circuits we'll be using, we'll be running 6 ceremonies in parallel. For each of these ceremonies, the procedure will be roughly the same as in Phase 1.
 
 ## Mapping of Filecoin Releases to Attestation Files
 
@@ -28,36 +28,6 @@ The `Circuit` column in the table below follows the format:
 | Mainnet | Windowed-PoST-Poseidon-64GiB-e6055a1 | [windowed_post_poseidon_64gib](/windowed_post_poseidon_64gib)
 | Mainnet | Winning-PoST-Poseidon-32GiB-e6055a1 | [winning_post_poseidon_32gib](/winning_post_poseidon_32gib)
 | Mainnet | Winning-PoST-Poseidon-64GiB-e6055a1 | [winning_post_poseidon_64gib](/winning_post_poseidon_64gib)
-
-## Procedure [TODO - do we need this?]
-
-There is a coordinator and multiple participants. The ceremony occurs in sequential rounds. Each participant performs one or more rounds at a time. The coordinator decides the order in which the participants act. There can be an indefinite number of rounds.
-
-The ceremony starts with the coordinator generating an initial `challenge` file, and publishing it in a publicly accessible repository.
-
-The first participant downloads `challenge`, runs a computation to produce a `response` file, and sends it to the coordinator.
-
-The coordinator will then produce a `new_challenge` file, and publish it along with the `response`. The next selected participant will then download `new_challenge` and produce a `response`, and the process repeats indefinitely.
-
-Whenever a new zk-SNARK project needs to perform a trusted setup, they can pick the latest `response`, verify the entire chain of challenges and responses up to the selected response, and finally apply a random beacon to it. Next, they can move on to phase 2 of the trusted setup which is circuit-specific and out of scope of phase 1.
-
-To illustrate this process, consider a Coordinator, two participants (Alice and Bob), and a zk-SNARK project author Charlie:
-
-1. Coordinator generates `challenge_0` and publishes it.
-2. Alice generates `response_1` and publishes it.
-3. Coordinator generates `challenge_1` and publishes it.
-4. Bob generates `response_2` and and publishes it.
-5. Coordinator generates `challenge_2` and publishes it.
-6. Charlie applies the random beacon to `challenge_2` to finalise the setup.
-
-The resulting public transcript should contain:
- 1. `challenge_0`
- 2. `response_1`
- 3. `challenge_1`
- 4. `response_2`
- 5. `challenge_2`
- 6. The random beacon
- 7. The final parameters
 
 ## The transcript
 
@@ -125,19 +95,7 @@ Additionally, the coordinator may be in touch to ensure you are able to smoothly
 
 At the start of the participant's window they will recieve a URL from which to download the appropriate Phase 2 parameters. 
 
-For non-China based participants, they should run the following: 
-```
-$ cd <rust-fil-proofs directory>
-$ tmux new -s phase2
-$ aws s3 cp <s3 url for previous participant’s params file> .
-```
-
-For China based participants, they should run the following: 
-```
-$ cd <rust-fil-proofs directory>
-$ tmux new -s phase2
-$ [TODO - do we need a command here for JDCloud?]
-```
+For non-China based participants, a link to an AWS hosted copy of the parameters will be provided. For China based participants a link to a JDCloud hosted copy of the parameters will be provided. 
 
 Once the file has downloaded, check that the blake2 digest matches the digest in the previous participant's attestation file. This file should be the latest entry in your [circuit's folder](https://github.com/filecoin-project/phase2-attestations/#mapping-of-filecoin-releases-to-attestation-files). To generate the blake2 digest, run the following:
 `$ b2sum <previous participant’s phase2 file>`
