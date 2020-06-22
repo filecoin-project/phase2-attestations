@@ -137,7 +137,7 @@ $ vim README.md
 $ gpg --armor --detach-sign --output README.md.sig README.md
 ```
 
-Once both the README.md and README.md.sig are generated, please send these files to the coordinator (either on Slack or to mailto:trustedsetup@protocol.ai). Optionally also publish your contribution hash and gpg fingerprint via public channels.
+Once both the README.md and README.md.sig are generated, please send these files to the coordinator (either on Slack or to [trustedsetup@protocol.ai](mailto:trustedsetup@protocol.ai)). Optionally also publish your contribution hash and gpg fingerprint via public channels.
 
 **PLEASE NOTE: If you do not submit your attestation we will be unable to use your contribution.**
 
