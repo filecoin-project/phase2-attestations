@@ -49,16 +49,15 @@ Additionally, it should contain each participant's GPG signature of their attest
 
 The participation requirements vary for each of the circuits, but the table below details some sample information from our tests.
 
-| Proof | Ram Req | Storage Req | Est. Completion Time | Challenge File Size |
+| Proof | Ram Req | Disk Space Req | Est. Completion Time | Param File Size (Approx.) |
 |---|---|---|---|---|
-| SDR PoRep 32GB  | 250GiB  | 150GiB | 36 hrs | 70GiB |
-| SDR PoRep 64GB  | 250GiB | 150GiB | 36 hrs | 70GiB |
-| Windowed Post 32GB | 250GiB | 150GiB | 36 hrs | 70GiB |
-| Windowed Post 64GB | 250GiB | 150GiB | 36 hrs | 70GiB |
-| Winning Post 32GB | 8GiB | 0.5GiB | 10-15 min. | 0.5GiB |
-| Winning Post 64GB | 8GiB | 0.5GiB | 10-15 min. | 0.5GiB |
+| SDR PoRep 32GB  | 55GB  | 50GB | 20 hrs | 25GB |
+| SDR PoRep 64GB  | 55GB | 50GB | 20 hrs | 25GB |
+| Windowed Post 32GB | 55GB | 50GB | 20 hrs | 25GB |
+| Windowed Post 64GB | 55GB | 50GB | 20 hrs | 25GB |
+| Winning Post 32GB | 1GB | 0.5GB | 10-15 min. | 87MB |
+| Winning Post 64GB | 1GB | 0.5GB | 10-15 min. | 89MB |
 
-The coordinator is using AWS compute VMs to generate `new_challenge` files, and Blob Storage to host challenges and responses.
 
 Each participant can transfer their response to the coordinator via `sftp`. This process is semi-interactive as it this requires either the participant to provide their SSH public key in advance, or the coordinator to send them a private key. Alternatively, they can use any of the following interactive methods:
 
