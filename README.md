@@ -100,38 +100,20 @@ After the file's digest has been checked, the participant runs the phase2 contri
 $ RUST_BACKTRACE=1 ./phase2 contribute <downloaded phase2 file>
 ```
 
-The contribution program will write three files to the `rust-fil-proofs` directory:
+The contribution program will write three files to the `rust-fil-proofs` directory. The files do not contain any secret information with respect to the phase2 contribution and do not contain any personal or identifying information of the participant.
 
-1. The phase2 params file containing your contribution (has no file extension)
-2. A `.log` file containing a copy of the text written to stdout and stderr by `./phase2 contribute`. This log file file contains the time take for each stage of the contribution process. This file should not contain any information that identifies the participant, if it does please edit it. The `.log` file does not contain any secret information with respect to the phase2 contribution process that the participant ran.
-3. A `.contrib` file containing the hash of the participant's contribution. This hash should be made public.
+1. The phase2 params file containing your contribution (has no file extension), e.g. `winning_poseidon_32gib_b288702_1_small`. These params are not secret.
+2. A `.log` file containing a copy of the text that was written to stdout and stderr, e.g. `winning_poseidon_32gib_b288702_1_small.log`. You can `cat` this file to ensure that there is no personal information contained within it. 
+3. A `.contrib` file containing the hash of the participant's contribution, e.g. `winning_poseidon_32gib_b288702_1_small.contrib`. This hash is not secret.
 
-Once this phase is complete, the participant has successfully made their contribution. To upload the output parameters to the rsync box, run the following: 
+Lastly, the participant must GPG sign their contribution using a private-key whose public-key is publicly available and can be used to identify the participant.
 
-The participant must send copies of the three files written by `./phase2 contribute` to one of our verification servers via `rsync`.
-
-For, example, if the participant is the first contributor to Filecoin's Winning-PoSt mainnet circuit, they would run the following command to send their files to our server. The participant's SSH private-key must correspond to the SSH public-key that the participant provided to the ceremony coordinator. In this example, the three files written by `./phase2 contribute` would be: `winning_poseidon_32gib_b288702_1_small`, `winning_poseidon_32gib_b288702_1_small.log`, and
-`winning_poseidon_32gib_b288702_1_small.contrib`.
-
-```
-# If you exited the above "phase2" tmux session, reattach to it before running `rsync`.
-[$ tmux attach -t phase2]
-
-# If the rsync command fails midway through the file transfer, it can be re-run
-# without modification to resume the file transfer from the point of failure.
-$ rsync -vP --append -e "ssh -i <path to SSH private-key>" \
-      winning_poseidon_32gib_b288702_1* \
-      response@rsync.kittyhawk.wtf:/home/response
-```
-
-Lastly, the participant must GPG sign their contribution using a private-key whose corresponding public-key is publicly available and which can be used to identify the participant. **This is essential for the credibility of the ceremony, you should not sign-up if you are not comfortable doing this.**
-
-To sign the `.contrib` contribution file wrote by `./phase2 contribute`, the participant (who in this example was the first contributor for the Winning-PoSt circuit) runs: 
+To sign the `.contrib` contribution file wrote by `./phase2 contribute`, the participant (who in this example was the contributor 1 to the Winning-PoSt-32GiB circuit) runs: 
 
 ```
 $ gpg --armor --detach-sign \
       --output winning_poseidon_32gib_b288702_1_small.contrib.sig \
-      winning_poseidon_32gib_b288702_1_small
+      winning_poseidon_32gib_b288702_1_small.contrib
 ```
 
 The participant should also fill out and sign an attestation file, a sample is given [here](https://github.com/filecoin-project/phase2-attestations/blob/master/sample-attestation/0000_alice.md).
