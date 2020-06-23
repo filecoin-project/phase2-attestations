@@ -106,9 +106,15 @@ The contribution program will write three files to the `rust-fil-proofs` directo
 2. A `.log` file containing a copy of the text that was written to stdout and stderr, e.g. `winning_poseidon_32gib_b288702_1_small.log`. You can `cat` this file to ensure that there is no personal information contained within it. 
 3. A `.contrib` file containing the hash of the participant's contribution, e.g. `winning_poseidon_32gib_b288702_1_small.contrib`. This hash is not secret.
 
+The participant should hash the parameters file that was written by `./phase2 contribute` using `b2sum`. The participant should send the cordinator the file digest via Slack. For example, if the participant was contributor #1 to the Winning-PoSt-32GiB circuit's parameters, they hash using the command:
+
+```
+$ b2sum winning_poseidon_32gib_b288702_1_small
+```
+
 Lastly, the participant must GPG sign their contribution using a private-key whose public-key is publicly available and can be used to identify the participant.
 
-To sign the `.contrib` contribution file wrote by `./phase2 contribute`, the participant (who in this example was the contributor 1 to the Winning-PoSt-32GiB circuit) runs: 
+To sign the `.contrib` contribution file wrote by `./phase2 contribute`, the participant (who in this example was contributor #1 to the Winning-PoSt-32GiB circuit) runs: 
 
 ```
 $ gpg --armor --detach-sign \
