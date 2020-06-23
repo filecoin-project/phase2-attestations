@@ -55,47 +55,53 @@ Prior to participation, each participant should:
 3. Build the Rust crate containing Filecoin's circuits and the phase2 CLI binary [`rust-fil-proofs`](https://github.com/filecoin-project/rust-fil-proofs)
 
 ```
-# Check and install missing dependencies:
+# On Ubuntu, you will need to have the `build-essential` package and OpenCL header files installed.
+$ sudo apt update
+$ sudo apt install build-essential ocl-icd-opencl-dev
+
+# Check for and install missing dependencies:
 $ which <git, ssh, tmux, rsync, b2sum, gpg>
 
 # Install rustup (https://rustup.rs):
 $ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-# Select choice: 1)
+# Select choice: "1"
 $ source $HOME/.cargo/env
 
-# Build the phase2 binary:
+# Build the phase2-cli binary:
 $ git clone https://github.com/filecoin-project/rust-fil-proofs.git
 $ cd rust-fil-proofs
 $ git checkout phase2-cli-mainnet
 $ RUSTFLAGS="-C target-cpu=native" cargo build --release --bin=phase2
-# On Ubuntu, this may require you to install the build-essential package and OpenCL header files:
-# $ sudo apt update
-# $ sudo apt install build-essential ocl-icd-opencl-dev
 $ cp target/release/phase2 .
 ```
 
-## Participation Instructions
+## Adding a Contribution
 
-At the start of the participant's time window they will recieve a URL from which to download the previous participant's Phase2 parameters. 
+At the start of the participant's time window they will recieve a URL from which to download the previous participant's phase2 parameters. 
 
 For non-China based participants, an AWS S3 link to the parameters will be provided. For China based participants, a link to a JDCloud hosted copy of the parameters will be provided. **All phase2 files should be downloaded into the `rust-fil-proofs` directoy that was cloned.**
 
-Once the phase2 file has been downloaded, the participant should check its blake2 digest against the file's published digest.
+China-based participants will be given a URL and shell command to download the previous participant's phase2 parameters file. Participant's located outside of China will have access to an S3 bucket from which they can download the previous participant's phase2 parameters file.
+
+Once the phase2 file has been downloaded, the participant should check that its blake2 digest matches the file's published digest.
 
 ```
 $ tmux new -s phase2
 $ b2sum <downloaded phase2 file>
 ```
 
-After the downloaded file's digest has been verified, the participant runs the phase2 contribution code. **You will be asked to randomly mash your keyboard upon running the contribution code, press enter when you have finihsed.** Keyboard mashing is not the only source of contribution entropy. The remainder of your contribution stage will require no further interaction beyond occasionally monitoring the phase2 process.
+After the file's digest has been checked, the participant runs the phase2 contribution code. **You will be asked to randomly press your keyboard at the start of the contribution process, press enter when you have finihsed.** The remainder of your contribution stage will require no further interaction beyond monitoring the phase2 process for completion.
 
 ```
-$ tmux attach -t phase2
+# If you exited the above "phase2" tmux session, reattach to it before running `./phase2 contribute`.
+[$ tmux attach -t phase2]
+
+# You will be asked to randomly press your keyboard.
 $ RUST_BACKTRACE=1 ./phase2 contribute <downloaded phase2 file>
-# Randomly press keyboard.
 ```
 
 The contribution program will write three files to the `rust-fil-proofs` directory:
+
 1. The phase2 params file containing your contribution (has no file extension)
 2. A `.log` file containing a copy of the text written to stdout and stderr by `./phase2 contribute`. This log file file contains the time take for each stage of the contribution process. This file should not contain any information that identifies the participant, if it does please edit it. The `.log` file does not contain any secret information with respect to the phase2 contribution process that the participant ran.
 3. A `.contrib` file containing the hash of the participant's contribution. This hash should be made public.
@@ -104,11 +110,13 @@ Once this phase is complete, the participant has successfully made their contrib
 
 The participant must send copies of the three files written by `./phase2 contribute` to one of our verification servers via `rsync`.
 
-For, example, if the participant is the first contributor to Filecoin's Winning-PoSt mainnet circuit, they would run the following command to send their files to our server. The participant's SSH privagte-key must correspond to the SSH public-key that the participant provided to the ceremony coordinator. In this example, the three files written by `./phase2 contribute` would be: `winning_poseidon_32gib_b288702_1_small`, `winning_poseidon_32gib_b288702_1_small.log`, and
+For, example, if the participant is the first contributor to Filecoin's Winning-PoSt mainnet circuit, they would run the following command to send their files to our server. The participant's SSH private-key must correspond to the SSH public-key that the participant provided to the ceremony coordinator. In this example, the three files written by `./phase2 contribute` would be: `winning_poseidon_32gib_b288702_1_small`, `winning_poseidon_32gib_b288702_1_small.log`, and
 `winning_poseidon_32gib_b288702_1_small.contrib`.
 
 ```
-$ tmux attach -t phase2
+# If you exited the above "phase2" tmux session, reattach to it before running `rsync`.
+[$ tmux attach -t phase2]
+
 # If the rsync command fails midway through the file transfer, it can be re-run
 # without modification to resume the file transfer from the point of failure.
 $ rsync -vP --append -e "ssh -i <path to SSH private-key>" \
@@ -132,4 +140,4 @@ The participant should also fill out and sign an attestation file, a sample is g
 $ gpg --armor --detach-sign --output attestation.md.sig attestation.md
 ```
 
-The participant must send these files and signatures to the coordinator, either by Slack or to [trustedsetup@protocol.ai](mailto:trustedsetup@protocol.ai). The participant should publish their contribution hash `$cat <the .contrib file>` via public channels.
+Each participant will be given a URL and shell command with which they will upload their files and signatures. **A participant should not delete their files prior to the coordinator communicating that the contribution has been verified.** The coordinator runs a publicly available verification script on the participant's uploaded parameters. Once the participant's parameters are verified, the coordinator will communicate that the contribution has been accepted.
