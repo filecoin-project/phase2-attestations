@@ -118,10 +118,4 @@ $ gpg --armor --detach-sign \
       winning_poseidon_32gib_b288702_1_small.contrib
 ```
 
-The participant should also fill out and sign an attestation file, a sample is given [here](https://github.com/filecoin-project/phase2-attestations/blob/master/sample-attestation/0000_alice.md).
-
-```
-$ gpg --armor --detach-sign --output attestation.md.sig attestation.md
-```
-
 Each participant will be given a shell command with which to upload their files and signatures (4 files per circuit contributed to, one of the four files is a `.sig` signature file). **A participant should not delete their files prior to the coordinator communicating that the contribution has been verified.** The coordinator runs a publicly available verification script on the participant's uploaded parameters. Once the participant's parameters are verified, the coordinator will communicate that the contribution has been accepted.
