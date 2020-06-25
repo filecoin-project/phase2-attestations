@@ -92,17 +92,17 @@ After each downloaded file's digest has been verified, the participant runs the 
 ```
 # Enter a tmux session only if you are not in one.
 [$ tmux new -s phase2] or [$tmux attach -t phase2]
-
 $ RUST_BACKTRACE=1 ./phase2 contribute <downloaded phase2 file>
 ```
 
 The contribution program will write three files to the `rust-fil-proofs` directory. The files do not contain any secret information with respect to the phase2 contribution and do not contain any personal or identifying information of the participant.
 
-1. The phase2 params file containing your contribution (has no file extension), e.g. `winning_poseidon_32gib_b288702_1_small`. These params are not secret.
-2. A `.log` file containing a copy of the text that was written to stdout and stderr, e.g. `winning_poseidon_32gib_b288702_1_small.log`. You can `cat` this file to ensure that there is no personal information contained within it. 
-3. A `.contrib` file containing the hash of the participant's contribution, e.g. `winning_poseidon_32gib_b288702_1_small.contrib`. This hash is not secret.
+1. A phase2 parameters file containing your contribution. This file has no file extension, e.g.
+`winning_poseidon_32gib_b288702_1_small`. This file is not secret.
+2. A `.log` file containing a copy of the text that was written to stdout and stderr, e.g.`winning_poseidon_32gib_b288702_1_small.log`. You can `cat` this file to ensure that there is no personal information contained within it. This file is not secret.
+3. A `.contrib` file containing the hash of the participant's contribution, e.g. `winning_poseidon_32gib_b288702_1_small.contrib`. This file is not secret.
 
-The participant should hash the parameters file that was written by `./phase2 contribute` using `b2sum`. The participant should send the cordinator the file digest via Slack. For example, if the participant was contributor #1 to the Winning-PoSt-32GiB circuit's parameters, they hash using the command:
+The participant must hash the parameters file that was written by `phase2 contribute` using `b2sum`. The participant will send the cordinator this digest via Slack. For example, if the participant was contributor #1 to the Winning-PoSt-32GiB circuit, they run the commaind:
 
 ```
 $ b2sum winning_poseidon_32gib_b288702_1_small
@@ -110,7 +110,7 @@ $ b2sum winning_poseidon_32gib_b288702_1_small
 
 Lastly, the participant must GPG sign their contribution using a private-key whose public-key is publicly available and can be used to identify the participant.
 
-To sign the `.contrib` contribution file wrote by `./phase2 contribute`, the participant (who in this example was contributor #1 to the Winning-PoSt-32GiB circuit) runs: 
+To sign the `.contrib` contribution file output by `phase2 contribute`, the participant (who in this example is Contributor #1 to the Winning-PoSt-32GiB circuit) runs:
 
 ```
 $ gpg --armor --detach-sign \
