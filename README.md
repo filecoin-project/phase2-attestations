@@ -75,28 +75,24 @@ $ RUSTFLAGS="-C target-cpu=native" cargo build --release --bin=phase2
 $ cp target/release/phase2 .
 ```
 
-## Adding a Contribution
+## Participation Steps
 
-At the start of the participant's time window they will recieve a URL from which to download the previous participant's phase2 parameters. 
+At the start of each participant's contribution time-window, the participant will receive one URL and/or shell command for each circuit that they are contributing to. The link or command is used to download the previous participant's phase2 parameters.
 
-For non-China based participants, an AWS S3 link to the parameters will be provided. For China based participants, a link to a JDCloud hosted copy of the parameters will be provided. **All phase2 files should be downloaded into the `rust-fil-proofs` directoy that was cloned.**
-
-China-based participants will be given a URL and shell command to download the previous participant's phase2 parameters file. Participant's located outside of China will have access to an S3 bucket from which they can download the previous participant's phase2 parameters file.
-
-Once the phase2 file has been downloaded, the participant should check that its blake2 digest matches the file's published digest.
+Once the phase2 file or files have been downloaded, the participant must check that each downloaded file's blake2 digest matches the file's published digest.
 
 ```
-$ tmux new -s phase2
+# Enter a tmux session only if you are not in one.
+[$ tmux new -s phase2] or [$tmux attach -t phase2]
 $ b2sum <downloaded phase2 file>
 ```
 
-After the file's digest has been checked, the participant runs the phase2 contribution code. **You will be asked to randomly press your keyboard at the start of the contribution process, press enter when you have finihsed.** The remainder of your contribution stage will require no further interaction beyond monitoring the phase2 process for completion.
+After each downloaded file's digest has been verified, the participant runs the phase2 contribution code. **You will be asked to randomly press your keyboard at the start of the contribution process, press "enter" when you have finished pressing keys.**
 
 ```
-# If you exited the above "phase2" tmux session, reattach to it before running `./phase2 contribute`.
-[$ tmux attach -t phase2]
+# Enter a tmux session only if you are not in one.
+[$ tmux new -s phase2] or [$tmux attach -t phase2]
 
-# You will be asked to randomly press your keyboard.
 $ RUST_BACKTRACE=1 ./phase2 contribute <downloaded phase2 file>
 ```
 
@@ -128,4 +124,4 @@ The participant should also fill out and sign an attestation file, a sample is g
 $ gpg --armor --detach-sign --output attestation.md.sig attestation.md
 ```
 
-Each participant will be given a URL and shell command with which they will upload their files and signatures. **A participant should not delete their files prior to the coordinator communicating that the contribution has been verified.** The coordinator runs a publicly available verification script on the participant's uploaded parameters. Once the participant's parameters are verified, the coordinator will communicate that the contribution has been accepted.
+Each participant will be given a shell command with which to upload their files and signatures (4 files per circuit contributed to, one of the four files is a `.sig` signature file). **A participant should not delete their files prior to the coordinator communicating that the contribution has been verified.** The coordinator runs a publicly available verification script on the participant's uploaded parameters. Once the participant's parameters are verified, the coordinator will communicate that the contribution has been accepted.
