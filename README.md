@@ -70,6 +70,7 @@ $ source $HOME/.cargo/env
 # Build the phase2-cli binary:
 $ git clone https://github.com/filecoin-project/rust-fil-proofs.git
 $ cd rust-fil-proofs
+$ git checkout 4e4f766
 $ RUSTFLAGS="-C target-cpu=native" cargo build --release --bin=phase2
 $ cp target/release/phase2 .
 ```
