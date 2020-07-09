@@ -20,26 +20,25 @@ Each Filecoin circuit release will require a new Phase2 trusted-setup.
 * Circuit Freeze Date: Jun-10-2020
 * Circuit Freeze Commit: [`b288702362e8f14ee0a68fb030774f339266e9a6`](https://github.com/filecoin-project/rust-fil-proofs/tree/b288702362e8f14ee0a68fb030774f339266e9a6)
 * Circuit List:
-    * SDR-PoRep, Poseidon hash function, 32GiB sector-size, circuit-id=`sdr_32gib_poseidon_b288702`
+    * SDR-PoRep, 32GiB sector-size, Poseidon hash function, circuit-id=`sdr_32gib_poseidon_b288702`
     * SDR-PoRep, 64GiB sector-size, Poseidon hash function, circuit-id=`sdr_64gib_poseidon_b288702`
     * Winning-PoSt, Poseidon hash function, 32GiB sector-size, circuit-id=`winning_32gib_poseidon_b288702`
     * Winning-PoSt, Poseidon hash function, 64GiB sector-size, circuit-id=`winning_64gib_poseidon_b288702`
     * Window-PoSt, Poseidon hash function, 32GiB sector-size, circuit-id=`window_32gib_poseidon_b288702`
     * Window-PoSt, Poseidon hash function, 64GiB sector-size, circuit-id=`window_64gib_poseidon_b288702`
 
-### Mainnet Participation Logistics
+### Participation Requirements
 
-The participation requirements for phase2 vary with each circuit, the following table details the
-requirements.
+The participation requirements for phase2 vary between circuits, the following table details the hardware requirements and participant runtime for each Mainnet circuit. Note that runtime decreases linearly with an increasing number of cores (or threads if is processor has hyperthreading).
 
-| Circuit            | RAM Req | Disk Space Req | Est. Completion Time | Param File Size (Approx.) |
-| ------------------ |---------|----------------|----------------------| --------------------------|
-| SDR-PoRep 32GiB    | 55GB    | 50GB           | 20 hours             | 25GB |
-| SDR-PoRep 64GiB    | 55GB    | 50GB           | 20 hours             | 25GB |
-| Winning-PoSt 32GiB | 1GB     | 0.25GB         | 10 minutes           | 90MB |
-| Winning-PoSt 64GiB | 1GB     | 0.25GB         | 10 minutes           | 90MB |
-| Window-PoSt 32GiB  | 55GB    | 50GB           | 20 hours             | 25GB |
-| Window-PoSt 64GiB  | 55GB    | 50GB           | 20 hours             | 25GB |
+| Circuit            | RAM Req. | Disk Space Req. | Runtime (8 v.s. 96 cores) |
+| ------------------ | -------- | --------------- | ------------------------- |
+| SDR-PoRep-32GiB    | 6GB      | 52GB            | 6h25m, 45m                |
+| SDR-PoRep-64GiB    | 6GB      | 52GB            | 6h25m, 45m                |
+| Window-PoSt-32GiB  | 6GB      | 52GB            | 6h25m, 45m                |
+| Window-PoSt-64GiB  | 6GB      | 52GB            | 6h25m, 45m                |
+| Winning-PoSt-32GiB | 1GB      | 0.25GB          | 1m, 10s                   |
+| Winning-PoSt-64GiB | 1GB      | 0.25GB          | 1m, 10s                   |
 
 ## Ceremony Coordination
 
@@ -50,9 +49,8 @@ A slack channel has been set up to discuss the ceremony - please join the **#fil
 * Ensure you have a GPG key set up (instructions [here](https://help.github.com/en/github/authenticating-to-github/generating-a-new-gpg-key))
 
 Prior to participation, each participant should:
-1. Install the dependencies `git`, `ssh`, `tmux`, `rsync`, `b2sum`, `gpg`
-2. Install [`rustup`](https://rustup.rs)
-3. Build the Rust crate containing Filecoin's circuits and the phase2 CLI binary [`rust-fil-proofs`](https://github.com/filecoin-project/rust-fil-proofs)
+1. Install the dependencies `rustup`, `git`, `ssh`, `tmux`, `rsync`, `b2sum`, `gpg`, OpenCL header files
+2. Build [`rust-fil-proofs`](https://github.com/filecoin-project/rust-fil-proofs), the Rust crate containing Filecoin's circuits and trusted-setup CLI
 
 ```
 # On Ubuntu, you will need to have the `build-essential` package and OpenCL header files installed.
@@ -62,12 +60,13 @@ $ sudo apt install build-essential ocl-icd-opencl-dev
 # Check for and install missing dependencies:
 $ which <git, ssh, tmux, rsync, b2sum, gpg>
 
-# Install rustup (https://rustup.rs):
+# Install rustup:
+# Installation instructions are taken from the rustup website: https://rustup.rs.
 $ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 # Select choice: "1"
 $ source $HOME/.cargo/env
 
-# Build the phase2-cli binary:
+# Build rust-fil-proofs:
 $ git clone https://github.com/filecoin-project/rust-fil-proofs.git
 $ cd rust-fil-proofs
 $ git checkout 4e4f766
