@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+# ./recv <c1, c2, c3, c4, rsyncbox, jdr> <remote dir and filename pattern, which can end in a "*">
+
+case $1 in
+'c1')
+    user='ubuntu'
+    ip='18.185.174.171'
+    ;;
+'c2')
+    user='ubuntu'
+    ip='18.157.187.220'
+    ;;
+'c3')
+    user='ubuntu'
+    ip='18.185.98.252'
+    ;;
+'c4')
+    user='ubuntu'
+    ip='3.126.254.183'
+    ;;
+'rsyncbox')
+    user='response'
+    ip='172.31.10.19'
+    ;;
+'jdr')
+    user='root'
+    ip='114.67.205.233'
+    ;;
+*)
+    echo 'invalid remote name'
+    exit 1;
+    ;;
+esac
+
+rsync -vP -e 'ssh -i ~/.ssh/github_rsa' "${user}@${ip}:$2" .
