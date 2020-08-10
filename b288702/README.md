@@ -1,4 +1,4 @@
-## Mainnet Circuits
+# Mainnet Circuits
 
 Circuits frozen at `rust-fil-proofs` commit: `b288702`
 
