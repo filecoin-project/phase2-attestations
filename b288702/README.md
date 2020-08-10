@@ -24,7 +24,7 @@ The following are requirements for participating in Filecoin's mainnet Phase 2. 
 
 ## Phase 2 Validation
 
-**Note: We recommend you use a machine with 96 cores and 120GB of RAM for running verification**
+**Note: We recommend you use a machine with 96 cores, 180GB of RAM, and 50GB swap for running verification**
 
 1. Build `rust-fil-proofs`:
 
