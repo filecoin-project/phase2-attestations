@@ -38,8 +38,8 @@ $ cargo build --release --bin phase2 && cp target/release/phase2 .
 2. Download checksums file and verification script:
 
 ```bash
-$ curl -O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/eff79d7/b288702/b288702.b2sums \
--O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/eff79d7/b288702/verify_all.sh && chmod +x verify_all.sh
+$ curl -O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/b80d1f8/b288702/b288702.b2sums \
+-O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/b80d1f8/b288702/verify_all.sh && chmod +x verify_all.sh
 ```
 
 3. Verify Phase2 contributions:
