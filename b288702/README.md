@@ -18,7 +18,7 @@ $ curl -O https://raw.githubusercontent.com/filecoin-project/phase2-attestations
 
 3. Verify Phase2 contributions:
 
-Running `./verify_all <circuit> <size>` will verify all Phase 2 contributions made to the Groth16 parameters for a circuit of that specific size and check that the verified Groth16 parameters are being used by the Filecoin network. The below describes the relevant Phase 1 file to use for each circuit, along with the commands to run the verification script for each circuit.
+In order to run the verifcation, you will need to download the relevant Phase 1 file for the circuit and run the verification script for that specific circuit. The verification script will verify all Phase 2 contributions made to the Groth16 parameters for a circuit of that specific size and check that the verified Groth16 parameters are being used by the Filecoin network. The commands and associated Phase 1 file for each circuit are listed below.
 
 **Winning-PoSt**
 
