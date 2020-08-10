@@ -52,7 +52,9 @@ In order to run the verifcation, you will need to download the relevant Phase 1 
 
 ```
 $ curl -O https://trusted-setup.s3.amazonaws.com/challenge19/phase1radix2m19
-$ ./verify_all.sh winning <32, 64>
+$ ./verify_all.sh winning 32
+…
+$ ./verify_all.sh winning 64
 ```
 
 **SDR-PoRep and Window-PoSt**
@@ -61,5 +63,11 @@ $ ./verify_all.sh winning <32, 64>
 
 ```bash
 $ curl -O https://trusted-setup.s3.amazonaws.com/challenge19/phase1radix2m27
-$ ./verify_all.sh <sdr, window> <32, 64>
+$ ./verify_all.sh sdr 32
+…
+$ ./verify_all.sh sdr 64
+…
+$ ./verify_all.sh window 32
+…
+$ ./verify_all.sh window 64
 ```
