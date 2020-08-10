@@ -1,6 +1,6 @@
 ## Mainnet Circuits
 
-* Circuits frozen at `rust-fil-proofs` commit: `b288702`
+Circuits frozen at `rust-fil-proofs` commit: `b288702`
 
 1. SDR-PoRep-32GiB (Poseidon)
 2. SDR-PoRep-64GiB (Poseidon)
