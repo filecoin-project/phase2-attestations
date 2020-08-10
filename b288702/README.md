@@ -1,4 +1,28 @@
-# Phase 2 Validation
+## Mainnet Circuits
+
+* Circuits frozen at `rust-fil-proofs` commit: `b288702`
+
+1. SDR-PoRep-32GiB (Poseidon)
+2. SDR-PoRep-64GiB (Poseidon)
+3. Winning-PoSt-32GiB (Poseidon)
+4. Winning-PoSt-64GiB (Poseidon)
+5. Window-PoSt-32GiB (Poseidon)
+6. Window-PoSt-64GiB (Poseidon)
+
+### Participation Requirements
+
+The following are requirements for participating in Filecoin's mainnet Phase 2. Note that runtime varies inversely with the number of CPU threads available.
+
+| Circuit            | RAM Req. | Disk Space Req. | Runtime 96 CPU Threads | Runtime 8 CPU Threads |
+| :------------------ | :--------: | :---------------: | :-----------------------: | :---------------------: |
+| SDR-PoRep-32GiB    | 6GB      | 52GB            | 45m                    | 6h                    |
+| SDR-PoRep-64GiB    | 6GB      | 52GB            | 45m                    | 6h                    |
+| Window-PoSt-32GiB  | 6GB      | 52GB            | 45m                    | 6h                    |
+| Window-PoSt-64GiB  | 6GB      | 52GB            | 45m                    | 6h                    |
+| Winning-PoSt-32GiB | 1GB      | 250MB          | 10s                    | 1m                    |
+| Winning-PoSt-64GiB | 1GB      | 250MB          | 10s                    | 1m                    |
+
+## Phase 2 Validation
 
 1. Build `rust-fil-proofs`:
 
