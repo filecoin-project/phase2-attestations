@@ -1,16 +1,16 @@
-# Filecoin Trusted-Setup Phase2 Attestations
+# Filecoin Trusted-Setup Phase 2 Attestations
 
 This repo stores the attestation files for participants in Filecoin's Groth16 parameter generation MPC. This repo is specific to the second phase of the MPC, the participant attestations for Filecoin's trusted-setup Phase1/Powers-of-Tau ceremony can be found in this [repo](https://github.com/arielgabizon/perpetualpowersoftau).
 
 ## Filecoin Circuit Releases
 
-Each Filecoin circuit release will require a new Phase2 trusted-setup. As proof upgrades land, new directories will be created using the commit hash of `rust-fil-proofs` where the circuits were frozen for the Phase 2 ceremony. 
+Each Filecoin circuit release will require a new Phase 2 trusted-setup. As proof upgrades land, new directories will be created using the commit hash of `rust-fil-proofs` where the circuits were frozen for the Phase 2 ceremony. 
 
 | Filecoin Release | Directory / Circuit Freeze Commit Hash |
 | :--------------: | :-------: |
 | Mainnet          | [b288702](/b288702) |
 
-## Mainnet Circuits
+## Latest Phase 2 (Mainnet)
 
 Circuits frozen at `rust-fil-proofs` commit: `b288702`
 
