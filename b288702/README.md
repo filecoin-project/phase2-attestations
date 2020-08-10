@@ -9,7 +9,7 @@ Circuits frozen at `rust-fil-proofs` commit: `b288702`
 5. Window-PoSt-32GiB (Poseidon)
 6. Window-PoSt-64GiB (Poseidon)
 
-### Participation Requirements
+### Contribution Requirements
 
 The following are requirements for participating in Filecoin's mainnet Phase 2. Note that runtime varies inversely with the number of CPU threads available.
 
@@ -23,6 +23,8 @@ The following are requirements for participating in Filecoin's mainnet Phase 2. 
 | Winning-PoSt-64GiB | 1GB      | 250MB          | 10s                    | 1m                    |
 
 ## Phase 2 Validation
+
+**Note: We recommend you use a machine with 96 cores and 120GB of RAM for running verification**
 
 1. Build `rust-fil-proofs`:
 
