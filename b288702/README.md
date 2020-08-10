@@ -18,7 +18,7 @@ $ curl -O https://raw.githubusercontent.com/filecoin-project/phase2-attestations
 
 3. Verify Phase2 contributions:
 
-* Running `./verify_all winning 32` will verify all Phase 2 contributions made to the Winning-PoSt-32GiB circuit's Groth16 parameters and check that the verified Groth16 parameters are being used by the Filecoin network.
+Running `./verify_all <circuit> <size>` will verify all Phase 2 contributions made to the Groth16 parameters for a circuit of that specific size and check that the verified Groth16 parameters are being used by the Filecoin network. The below describes the relevant Phase 1 file to use for each circuit, along with the commands to run the verification script for each circuit.
 
 **Winning-PoSt**
 
