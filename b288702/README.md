@@ -26,7 +26,7 @@ The following are requirements for participating in Filecoin's mainnet Phase 2. 
 
 **Note: We recommend you use a machine with 96 cores, 180GB of RAM, and 50GB swap for running verification**
 
-1. Build `rust-fil-proofs`:
+1. Build `rust-fil-proofs`, please also check its [Rust installation/build instructions](https://github.com/filecoin-project/rust-fil-proofs/blob/6e38487293a2ec063688acb4a414600b1c0654f9/README.md#install-and-configure-rust):
 
 ```bash
 $ git clone https://github.com/filecoin-project/rust-fil-proofs.git
