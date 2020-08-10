@@ -31,15 +31,15 @@ The following are requirements for participating in Filecoin's mainnet Phase 2. 
 ```bash
 $ git clone https://github.com/filecoin-project/rust-fil-proofs.git
 $ cd rust-fil-proofs
-$ git checkout 8e7c5a0
+$ git checkout 6e38487
 $ cargo build --release --bin phase2 && cp target/release/phase2 .
 ```
 
 2. Download checksums file and verification script:
 
 ```bash
-$ curl -O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/master/b288702/b288702.b2sums \
--O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/master/b288702/verify_all.sh && chmod +x verify_all.sh
+$ curl -O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/eff79d7/b288702/b288702.b2sums \
+-O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/eff79d7/b288702/verify_all.sh && chmod +x verify_all.sh
 ```
 
 3. Verify Phase2 contributions:
