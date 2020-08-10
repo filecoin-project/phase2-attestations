@@ -89,6 +89,7 @@ log 'extracting groth16 keys'
 split_output="$(./phase2 split-keys $final_large)"
 vk_file=$(echo -e "$split_output" | grep -o "v${version}-.*\.vk")
 params_file=$(echo -e "$split_output" | grep -o "v${version}-.*\.params")
+contribs_file=$(echo -e "$split_output" | grep -o "v${version}-.*\.contribs")
 
 # Verify groth keys checksums.
 log 'verifying .vk checksum'
@@ -102,6 +103,17 @@ else
     exit 1
 fi
 
+# Verify that the .vk file is extracted from the trusted setup phase2 file
+log 'verifying .vk is a subset of phase2'
+vk_size=$(wc --bytes < $vk_file)
+final_large_vk_digest=$(head --bytes $vk_size $final_large | b2sum | head -c 32)
+if [[ $vk_digest == $final_large_vk_digest ]]; then
+    log "${green}success:${off} .vk is a subset of phase2"
+else
+    error '.vk is not a subset of phase2'
+    exit 1
+fi
+
 # Verify .params checksum.
 log 'verifying .params checksum'
 params_digest=$(b2sum $params_file | head -c 32)
@@ -111,6 +123,17 @@ if [[ $params_digest == $params_digest_json ]]; then
     log "${green}success:${off} .params digests match"
 else
     error '.params digests do not match'
+    exit 1
+fi
+
+# Verify that the trusted setup phase2 file can be re-assembled from its parts
+log 'verifying .params is a subset of phase2'
+combined_digest=$(cat $params_file $contribs_file | b2sum | head --bytes 32)
+final_large_digest=$(b2sum $final_large | head --bytes 32)
+if [[ $combined_digest == $final_large_digest ]]; then
+    log "${green}success:${off} .params is a subset of phase2"
+else
+    error '.params is not a subset of phase2'
     exit 1
 fi
 
