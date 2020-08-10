@@ -4,7 +4,7 @@ This repo stores the attestation files for participants in Filecoin's Groth16 pa
 
 ## Filecoin Circuit Releases
 
-Each Filecoin circuit release will require a new Phase2 trusted-setup.
+Each Filecoin circuit release will require a new Phase2 trusted-setup. The commit hash referenced is the version of the circuits frozen and used for the trusted setup ceremony.
 
 | Filecoin Release | Directory |
 | :--------------: | :-------: |
