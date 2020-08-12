@@ -40,18 +40,23 @@ else
     n='16'
 fi
 
-# Generate initial phase2 params.
-log 'generating initial params'
-./phase2 new --${proof} --${sector_size}gib
 
-# Rename initial params file to replace commit hash at time of ceremony start
-# with that of the current release (which should be checked out), so verification will succeed.
+# Generate initial phase2 params.
 initial_large="${proof}_poseidon_${sector_size}gib_b288702_0_large"
-mv ${proof}_poseidon_${sector_size}gib_$(git rev-parse --short=7 HEAD)_0_large $initial_large
+if [[ ! -f ${initial_large} ]]; then
+    log 'generating initial params'
+    ./phase2 new --${proof} --${sector_size}gib
+
+    # Rename initial params file to replace commit hash at time of ceremony start
+    # with that of the current release (which should be checked out), so verification will succeed.
+    mv ${proof}_poseidon_${sector_size}gib_$(git rev-parse --short=7 HEAD)_0_large $initial_large
+fi
 
 # Verify checksum of generated initial params.
 log 'verifying initial params checksum'
 grep $initial_large b288702.b2sums | b2sum -c
+
+url_base='https://trusted-setup.s3.amazonaws.com/phase2-mainnet'
 
 # Verify phase2 contributions.
 for i in $(seq 1 $n); do
@@ -60,7 +65,7 @@ for i in $(seq 1 $n); do
     file="${proof}_poseidon_${sector_size}gib_b288702_${i}_small_raw"
     if [[ ! -f ${file} ]]; then
         log "downloading params: ${file}"
-        curl --progress-bar -O https://trusted-setup.s3.amazonaws.com/phase2-mainnet/${file}
+        curl --progress-bar -O ${url_base}/${file}
         log 'verifying downloaded params checksum'
         grep $file b288702.b2sums | b2sum -c
     fi
@@ -68,12 +73,14 @@ for i in $(seq 1 $n); do
     contrib="${file}.contrib"
     if [[ ! -f ${contrib} ]]; then
         log "downloading contrib: ${contrib}"
-        curl --progress-bar -O https://trusted-setup.s3.amazonaws.com/phase2-mainnet/${contrib}
+        curl --progress-bar -O ${url_base}/${contrib}
     fi
 
     ./phase2 verify $file
     log "${green}success:${off} verified contribution: ${i}"
-    [[ $i -gt 1 ]] && rm ${proof}_poseidon_${sector_size}gib_b288702_$((i-1))_small_raw{,.contrib}
+    # Free some disk space, delete the verified patameters, keep the
+    # contributions and their signatures
+    [[ $i -gt 1 ]] && rm ${proof}_poseidon_${sector_size}gib_b288702_$((i-1))_small_raw
 done
 
 final_raw="$file"
