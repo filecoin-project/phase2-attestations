@@ -56,6 +56,8 @@ fi
 log 'verifying initial params checksum'
 grep $initial_large b288702.b2sums | b2sum -c
 
+url_base='https://trusted-setup.s3.amazonaws.com/phase2-mainnet'
+
 # Verify phase2 contributions.
 for i in $(seq 1 $n); do
     log "verifying contribution: ${i}"
@@ -63,7 +65,7 @@ for i in $(seq 1 $n); do
     file="${proof}_poseidon_${sector_size}gib_b288702_${i}_small_raw"
     if [[ ! -f ${file} ]]; then
         log "downloading params: ${file}"
-        curl --progress-bar -O https://trusted-setup.s3.amazonaws.com/phase2-mainnet/${file}
+        curl --progress-bar -O ${url_base}/${file}
         log 'verifying downloaded params checksum'
         grep $file b288702.b2sums | b2sum -c
     fi
@@ -71,7 +73,7 @@ for i in $(seq 1 $n); do
     contrib="${file}.contrib"
     if [[ ! -f ${contrib} ]]; then
         log "downloading contrib: ${contrib}"
-        curl --progress-bar -O https://trusted-setup.s3.amazonaws.com/phase2-mainnet/${contrib}
+        curl --progress-bar -O ${url_base}/${contrib}
     fi
 
     ./phase2 verify $file
