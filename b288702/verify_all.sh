@@ -76,7 +76,9 @@ for i in $(seq 1 $n); do
 
     ./phase2 verify $file
     log "${green}success:${off} verified contribution: ${i}"
-    [[ $i -gt 1 ]] && rm ${proof}_poseidon_${sector_size}gib_b288702_$((i-1))_small_raw{,.contrib}
+    # Free some disk space, delete the verified patameters, keep the
+    # contributions and their signatures
+    [[ $i -gt 1 ]] && rm ${proof}_poseidon_${sector_size}gib_b288702_$((i-1))_small_raw
 done
 
 final_raw="$file"
