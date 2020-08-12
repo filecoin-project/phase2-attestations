@@ -40,14 +40,17 @@ else
     n='16'
 fi
 
-# Generate initial phase2 params.
-log 'generating initial params'
-./phase2 new --${proof} --${sector_size}gib
 
-# Rename initial params file to replace commit hash at time of ceremony start
-# with that of the current release (which should be checked out), so verification will succeed.
+# Generate initial phase2 params.
 initial_large="${proof}_poseidon_${sector_size}gib_b288702_0_large"
-mv ${proof}_poseidon_${sector_size}gib_$(git rev-parse --short=7 HEAD)_0_large $initial_large
+if [[ ! -f ${initial_large} ]]; then
+    log 'generating initial params'
+    ./phase2 new --${proof} --${sector_size}gib
+
+    # Rename initial params file to replace commit hash at time of ceremony start
+    # with that of the current release (which should be checked out), so verification will succeed.
+    mv ${proof}_poseidon_${sector_size}gib_$(git rev-parse --short=7 HEAD)_0_large $initial_large
+fi
 
 # Verify checksum of generated initial params.
 log 'verifying initial params checksum'
