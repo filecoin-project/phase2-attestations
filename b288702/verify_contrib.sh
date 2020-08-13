@@ -76,6 +76,11 @@ if [[ -z $contrib || $contrib  -gt $n ]]; then
     exit 1
 fi
 
+if [[ ! -f './b288702.b2sums' ]]; then
+    error 'b288702.b2sums file is missing'
+    exit 1
+fi
+
 url_base='https://trusted-setup.s3.amazonaws.com/phase2-mainnet'
 
 # Verify phase2 contributions.

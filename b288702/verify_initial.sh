@@ -64,6 +64,11 @@ elif [[ ! -f './phase1radix2m27' ]]; then
     exit 1
 fi
 
+if [[ ! -f './b288702.b2sums' ]]; then
+    error 'b288702.b2sums file is missing'
+    exit 1
+fi
+
 # Generate initial phase2 params.
 initial_large="${proof}_poseidon_${sector_size}gib_b288702_0_large"
 if [[ ! -f ${initial_large} ]]; then
