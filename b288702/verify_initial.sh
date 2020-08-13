@@ -53,6 +53,17 @@ if [[ $sector_size != '32' && $sector_size != '64' ]]; then
     exit 1
 fi
 
+# Phase1 parameters are needed to create the initial phase2 parameters
+if [[ $proof == 'winning' ]]; then
+    if [[ ! -f './phase1radix2m19' ]]; then
+        error 'phase1radix2m19 file is missing'
+        exit 1
+    fi
+elif [[ ! -f './phase1radix2m27' ]]; then
+    error 'phase1radix2m27 file is missing'
+    exit 1
+fi
+
 # Generate initial phase2 params.
 initial_large="${proof}_poseidon_${sector_size}gib_b288702_0_large"
 if [[ ! -f ${initial_large} ]]; then
