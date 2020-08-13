@@ -42,8 +42,6 @@ else
     n='16'
 fi
 
-$dir/verify_contrib.sh $proof $sector_size $n
-
 file="${proof}_poseidon_${sector_size}gib_b288702_${n}_small_raw"
 
 final_raw="$file"
