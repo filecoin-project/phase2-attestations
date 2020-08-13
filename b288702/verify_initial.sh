@@ -38,6 +38,8 @@ if [[ ! -f ${initial_large} ]]; then
     # Rename initial params file to replace commit hash at time of ceremony start
     # with that of the current release (which should be checked out), so verification will succeed.
     mv ${proof}_poseidon_${sector_size}gib_$(git rev-parse --short=7 HEAD)_0_large $initial_large
+else
+    log 'use previously generated inital params'
 fi
 
 # Verify checksum of generated initial params.
