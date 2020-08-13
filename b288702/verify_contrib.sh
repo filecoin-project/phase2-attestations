@@ -8,17 +8,19 @@ contrib="$3"
 
 echo "proof: $proof; sector_size: $sector_size; contrib: $contrib"
 
+script_name=$(basename "$0")
+
 magenta='\u001b[35;1m'
 red='\u001b[31;1m'
 green='\u001b[32;1m'
 off='\u001b[0m'
 
 function log() {
-    echo -e "${magenta}[phase2_verify_contrib.sh]${off} $1"
+    echo -e "${magenta}[${script_name}]${off} $1"
 }
 
 function error() {
-    echo -e "${magenta}[phase2_verify_contrib.sh] ${red}error:${off} $1"
+    echo -e "${magenta}[${script_name}] ${red}error:${off} $1"
 }
 
 if [[ $proof != 'winning' && $proof != 'sdr' && $proof != 'window' ]]; then
