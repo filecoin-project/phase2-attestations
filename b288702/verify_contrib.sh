@@ -53,7 +53,7 @@ fi
 url_base='https://trusted-setup.s3.amazonaws.com/phase2-mainnet'
 
 # Verify phase2 contributions.
-log "verifying contribution: ${i}"
+log "verifying contribution: ${contrib}"
 
 prev=$n-1
 prev_file="${proof}_poseidon_${sector_size}gib_b288702_${prev}_small_raw"
@@ -67,7 +67,7 @@ log 'verifying downloaded params checksum'
 grep $prev_file b288702.b2sums | b2sum -c
 
 
-file="${proof}_poseidon_${sector_size}gib_b288702_${i}_small_raw"
+file="${proof}_poseidon_${sector_size}gib_b288702_${contrib}_small_raw"
 if [[ ! -f ${file} ]]; then
     log "downloading params: ${file}"
     curl --progress-bar -O ${url_base}/${file}
@@ -82,4 +82,4 @@ if [[ ! -f ${contrib} ]]; then
 fi
 
 ./phase2 verify $file
-log "${green}success:${off} verified contribution: ${i}"
+log "${green}success:${off} verified contribution: ${contrib}"
