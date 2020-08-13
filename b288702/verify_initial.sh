@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
+echo $0
 
 set -e
 
 proof="$1"
 sector_size="$2"
 version='28'
-
-dir=$(dirname "$0")
 
 magenta='\u001b[35;1m'
 red='\u001b[31;1m'
@@ -42,13 +41,19 @@ else
     n='16'
 fi
 
-$dir/verify_initial.sh $proof $sector_size
+# Generate initial phase2 params.
+initial_large="${proof}_poseidon_${sector_size}gib_b288702_0_large"
+if [[ ! -f ${initial_large} ]]; then
+    log 'generating initial params'
+    ./phase2 new --${proof} --${sector_size}gib
 
-# Verify phase2 contributions.
-for i in $(seq 1 $n); do
-    $dir/verify_contrib.sh $proof $sector_size $i
-done
+    # Rename initial params file to replace commit hash at time of ceremony start
+    # with that of the current release (which should be checked out), so verification will succeed.
+    mv ${proof}_poseidon_${sector_size}gib_$(git rev-parse --short=7 HEAD)_0_large $initial_large
+fi
 
-$dir/verify_final.sh $proof $sector_size
+# Verify checksum of generated initial params.
+log 'verifying initial params checksum'
+grep $initial_large b288702.b2sums | b2sum -c
 
-log "${green}success:${off} finished verifying all phase2 parameters"
+log "${green}success:${off} finished generating initial phase2 parameters"
