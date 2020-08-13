@@ -6,7 +6,7 @@ proof="$1"
 sector_size="$2"
 version='28'
 
-dir=$(dirname "$0")
+contrib="$3"
 
 magenta='\u001b[35;1m'
 red='\u001b[31;1m'
@@ -31,24 +31,7 @@ if [[ $sector_size != '32' && $sector_size != '64' ]]; then
     exit 1
 fi
 
-# The number of phase2 contributions.
-if [[ $proof == 'winning' ]]; then
-    n='20'
-elif [[ $proof == 'window' ]]; then
-    n='15'
-elif [[ $sector_size == '32' ]]; then
-    n='17'
-else
-    n='16'
+if
+    [[ $contrib == 'g1-only' ]]; then
+    g1=true
 fi
-
-$dir/verify_initial.sh $proof $sector_size
-
-# Verify phase2 contributions.
-for i in $(seq 1 $n); do
-    $dir/verify_contrib.sh $proof $sector_size $i
-done
-
-$dir/verify_final.sh $proof $sector_size
-
-log "${green}success:${off} finished verifying all phase2 parameters"
