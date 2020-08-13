@@ -6,8 +6,6 @@ proof="$1"
 sector_size="$2"
 version='28'
 
-dir=$(dirname "$0")
-
 magenta='\u001b[35;1m'
 red='\u001b[31;1m'
 green='\u001b[32;1m'

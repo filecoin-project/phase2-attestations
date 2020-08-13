@@ -4,7 +4,6 @@ set -e
 
 proof="$1"
 sector_size="$2"
-version='28'
 
 dir=$(dirname "$0")
 

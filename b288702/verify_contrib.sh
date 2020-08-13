@@ -4,7 +4,6 @@ set -e
 
 proof="$1"
 sector_size="$2"
-version='28'
 contrib="$3"
 
 echo "proof: $proof; sector_size: $sector_size; contrib: $contrib"

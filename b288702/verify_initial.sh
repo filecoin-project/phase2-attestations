@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
-echo $0
-
 set -e
 
 proof="$1"
 sector_size="$2"
-version='28'
 
 magenta='\u001b[35;1m'
 red='\u001b[31;1m'
@@ -28,17 +25,6 @@ fi
 if [[ $sector_size != '32' && $sector_size != '64' ]]; then
     error "invalid sector-size: '${sector_size}'"
     exit 1
-fi
-
-# The number of phase2 contributions.
-if [[ $proof == 'winning' ]]; then
-    n='20'
-elif [[ $proof == 'window' ]]; then
-    n='15'
-elif [[ $sector_size == '32' ]]; then
-    n='17'
-else
-    n='16'
 fi
 
 # Generate initial phase2 params.
