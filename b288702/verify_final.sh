@@ -42,6 +42,7 @@ else
     n='16'
 fi
 
+initial_large="${proof}_poseidon_${sector_size}gib_b288702_0_large"
 file="${proof}_poseidon_${sector_size}gib_b288702_${n}_small_raw"
 
 final_raw="$file"
