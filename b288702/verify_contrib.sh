@@ -55,7 +55,7 @@ url_base='https://trusted-setup.s3.amazonaws.com/phase2-mainnet'
 # Verify phase2 contributions.
 log "verifying contribution: ${contrib}"
 
-prev=$n-1
+prev=$((contrib - 1))
 prev_file="${proof}_poseidon_${sector_size}gib_b288702_${prev}_small_raw"
 if [[ ! -f ${prev_file} ]]; then
     log "downloading params: ${file}"
