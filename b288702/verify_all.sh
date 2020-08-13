@@ -1,6 +1,18 @@
 #!/usr/bin/env bash
 
+# This script runs a full verifcation of a parameter file.
+#
+# Inputs are a proof type and a sector size and the contribution to verify.
 set -e
+
+script_name=$(basename "$0")
+
+if [ "${#}" -ne 2 ]; then
+    echo "Verify that the final parameters match the final contribution."
+    echo ""
+    echo "Usage: ${script_name} {sdr|window|winning} {32|64}"
+    exit 1
+fi
 
 proof="$1"
 sector_size="$2"
