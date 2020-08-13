@@ -6,8 +6,6 @@ proof="$1"
 sector_size="$2"
 contrib="$3"
 
-echo "proof: $proof; sector_size: $sector_size; contrib: $contrib"
-
 script_name=$(basename "$0")
 
 magenta='\u001b[35;1m'
@@ -47,8 +45,6 @@ fi
 if [[ -z $contrib || $contrib  -gt $n ]]; then
     error "invalid contrib: ${contrib}"
     exit 1
-else
-    echo "contrib: ${contrib}"
 fi
 
 url_base='https://trusted-setup.s3.amazonaws.com/phase2-mainnet'
