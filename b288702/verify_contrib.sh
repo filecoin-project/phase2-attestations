@@ -43,7 +43,7 @@ else
     n='16'
 fi
 
-if [[ -z $contrib || $contrib > $n ]]; then
+if [[ -z $contrib || $contrib  -gt $n ]]; then
     error "invalid contrib: ${contrib}"
     exit 1
 else
