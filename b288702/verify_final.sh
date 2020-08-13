@@ -1,12 +1,35 @@
 #!/usr/bin/env bash
 
+# This script verifies that the final parameters are the same as the final
+# contribution.
+#
+# Inputs are a proof type and a sector size and the contribution to verify.
 set -e
+
+script_name=$(basename "$0")
+
+if [ "${#}" -ne 2 ]; then
+    echo "Verify that the final parameters match the final contribution."
+    echo ""
+    echo "Usage: ${script_name} {sdr|window|winning} {32|64}"
+    exit 1
+fi
+
+if ! command -v b2sum >/dev/null 2>&1
+then
+    echo "ERROR: 'b2sum' needs to be installed."
+    exit 1
+fi
+
+if ! command -v ./phase2 >/dev/null 2>&1
+then
+    echo "ERROR: 'phase2' from rust-fil-proofs needs to be in the current directory."
+    exit 1
+fi
 
 proof="$1"
 sector_size="$2"
 version='28'
-
-dir=$(dirname "$0")
 
 magenta='\u001b[35;1m'
 red='\u001b[31;1m'
@@ -14,11 +37,11 @@ green='\u001b[32;1m'
 off='\u001b[0m'
 
 function log() {
-    echo -e "${magenta}[phase2_verify_all.sh]${off} $1"
+    echo -e "${magenta}[${script_name}]${off} $1"
 }
 
 function error() {
-    echo -e "${magenta}[phase2_verify_all.sh] ${red}error:${off} $1"
+    echo -e "${magenta}[${script_name}] ${red}error:${off} $1"
 }
 
 if [[ $proof != 'winning' && $proof != 'sdr' && $proof != 'window' ]]; then

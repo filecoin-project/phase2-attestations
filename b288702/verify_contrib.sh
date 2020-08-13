@@ -1,13 +1,41 @@
 #!/usr/bin/env bash
 
+# This script verifies a contributions.
+#
+# Inputs are a proof type and a sector size and the contribution to verify.
 set -e
+
+script_name=$(basename "$0")
+
+if [ "${#}" -ne 3 ]; then
+    echo "Verify a contributions."
+    echo "The 'contribution' parameter is a numeric value."
+    echo ""
+    echo "Usage: ${script_name} {sdr|window|winning} {32|64} [contribution]"
+    exit 1
+fi
+
+if ! command -v b2sum >/dev/null 2>&1
+then
+    echo "ERROR: 'b2sum' needs to be installed."
+    exit 1
+fi
+
+if ! command -v ./phase2 >/dev/null 2>&1
+then
+    echo "ERROR: 'phase2' from rust-fil-proofs needs to be in the current directory."
+    exit 1
+fi
+
+if ! command -v curl >/dev/null 2>&1
+then
+    echo "ERROR: 'curl' needs to be installed."
+    exit 1
+fi
 
 proof="$1"
 sector_size="$2"
-version='28'
 contrib="$3"
-
-echo "proof: $proof; sector_size: $sector_size; contrib: $contrib"
 
 magenta='\u001b[35;1m'
 red='\u001b[31;1m'
@@ -15,11 +43,11 @@ green='\u001b[32;1m'
 off='\u001b[0m'
 
 function log() {
-    echo -e "${magenta}[phase2_verify_contrib.sh]${off} $1"
+    echo -e "${magenta}[${script_name}]${off} $1"
 }
 
 function error() {
-    echo -e "${magenta}[phase2_verify_contrib.sh] ${red}error:${off} $1"
+    echo -e "${magenta}[${script_name}] ${red}error:${off} $1"
 }
 
 if [[ $proof != 'winning' && $proof != 'sdr' && $proof != 'window' ]]; then
@@ -46,8 +74,11 @@ fi
 if [[ -z $contrib || $contrib  -gt $n ]]; then
     error "invalid contrib: ${contrib}"
     exit 1
-else
-    echo "contrib: ${contrib}"
+fi
+
+if [[ ! -f './b288702.b2sums' ]]; then
+    error 'b288702.b2sums file is missing'
+    exit 1
 fi
 
 url_base='https://trusted-setup.s3.amazonaws.com/phase2-mainnet'
