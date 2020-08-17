@@ -79,6 +79,15 @@ fi
 log 'verifying parameters checksums file checksum'
 echo "7931ca92df34bf0b6217692daaf2d92135fceb6caae344b10712ee997717cc612435b0a6e1e61325d5abaa62044b6f6359fd44bbe3dc4e111536bcad43c2e0ec  b288702.b2sums" | b2sum -c
 
+# Get the keyring that contains all public keys to verify the contribution
+# signatures
+if [[ ! -f './keyring.gpg' ]]; then
+    log "downloading keyring with GPG pulic keys: keyring.gpg"
+    curl --progress-bar -O "${url_base}/keyring.gpg"
+fi
+log 'verifying keyring.gpg checksum'
+echo "TODO keyring.gpg" | b2sum -c
+
 # Generate initial phase2 params.
 initial_large="${proof}_poseidon_${sector_size}gib_b288702_0_large"
 if [[ ! -f ${initial_large} ]]; then

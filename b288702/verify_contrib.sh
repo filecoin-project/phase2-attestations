@@ -33,6 +33,12 @@ then
     exit 1
 fi
 
+if ! command -v gpg >/dev/null 2>&1
+then
+    echo "ERROR: 'gpg' needs to be installed."
+    exit 1
+fi
+
 proof="$1"
 sector_size="$2"
 contrib="$3"
@@ -40,6 +46,7 @@ contrib="$3"
 magenta='\u001b[35;1m'
 red='\u001b[31;1m'
 green='\u001b[32;1m'
+yellow='\u001b[33;1m'
 off='\u001b[0m'
 
 function log() {
@@ -48,6 +55,10 @@ function log() {
 
 function error() {
     echo -e "${magenta}[${script_name}] ${red}error:${off} $1"
+}
+
+function warn() {
+    echo -e "${magenta}[${script_name}] ${yellow}warn:${off} $1"
 }
 
 if [[ $proof != 'winning' && $proof != 'sdr' && $proof != 'window' ]]; then
@@ -106,11 +117,53 @@ fi
 log 'verifying downloaded params checksum'
 grep $file b288702.b2sums | b2sum -c
 
-contrib="${file}.contrib"
-if [[ ! -f ${contrib} ]]; then
-    log "downloading contrib: ${contrib}"
-    curl --progress-bar -O ${url_base}/${contrib}
+contrib_file="${file}.contrib"
+if [[ ! -f ${contrib_file} ]]; then
+    log "downloading contrib: ${contrib_file}"
+    curl --progress-bar -O ${url_base}/${contrib_file}
 fi
 
+# The actual verification of the file
 ./phase2 verify $file
+
+# The first two contributions of Winning PoSt were not signed
+if [[
+    ( ${proof} == 'winning' && ${sector_size} -eq 32 && ${contrib} -eq 1 ) ||
+    ( ${proof} == 'winning' && ${sector_size} -eq 64 && ${contrib} -eq 1 )
+    ]]
+then
+    warn 'skipping signature verification as there is no signature available for this contribution'
+    exit 0
+fi
+
+log 'verifying signature with public GPG key'
+signature="${file}.contrib.sig"
+if [[ ! -f ${signature} ]]; then
+    log "downloading signature: ${signature}"
+    curl --progress-bar -O ${url_base}/${signature}
+fi
+
+# For some signatures the public keys are not available
+if [[
+    ( ${proof} == 'sdr' && ${sector_size} -eq 64 && ${contrib} -eq 2 ) ||
+    ( ${proof} == 'window' && ${sector_size} -eq 32 && ${contrib} -eq 5 ) ||
+    ( ${proof} == 'window' && ${sector_size} -eq 64 && ${contrib} -eq 6 ) ||
+    ( ${proof} == 'winning' && ${sector_size} -eq 32 && ${contrib} -eq 7 ) ||
+    ( ${proof} == 'winning' && ${sector_size} -eq 64 && ${contrib} -eq 7 ) ||
+    ( ${proof} == 'sdr' && ${sector_size} -eq 64 && ${contrib} -eq 4 ) ||
+    ( ${proof} == 'winning' && ${sector_size} -eq 32 && ${contrib} -eq 12 ) ||
+    ( ${proof} == 'winning' && ${sector_size} -eq 64 && ${contrib} -eq 12 ) ||
+    ( ${proof} == 'window' && ${sector_size} -eq 64 && ${contrib} -eq 7 )
+    ]]
+then
+    warn 'skipping signature verification as no public key is available for this signature'
+    exit 0
+fi
+
+if ! gpg --no-default-keyring --keyring ./keyring.gpg --verify ${signature} > /dev/null 2>&1
+then
+    error 'signature verification failed'
+    exit 1
+fi
+
 log "${green}success:${off} verified contribution: ${contrib}"
