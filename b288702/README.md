@@ -39,8 +39,7 @@ $ cargo build --release --bin phase2 && cp target/release/phase2 .
 2. Download checksums file and verification script:
 
 ```bash
-$ curl -O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/51ddc5d/b288702/b288702.b2sums \
--O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/51ddc5d/b288702/verify_all.sh \
+$ curl -O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/51ddc5d/b288702/verify_all.sh \
 -O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/51ddc5d/b288702/verify_initial.sh \
 -O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/51ddc5d/b288702/verify_contrib.sh \
 -O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/51ddc5d/b288702/verify_final.sh \
@@ -61,22 +60,21 @@ that verifiers follow the instructions in the next section, **Verify all contrib
 
 **Winning-PoSt**
 
-* Download the Phase 1 file `phase1radix2m19`.
-
-```
-$ curl -O https://trusted-setup.s3.amazonaws.com/challenge19/phase1radix2m19
+```console
 $ ./verify_all.sh winning 32
 $ ./verify_all.sh winning 64
 ```
 
-**SDR-PoRep and Window-PoSt**
+**SDR-PoRep**
 
-* Download the Phase 1 file `phase1radix2m27`.
-
-```bash
-$ curl -O https://trusted-setup.s3.amazonaws.com/challenge19/phase1radix2m27
+```console
 $ ./verify_all.sh sdr 32
 $ ./verify_all.sh sdr 64
+```
+
+**Window-PoSt**
+
+```console
 $ ./verify_all.sh window 32
 $ ./verify_all.sh window 64
 ```
@@ -102,8 +100,6 @@ deterministically generated from the target circuit.
 ```bash
 bash -c '
   set -e
-  curl -O https://trusted-setup.s3.amazonaws.com/challenge19/phase1radix2m19
-
   ./verify_initial.sh winning 32
   ./verify_contrib.sh winning 32 1
   ./verify_contrib.sh winning 32 2
@@ -149,8 +145,6 @@ bash -c '
   ./verify_contrib.sh winning 64 19
   ./verify_contrib.sh winning 64 20
   ./verify_final.sh winning 64
-
-  curl -O https://trusted-setup.s3.amazonaws.com/challenge19/phase1radix2m27
 
   ./verify_initial.sh sdr 32
   ./verify_contrib.sh sdr 32 1
