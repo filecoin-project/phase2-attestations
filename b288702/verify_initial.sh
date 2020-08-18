@@ -26,6 +26,12 @@ then
     exit 1
 fi
 
+if ! command -v gpg >/dev/null 2>&1
+then
+    echo "ERROR: 'gpg' needs to be installed."
+    exit 1
+fi
+
 proof="$1"
 sector_size="$2"
 
@@ -81,12 +87,13 @@ echo "7931ca92df34bf0b6217692daaf2d92135fceb6caae344b10712ee997717cc612435b0a6e1
 
 # Get the keyring that contains all public keys to verify the contribution
 # signatures
-if [[ ! -f './keyring.gpg' ]]; then
-    log "downloading keyring with GPG pulic keys: keyring.gpg"
-    curl --progress-bar -O "${url_base}/keyring.gpg"
+if [[ ! -f './keyring.asc' ]]; then
+    log "downloading keyring with GPG pulic keys: keyring.asc"
+    curl --progress-bar -O "${url_base}/keyring.asc"
 fi
-log 'verifying keyring.gpg checksum'
-echo "TODO keyring.gpg" | b2sum -c
+log 'verifying keyring.asc checksum'
+echo "TODO keyring.asc" | b2sum -c
+gpg --no-default-keyring --keyring ./keyring.gpg --import keyring.asc
 
 # Generate initial phase2 params.
 initial_large="${proof}_poseidon_${sector_size}gib_b288702_0_large"
