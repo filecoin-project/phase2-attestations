@@ -376,7 +376,6 @@ A keyring with all keys linked below can be created directly from this file via 
 [BA526F73D477EF6A7382FA468138E2AD3A996138]: https://gist.githubusercontent.com/pulupulu01/9567509de8adae4a18a59e9ff8089226/raw/49304b32be64a8a1183861e299da96953ecbda62/pub_key.asc
 [FDABB36AD8F8DB202E651DFAFDEA6BC9A35D28E3]: https://github.com/benjaminh83.gpg
 [5EE6C970F17007BFC927F14D689F78063991F488]: https://gist.githubusercontent.com/simonatsn/b7834bc727ec98e2953e678beffd1ee8/raw/5dfbf809065108a1ac57d32c9961e8c7de53373a/pl_mpc_pubkey.txt
-[2B490EE435DFF602318E07C96A7C3E234B7B90D9]: https://gist.githubusercontent.com/ksaynice/24421bae8194bc3cf3cd3e671c1293c2/raw/26bf8b6673c417f7066af802552117593281ba9b/pub_key.asc
 [40B8506807F1712B58F546C9AAAE14FFF3FB4FFB]: https://gist.githubusercontent.com/FlankerSea/a18664b4227bfbda4a7c4d324ceb16ff/raw/e5b2230f5660ffb76c0d51a8817910c76b75db59/pub_key.asc
 [490B12E912D4DD6F00CB0F02A7E566E186C99D5D]: https://cloud.factor8.io/s/FHfEi4trFqqFPHX/download?path=/&files=fc_tsp2_f8_gpg.pub
 [EA3C4C2614419DEEB24CDFF5CE747682112116CC]: https://gist.githubusercontent.com/DrPeterVanNostrand/8cabcd16165a589a5b598bc697d1fa44/raw/455e8054f0fb901591ea99aa53f6e9837c041e31/pub_key.asc
