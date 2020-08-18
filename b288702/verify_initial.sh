@@ -53,21 +53,31 @@ if [[ $sector_size != '32' && $sector_size != '64' ]]; then
     exit 1
 fi
 
-# Phase1 parameters are needed to create the initial phase2 parameters
+url_base='https://trusted-setup.s3.amazonaws.com/challenge19'
+
+# Phase 1 parameters are needed to create the initial Phase 2 parameters
 if [[ $proof == 'winning' ]]; then
-    if [[ ! -f './phase1radix2m19' ]]; then
-        error 'phase1radix2m19 file is missing'
-        exit 1
-    fi
-elif [[ ! -f './phase1radix2m27' ]]; then
-    error 'phase1radix2m27 file is missing'
-    exit 1
+    phase1_file='phase1radix2m19'
+    phase1_checksum='4a3b6930739967248fee48dbf43e27ee907ab3780132e21d4c7fe37fcebdc87352f1495795178c27799828db9da3696eb6ef19054404b23ec4994883877d96f8'
+else
+    phase1_file='phase1radix2m27'
+    phase1_checksum='8a5d4e211e3a9817dcdc7d345a25338f261d0b52ab188661dfcb6bada9f2f5ac76925521621d8f87b5b680105973f4b48fb1ec68f65ebf8fdbccbd8d4891e6e9'
 fi
 
-if [[ ! -f './b288702.b2sums' ]]; then
-    error 'b288702.b2sums file is missing'
-    exit 1
+if [[ ! -f ${phase1_file} ]]; then
+    log "downloading Phase 1 parameters: ${phase1_file}"
+    curl --progress-bar -O "${url_base}/${phase1_file}"
 fi
+log 'verifying Phase 1 checksum'
+echo "${phase1_checksum} ${phase1_file}" | b2sum -c
+
+# Get the file containing checksums of the parameter files
+if [[ ! -f './b288702.b2sums' ]]; then
+    log "downloading checksums for parameters: b288702.b2sums"
+    curl --progress-bar -O "${url_base}/b288702.b2sums"
+fi
+log 'verifying parameters checksums file checksum'
+echo "7931ca92df34bf0b6217692daaf2d92135fceb6caae344b10712ee997717cc612435b0a6e1e61325d5abaa62044b6f6359fd44bbe3dc4e111536bcad43c2e0ec  b288702.b2sums" | b2sum -c
 
 # Generate initial phase2 params.
 initial_large="${proof}_poseidon_${sector_size}gib_b288702_0_large"
