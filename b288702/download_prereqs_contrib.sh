@@ -100,8 +100,6 @@ if [[ $contrib -eq 1 ]]; then
     fi
     log 'verifying Phase 1 checksum'
     echo "${phase1_checksum} ${phase1_file}" | b2sum -c
-
-    log "${green}success:${off} finished generating initial phase2 parameters"
 else
     prev=$((contrib - 1))
     prev_file="${proof}_poseidon_${sector_size}gib_b288702_${prev}_small_raw"

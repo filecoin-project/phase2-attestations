@@ -109,6 +109,8 @@ if [[ $prev -eq 0 ]]; then
         # ceremony start with that of the current release (which should be
         # checked out), so verification will succeed.
         mv ${proof}_poseidon_${sector_size}gib_$(git rev-parse --short=7 HEAD)_0_large $initial_large
+
+        log "${green}success:${off} finished generating initial phase2 parameters"
     else
         log 'use previously generated inital params'
     fi
