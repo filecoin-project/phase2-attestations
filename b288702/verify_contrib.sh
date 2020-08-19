@@ -88,7 +88,6 @@ log "verifying contribution: ${contrib}"
 
 prev=$((contrib - 1))
 prev_file="${proof}_poseidon_${sector_size}gib_b288702_${prev}_small_raw"
-prev_file_non_raw="${proof}_poseidon_${sector_size}gib_b288702_${prev}_small"
 
 # We should never download parameters for the first contribution (index 0).
 # If small params are present, they must be deleted.
@@ -96,9 +95,6 @@ prev_file_non_raw="${proof}_poseidon_${sector_size}gib_b288702_${prev}_small"
 if [[ $prev -eq 0 ]]; then
     if [[ -f ${prev_file} ]]; then
         rm ${prev_file}
-    fi
-    if [[ -f ${prev_file_non_raw} ]]; then
-        rm ${prev_file_non_raw}
     fi
 else
     if [[ ! -f ${prev_file} ]]; then
