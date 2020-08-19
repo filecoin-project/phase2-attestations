@@ -93,14 +93,11 @@ other. Because each verification step requires two sequential contribution files
 the same storage should be verified sequentially. Otherwise, you risk two adjacent verifications simultaneously
 requesting the same file.
 
-There is one additional dependency: `verify_initial.sh` must be run before `verify_contrib.sh` for the first contrib of
-every circuit. This is because the 'before' parameters for the first transition cannot be downloaded: they must be
-deterministically generated from the target circuit.
-
 ```bash
 bash -c '
   set -e
-  ./download_prereqs_contrib.sh winning 32 1 && ./verify_contrib.sh winning 32 1
+
+  ./download_initial_generation_prereqs.sh winning 32 && ./generate_initial.sh winning 32 && ./verify_contrib.sh winning 32 1
   ./download_prereqs_contrib.sh winning 32 2 && ./verify_contrib.sh winning 32 2
   ./download_prereqs_contrib.sh winning 32 3 && ./verify_contrib.sh winning 32 3
   ./download_prereqs_contrib.sh winning 32 4 && ./verify_contrib.sh winning 32 4
@@ -122,7 +119,7 @@ bash -c '
   ./download_prereqs_contrib.sh winning 32 20 && ./verify_contrib.sh winning 32 20
   ./verify_final.sh winning 32
 
-  ./download_prereqs_contrib.sh winning 64 1 && ./verify_contrib.sh winning 64 1
+  ./download_initial_generation_prereqs.sh winning 64 && ./generate_initial.sh winning 64 && ./verify_contrib.sh winning 64 1
   ./download_prereqs_contrib.sh winning 64 2 && ./verify_contrib.sh winning 64 2
   ./download_prereqs_contrib.sh winning 64 3 && ./verify_contrib.sh winning 64 3
   ./download_prereqs_contrib.sh winning 64 4 && ./verify_contrib.sh winning 64 4
@@ -144,8 +141,7 @@ bash -c '
   ./download_prereqs_contrib.sh winning 64 20 && ./verify_contrib.sh winning 64 20
   ./verify_final.sh winning 64
 
-  ./verify_initial.sh sdr 32
-  ./download_prereqs_contrib.sh sdr 32 1 && ./verify_contrib.sh sdr 32 1
+  ./download_initial_generation_prereqs.sh sdr 32 && ./generate_initial.sh sdr 32 && ./verify_contrib.sh sdr 32 1
   ./download_prereqs_contrib.sh sdr 32 2 && ./verify_contrib.sh sdr 32 2
   ./download_prereqs_contrib.sh sdr 32 3 && ./verify_contrib.sh sdr 32 3
   ./download_prereqs_contrib.sh sdr 32 4 && ./verify_contrib.sh sdr 32 4
@@ -164,7 +160,7 @@ bash -c '
   ./download_prereqs_contrib.sh sdr 32 17 && ./verify_contrib.sh sdr 32 17
   ./verify_final.sh sdr 32
 
-  ./download_prereqs_contrib.sh sdr 64 1 && ./verify_contrib.sh sdr 64 1
+  ./download_initial_generation_prereqs.sh sdr 64 && ./generate_initial.sh sdr 64 && ./verify_contrib.sh sdr 64 1
   ./download_prereqs_contrib.sh sdr 64 2 && ./verify_contrib.sh sdr 64 2
   ./download_prereqs_contrib.sh sdr 64 3 && ./verify_contrib.sh sdr 64 3
   ./download_prereqs_contrib.sh sdr 64 4 && ./verify_contrib.sh sdr 64 4
@@ -182,7 +178,7 @@ bash -c '
   ./download_prereqs_contrib.sh sdr 64 16 && ./verify_contrib.sh sdr 64 16
   ./verify_final.sh sdr 64
 
-  ./download_prereqs_contrib.sh window 32 1 && ./verify_contrib.sh window 32 1
+  ./download_initial_generation_prereqs.sh window 32 && ./generate_initial.sh window 32 && ./verify_contrib.sh window 32 1
   ./download_prereqs_contrib.sh window 32 2 && ./verify_contrib.sh window 32 2
   ./download_prereqs_contrib.sh window 32 3 && ./verify_contrib.sh window 32 3
   ./download_prereqs_contrib.sh window 32 4 && ./verify_contrib.sh window 32 4
@@ -199,7 +195,7 @@ bash -c '
   ./download_prereqs_contrib.sh window 32 15 && ./verify_contrib.sh window 32 15
   ./verify_final.sh window 32
 
-  ./download_prereqs_contrib.sh window 64 1 ./verify_contrib.sh window 64 1
+  ./download_initial_generation_prereqs.sh window 64 && ./generate_initial.sh window 64 && ./verify_contrib.sh window 64 1
   ./download_prereqs_contrib.sh window 64 2 ./verify_contrib.sh window 64 2
   ./download_prereqs_contrib.sh window 64 3 ./verify_contrib.sh window 64 3
   ./download_prereqs_contrib.sh window 64 4 ./verify_contrib.sh window 64 4
@@ -215,7 +211,6 @@ bash -c '
   ./download_prereqs_contrib.sh window 64 14 ./verify_contrib.sh window 64 14
   ./download_prereqs_contrib.sh window 64 15 ./verify_contrib.sh window 64 15
   ./verify_final.sh window 64
-
 '
 ```
 

@@ -82,40 +82,13 @@ prev=$((contrib - 1))
 prev_file="${proof}_poseidon_${sector_size}gib_b288702_${prev}_small_raw"
 
 # We should never download parameters for the first contribution (index 0).
-# We generate large params instead.
+# We use generated large params instead.
 if [[ $prev -eq 0 ]]; then
-    if [[ $proof == 'winning' ]]; then
-        phase1_file='phase1radix2m19'
-        phase1_checksum='4a3b6930739967248fee48dbf43e27ee907ab3780132e21d4c7fe37fcebdc87352f1495795178c27799828db9da3696eb6ef19054404b23ec4994883877d96f8'
-    else
-        phase1_file='phase1radix2m27'
-        phase1_checksum='8a5d4e211e3a9817dcdc7d345a25338f261d0b52ab188661dfcb6bada9f2f5ac76925521621d8f87b5b680105973f4b48fb1ec68f65ebf8fdbccbd8d4891e6e9'
-    fi
-
-    if [[ ! -f ${phase1_file} ]]; then
-        error "${phase1_file} is missing. Run: ./download_prereqs_contrib.sh ${proof} ${sector_size} ${contrib}"
-        exit 1
-    fi
-    log 'verifying Phase 1 checksum'
-    echo "${phase1_checksum} ${phase1_file}" | b2sum -c
-
-    # Generate initial phase2 params.
     initial_large="${proof}_poseidon_${sector_size}gib_b288702_0_large"
     if [[ ! -f ${initial_large} ]]; then
-        log 'generating initial params'
-        ./phase2 new --${proof} --${sector_size}gib
-
-        # Rename initial params file to replace commit hash at time of
-        # ceremony start with that of the current release (which should be
-        # checked out), so verification will succeed.
-        mv ${proof}_poseidon_${sector_size}gib_$(git rev-parse --short=7 HEAD)_0_large $initial_large
-
-        log "${green}success:${off} finished generating initial phase2 parameters"
-    else
-        log 'use previously generated inital params'
+        error "${initial_large} is missing. Run: ./generate_initial.sh ${proof} ${sector_size}"
+        exit 1
     fi
-
-    # Verify checksum of generated initial params.
     log 'verifying initial params checksum'
     grep $initial_large b288702.b2sums | b2sum -c
 else
