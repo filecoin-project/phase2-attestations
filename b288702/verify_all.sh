@@ -54,10 +54,9 @@ else
     n='16'
 fi
 
-$dir/verify_initial.sh $proof $sector_size
-
-# Verify phase2 contributions.
+# Verify Phase 2 contributions.
 for i in $(seq 1 $n); do
+    $dir/download_prereqs_contrib.sh $proof $sector_size $i
     $dir/verify_contrib.sh $proof $sector_size $i
 done
 
