@@ -40,10 +40,10 @@ $ cargo build --release --bin phase2 && cp target/release/phase2 .
 
 ```bash
 $ curl -O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/51ddc5d/b288702/verify_all.sh \
--O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/51ddc5d/b288702/verify_initial.sh \
+-O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/51ddc5d/b288702/download_prereqs_contrib.sh \
 -O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/51ddc5d/b288702/verify_contrib.sh \
 -O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/51ddc5d/b288702/verify_final.sh \
-&& chmod +x verify_all.sh verify_initial.sh verify_contrib.sh verify_final.sh
+&& chmod +x verify_all.sh download_prereqs_contrib.sh verify_contrib.sh verify_final.sh
 ```
 
 3. Verify Phase2 contributions:
