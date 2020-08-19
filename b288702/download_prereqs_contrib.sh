@@ -99,22 +99,22 @@ if [[ $contrib -eq 1 ]]; then
     echo "${phase1_checksum} ${phase1_file}" | b2sum -c
 
     log "${green}success:${off} finished generating initial phase2 parameters"
-fi
+else
+    prev=$((contrib - 1))
+    prev_file="${proof}_poseidon_${sector_size}gib_b288702_${prev}_small_raw"
 
-prev=$((contrib - 1))
-prev_file="${proof}_poseidon_${sector_size}gib_b288702_${prev}_small_raw"
-
-# The parameters of the previous contributions are needed in order to verify
-# the current contribution. In case this file wasn't created by a previous
-# verification step, the file is downloaded.
-if [[ ! -f ${prev_file} ]]; then
-    log "downloading params: ${file}"
-    curl --progress-bar -O "${url_base}/${prev_file}"
+    # The parameters of the previous contributions are needed in order to verify
+    # the current contribution. In case this file wasn't created by a previous
+    # verification step, the file is downloaded.
+    if [[ ! -f ${prev_file} ]]; then
+        log "downloading params: ${file}"
+        curl --progress-bar -O "${url_base}/${prev_file}"
+    fi
+    # Verify checksum even if file was present, in case of incomplete download or corruption.
+    # This is especially relevant if another process might have initiated a download now in process.
+    log 'verifying downloaded params checksum'
+    grep "$prev_file" b288702.b2sums | b2sum -c
 fi
-# Verify checksum even if file was present, in case of incomplete download or corruption.
-# This is especially relevant if another process might have initiated a download now in process.
-log 'verifying downloaded params checksum'
-grep "$prev_file" b288702.b2sums | b2sum -c
 
 # Download the parameters of the contributions that should get verified
 file="${proof}_poseidon_${sector_size}gib_b288702_${contrib}_small_raw"
