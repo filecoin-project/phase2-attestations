@@ -39,12 +39,12 @@ $ cargo build --release --bin phase2 && cp target/release/phase2 .
 2. Download checksums file and verification script:
 
 ```bash
-$ curl -O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/51ddc5d/b288702/verify_all.sh \
--O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/51ddc5d/b288702/download_initial_generation_prereqs.sh \
--O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/51ddc5d/b288702/generate_initial.sh \
--O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/51ddc5d/b288702/download_prereqs_contrib.sh \
--O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/51ddc5d/b288702/verify_contrib.sh \
--O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/51ddc5d/b288702/verify_final.sh \
+$ curl -O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/e486b55/b288702/verify_all.sh \
+-O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/e486b55/b288702/download_initial_generation_prereqs.sh \
+-O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/e486b55/b288702/generate_initial.sh \
+-O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/e486b55/b288702/download_prereqs_contrib.sh \
+-O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/e486b55/b288702/verify_contrib.sh \
+-O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/e486b55/b288702/verify_final.sh \
 && chmod +x verify_all.sh download_initial_generation_prereqs.sh generate_initial.sh download_prereqs_contrib.sh verify_contrib.sh verify_final.sh
 ```
 
