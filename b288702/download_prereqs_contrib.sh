@@ -70,7 +70,10 @@ if [[ -z $contrib || $contrib -lt 1 || $contrib  -gt $n ]]; then
     exit 1
 fi
 
-url_base='https://trusted-setup.s3.amazonaws.com/challenge19'
+# Once everything is pinned to IPFS, it will be a single location for all
+# the files
+url_base='https://trusted-setup.s3.amazonaws.com/phase2-mainnet'
+url_base_phase1='https://trusted-setup.s3.amazonaws.com/challenge19'
 
 # Get the file containing checksums of the parameter files.
 if [[ ! -f './b288702.b2sums' ]]; then
@@ -93,7 +96,7 @@ if [[ $contrib -eq 1 ]]; then
 
     if [[ ! -f ${phase1_file} ]]; then
         log "downloading Phase 1 parameters: ${phase1_file}"
-        curl --progress-bar -O "${url_base}/${phase1_file}"
+        curl --progress-bar -O "${url_base_phase1}/${phase1_file}"
     fi
     log 'verifying Phase 1 checksum'
     echo "${phase1_checksum} ${phase1_file}" | b2sum -c
