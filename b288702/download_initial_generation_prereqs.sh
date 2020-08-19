@@ -7,7 +7,7 @@ set -e
 
 script_name=$(basename "$0")
 
-if [ "${#}" -ne 3 ]; then
+if [ "${#}" -ne 2 ]; then
     echo "Download files needed to verify the first contribution."
     echo ""
     echo "Usage: ${script_name} {sdr|window|winning} {32|64}"

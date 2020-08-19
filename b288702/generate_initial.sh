@@ -7,7 +7,7 @@ set -e
 
 script_name=$(basename "$0")
 
-if [ "${#}" -ne 3 ]; then
+if [ "${#}" -ne 2 ]; then
     echo "Generate initial parameters."
     echo ""
     echo "Usage: ${script_name} {sdr|window|winning} {32|64}"
