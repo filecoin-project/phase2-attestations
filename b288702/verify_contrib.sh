@@ -8,7 +8,7 @@ set -e
 script_name=$(basename "$0")
 
 if [ "${#}" -ne 3 ]; then
-    echo "Verify a contributions."
+    echo "Verify a contribution."
     echo "The 'contribution' parameter is a numeric value."
     echo ""
     echo "Usage: ${script_name} {sdr|window|winning} {32|64} [contribution]"
@@ -24,12 +24,6 @@ fi
 if ! command -v ./phase2 >/dev/null 2>&1
 then
     echo "ERROR: 'phase2' from rust-fil-proofs needs to be in the current directory."
-    exit 1
-fi
-
-if ! command -v curl >/dev/null 2>&1
-then
-    echo "ERROR: 'curl' needs to be installed."
     exit 1
 fi
 
@@ -60,7 +54,7 @@ if [[ $sector_size != '32' && $sector_size != '64' ]]; then
     exit 1
 fi
 
-# The number of phase2 contributions.
+# The number of Phase 2 contributions.
 if [[ $proof == 'winning' ]]; then
     n='20'
 elif [[ $proof == 'window' ]]; then
@@ -71,7 +65,7 @@ else
     n='16'
 fi
 
-if [[ -z $contrib || $contrib  -gt $n ]]; then
+if [[ -z $contrib || $contrib -lt 1 || $contrib  -gt $n ]]; then
     error "invalid contrib: ${contrib}"
     exit 1
 fi
@@ -81,35 +75,45 @@ if [[ ! -f './b288702.b2sums' ]]; then
     exit 1
 fi
 
-url_base='https://trusted-setup.s3.amazonaws.com/phase2-mainnet'
-
-# Verify phase2 contributions.
+# Verify Phase 2 contributions.
 log "verifying contribution: ${contrib}"
 
 prev=$((contrib - 1))
 prev_file="${proof}_poseidon_${sector_size}gib_b288702_${prev}_small_raw"
-if [[ ! -f ${prev_file} ]]; then
-    log "downloading params: ${file}"
-    curl --progress-bar -O ${url_base}/${prev_file}
-fi
-# Verify checksum even if file was present, in case of incomplete download or corruption.
-# This is especially relevant if another process might have initiated a download now in process.
-log 'verifying downloaded params checksum'
-grep $prev_file b288702.b2sums | b2sum -c
 
+# We should never download parameters for the first contribution (index 0).
+# We use generated large params instead.
+if [[ $prev -eq 0 ]]; then
+    initial_large="${proof}_poseidon_${sector_size}gib_b288702_0_large"
+    if [[ ! -f ${initial_large} ]]; then
+        error "${initial_large} is missing. Run: ./generate_initial.sh ${proof} ${sector_size}"
+        exit 1
+    fi
+    log 'verifying initial params checksum'
+    grep $initial_large b288702.b2sums | b2sum -c
+else
+    if [[ ! -f ${prev_file} ]]; then
+        error "${prev_file} is missing. Run: ./download_prereqs_contrib.sh ${proof} ${sector_size} ${contrib}"
+        exit 1
+    fi
+    # Verify checksum even if file was present, in case of incomplete download
+    # or corruption. This is especially relevant if another process might have
+    # initiated a download now in process.
+    log 'verifying downloaded params checksum'
+    grep $prev_file b288702.b2sums | b2sum -c
+fi
 
 file="${proof}_poseidon_${sector_size}gib_b288702_${contrib}_small_raw"
 if [[ ! -f ${file} ]]; then
-    log "downloading params: ${file}"
-    curl --progress-bar -O ${url_base}/${file}
+    error "${file} is missing. Run: ./download_prereqs_contrib.sh ${proof} ${sector_size} ${contrib}"
+    exit 1
 fi
 log 'verifying downloaded params checksum'
 grep $file b288702.b2sums | b2sum -c
 
-contrib="${file}.contrib"
-if [[ ! -f ${contrib} ]]; then
-    log "downloading contrib: ${contrib}"
-    curl --progress-bar -O ${url_base}/${contrib}
+contrib_file="${file}.contrib"
+if [[ ! -f ${contrib_file} ]]; then
+    error "${contrib_file} is missing. Run: ./download_prereqs_contrib.sh ${proof} ${sector_size} ${contrib}"
 fi
 
 ./phase2 verify $file
