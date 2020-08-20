@@ -27,6 +27,12 @@ then
     exit 1
 fi
 
+if ! command -v gpg >/dev/null 2>&1
+then
+    echo "ERROR: 'gpg' needs to be installed."
+    exit 1
+fi
+
 proof="$1"
 sector_size="$2"
 contrib="$3"
@@ -81,12 +87,25 @@ fi
 log 'verifying parameters checksums file checksum'
 echo "7931ca92df34bf0b6217692daaf2d92135fceb6caae344b10712ee997717cc612435b0a6e1e61325d5abaa62044b6f6359fd44bbe3dc4e111536bcad43c2e0ec b288702.b2sums" | b2sum -c
 
-prev=$((contrib - 1))
-prev_file="${proof}_poseidon_${sector_size}gib_b288702_${prev}_small_raw"
+# Get the keyring with the public GPG keys to verify the signatures of the
+# contributions and put it into a local keyring.
+if [[ ! -f './keyring.asc' ]]; then
+    log "downloading keyring with public GPG keys: keyring.asc"
+    curl --progress-bar -O "${url_base}/keyring.asc"
+fi
+log 'verifying keyring with public GPG keys checksum'
+echo "5933fa0cebe764e02fbd394108af50169336bef01809df3d9004a0fe494bb0c48f1d67334b6b9de67b5185d0c0db78c01263d57675ce433df00a21258c845c8f keyring.asc" | b2sum -c
+if [[ ! -f './keyring.gpg' ]]; then
+    gpg --no-default-keyring --keyring ./keyring.gpg --import keyring.asc
+else
+    log "keyring.gpg already exists, skip importing the keys"
+fi
 
 # The parameters of the previous contributions are needed in order to verify
 # the current contribution. In case this file wasn't created by a previous
 # verification step, the file is downloaded.
+prev=$((contrib - 1))
+prev_file="${proof}_poseidon_${sector_size}gib_b288702_${prev}_small_raw"
 if [[ ! -f ${prev_file} ]]; then
     log "downloading params: ${file}"
     curl --progress-bar -O "${url_base}/${prev_file}"
@@ -109,4 +128,10 @@ contrib_file="${file}.contrib"
 if [[ ! -f ${contrib_file} ]]; then
     log "downloading contrib: ${contrib_file}"
     curl --progress-bar -O "${url_base}/${contrib_file}"
+fi
+
+sig_file="${file}.contrib.sig"
+if [[ ! -f ${sig_file} ]]; then
+    log "downloading signature: ${sig_file}"
+    curl --progress-bar -O "${url_base}/${sig_file}"
 fi
