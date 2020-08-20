@@ -78,18 +78,3 @@ if [[ ! -f ${phase1_file} ]]; then
 fi
 log 'verifying Phase 1 checksum'
 echo "${phase1_checksum} ${phase1_file}" | b2sum -c
-
-# Download the parameters of the first contribution
-file="${proof}_poseidon_${sector_size}gib_b288702_1_small_raw"
-if [[ ! -f ${file} ]]; then
-    log "downloading params: ${file}"
-    curl --progress-bar -O "${url_base}/${file}"
-fi
-log 'verifying downloaded params checksum'
-grep "$file" b288702.b2sums | b2sum -c
-
-contrib_file="${file}.contrib"
-if [[ ! -f ${contrib_file} ]]; then
-    log "downloading contrib: ${contrib_file}"
-    curl --progress-bar -O "${url_base}/${contrib_file}"
-fi
