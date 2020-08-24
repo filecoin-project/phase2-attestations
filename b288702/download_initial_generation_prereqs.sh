@@ -51,10 +51,8 @@ if [[ $sector_size != '32' && $sector_size != '64' ]]; then
     exit 1
 fi
 
-# Once everything is pinned to IPFS, it will be a single location for all
-# the files
-url_base='https://trusted-setup.s3.amazonaws.com/phase2-mainnet'
-url_base_phase1='https://trusted-setup.s3.amazonaws.com/challenge19'
+url_base='https://trusted-setup.filecoin.io/phase2/v28'
+url_base_phase1='https://trusted-setup.filecoin.io/phase1'
 
 # Get the file containing checksums of the parameter files.
 if [[ ! -f './b288702.b2sums' ]]; then

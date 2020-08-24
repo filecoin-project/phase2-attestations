@@ -62,7 +62,7 @@ else
     n='16'
 fi
 
-url_base='https://trusted-setup.s3.amazonaws.com/phase2-mainnet'
+url_base='https://trusted-setup.filecoin.io/phase2/v28'
 
 # Get the file containing checksums of the parameter files.
 if [[ ! -f './b288702.b2sums' ]]; then
