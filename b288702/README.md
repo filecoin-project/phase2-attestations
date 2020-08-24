@@ -40,12 +40,13 @@ $ cargo build --release --bin phase2 && cp target/release/phase2 .
 
 ```bash
 $ curl -O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/e486b55/b288702/verify_all.sh \
--O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/e486b55/b288702/download_initial_generation_prereqs.sh \
+-O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/e486b55/b288702/download_prereqs_for_initial_generation.sh \
 -O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/e486b55/b288702/generate_initial.sh \
--O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/e486b55/b288702/download_prereqs_contrib.sh \
+-O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/e486b55/b288702/download_prereqs_for_contrib.sh \
 -O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/e486b55/b288702/verify_contrib.sh \
+-O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/e486b55/b288702/download_prereqs_for_final.sh \
 -O https://raw.githubusercontent.com/filecoin-project/phase2-attestations/e486b55/b288702/verify_final.sh \
-&& chmod +x verify_all.sh download_initial_generation_prereqs.sh generate_initial.sh download_prereqs_contrib.sh verify_contrib.sh verify_final.sh
+&& chmod +x verify_all.sh download_prereqs_for_initial_generation.sh generate_initial.sh download_prereqs_for_contrib.sh download_prereqs_for_final.sh verify_contrib.sh verify_final.sh
 ```
 
 3. Verify Phase2 contributions:
@@ -99,120 +100,120 @@ requesting the same file.
 bash -c '
   set -e
 
-  ./download_initial_generation_prereqs.sh winning 32 && ./generate_initial.sh winning 32 && ./download_prereqs_contrib.sh winning 32 1 && ./verify_contrib.sh winning 32 1
-  ./download_prereqs_contrib.sh winning 32 2 && ./verify_contrib.sh winning 32 2
-  ./download_prereqs_contrib.sh winning 32 3 && ./verify_contrib.sh winning 32 3
-  ./download_prereqs_contrib.sh winning 32 4 && ./verify_contrib.sh winning 32 4
-  ./download_prereqs_contrib.sh winning 32 5 && ./verify_contrib.sh winning 32 5
-  ./download_prereqs_contrib.sh winning 32 6 && ./verify_contrib.sh winning 32 6
-  ./download_prereqs_contrib.sh winning 32 7 && ./verify_contrib.sh winning 32 7
-  ./download_prereqs_contrib.sh winning 32 8 && ./verify_contrib.sh winning 32 8
-  ./download_prereqs_contrib.sh winning 32 9 && ./verify_contrib.sh winning 32 9
-  ./download_prereqs_contrib.sh winning 32 10 && ./verify_contrib.sh winning 32 10
-  ./download_prereqs_contrib.sh winning 32 11 && ./verify_contrib.sh winning 32 11
-  ./download_prereqs_contrib.sh winning 32 12 && ./verify_contrib.sh winning 32 12
-  ./download_prereqs_contrib.sh winning 32 13 && ./verify_contrib.sh winning 32 13
-  ./download_prereqs_contrib.sh winning 32 14 && ./verify_contrib.sh winning 32 14
-  ./download_prereqs_contrib.sh winning 32 15 && ./verify_contrib.sh winning 32 15
-  ./download_prereqs_contrib.sh winning 32 16 && ./verify_contrib.sh winning 32 16
-  ./download_prereqs_contrib.sh winning 32 17 && ./verify_contrib.sh winning 32 17
-  ./download_prereqs_contrib.sh winning 32 18 && ./verify_contrib.sh winning 32 18
-  ./download_prereqs_contrib.sh winning 32 19 && ./verify_contrib.sh winning 32 19
-  ./download_prereqs_contrib.sh winning 32 20 && ./verify_contrib.sh winning 32 20
-  ./download_prereqs_final.sh winning 32 && ./verify_final.sh winning 32
+  ./download_prereqs_for_initial_generation.sh winning 32 && ./generate_initial.sh winning 32 && ./download_prereqs_for_contrib.sh winning 32 1 && ./verify_contrib.sh winning 32 1
+  ./download_prereqs_for_contrib.sh winning 32 2 && ./verify_contrib.sh winning 32 2
+  ./download_prereqs_for_contrib.sh winning 32 3 && ./verify_contrib.sh winning 32 3
+  ./download_prereqs_for_contrib.sh winning 32 4 && ./verify_contrib.sh winning 32 4
+  ./download_prereqs_for_contrib.sh winning 32 5 && ./verify_contrib.sh winning 32 5
+  ./download_prereqs_for_contrib.sh winning 32 6 && ./verify_contrib.sh winning 32 6
+  ./download_prereqs_for_contrib.sh winning 32 7 && ./verify_contrib.sh winning 32 7
+  ./download_prereqs_for_contrib.sh winning 32 8 && ./verify_contrib.sh winning 32 8
+  ./download_prereqs_for_contrib.sh winning 32 9 && ./verify_contrib.sh winning 32 9
+  ./download_prereqs_for_contrib.sh winning 32 10 && ./verify_contrib.sh winning 32 10
+  ./download_prereqs_for_contrib.sh winning 32 11 && ./verify_contrib.sh winning 32 11
+  ./download_prereqs_for_contrib.sh winning 32 12 && ./verify_contrib.sh winning 32 12
+  ./download_prereqs_for_contrib.sh winning 32 13 && ./verify_contrib.sh winning 32 13
+  ./download_prereqs_for_contrib.sh winning 32 14 && ./verify_contrib.sh winning 32 14
+  ./download_prereqs_for_contrib.sh winning 32 15 && ./verify_contrib.sh winning 32 15
+  ./download_prereqs_for_contrib.sh winning 32 16 && ./verify_contrib.sh winning 32 16
+  ./download_prereqs_for_contrib.sh winning 32 17 && ./verify_contrib.sh winning 32 17
+  ./download_prereqs_for_contrib.sh winning 32 18 && ./verify_contrib.sh winning 32 18
+  ./download_prereqs_for_contrib.sh winning 32 19 && ./verify_contrib.sh winning 32 19
+  ./download_prereqs_for_contrib.sh winning 32 20 && ./verify_contrib.sh winning 32 20
+  ./download_prereqs_for_final.sh winning 32 && ./verify_final.sh winning 32
 
-  ./download_initial_generation_prereqs.sh winning 64 && ./generate_initial.sh winning 64 && ./download_prereqs_contrib.sh winning 64 1 && ./verify_contrib.sh winning 64 1
-  ./download_prereqs_contrib.sh winning 64 2 && ./verify_contrib.sh winning 64 2
-  ./download_prereqs_contrib.sh winning 64 3 && ./verify_contrib.sh winning 64 3
-  ./download_prereqs_contrib.sh winning 64 4 && ./verify_contrib.sh winning 64 4
-  ./download_prereqs_contrib.sh winning 64 5 && ./verify_contrib.sh winning 64 5
-  ./download_prereqs_contrib.sh winning 64 6 && ./verify_contrib.sh winning 64 6
-  ./download_prereqs_contrib.sh winning 64 7 && ./verify_contrib.sh winning 64 7
-  ./download_prereqs_contrib.sh winning 64 8 && ./verify_contrib.sh winning 64 8
-  ./download_prereqs_contrib.sh winning 64 9 && ./verify_contrib.sh winning 64 9
-  ./download_prereqs_contrib.sh winning 64 10 && ./verify_contrib.sh winning 64 10
-  ./download_prereqs_contrib.sh winning 64 11 && ./verify_contrib.sh winning 64 11
-  ./download_prereqs_contrib.sh winning 64 12 && ./verify_contrib.sh winning 64 12
-  ./download_prereqs_contrib.sh winning 64 13 && ./verify_contrib.sh winning 64 13
-  ./download_prereqs_contrib.sh winning 64 14 && ./verify_contrib.sh winning 64 14
-  ./download_prereqs_contrib.sh winning 64 15 && ./verify_contrib.sh winning 64 15
-  ./download_prereqs_contrib.sh winning 64 16 && ./verify_contrib.sh winning 64 16
-  ./download_prereqs_contrib.sh winning 64 17 && ./verify_contrib.sh winning 64 17
-  ./download_prereqs_contrib.sh winning 64 18 && ./verify_contrib.sh winning 64 18
-  ./download_prereqs_contrib.sh winning 64 19 && ./verify_contrib.sh winning 64 19
-  ./download_prereqs_contrib.sh winning 64 20 && ./verify_contrib.sh winning 64 20
-  ./download_prereqs_final.sh winning 64 && ./verify_final.sh winning 64
+  ./download_prereqs_for_initial_generation.sh winning 64 && ./generate_initial.sh winning 64 && ./download_prereqs_for_contrib.sh winning 64 1 && ./verify_contrib.sh winning 64 1
+  ./download_prereqs_for_contrib.sh winning 64 2 && ./verify_contrib.sh winning 64 2
+  ./download_prereqs_for_contrib.sh winning 64 3 && ./verify_contrib.sh winning 64 3
+  ./download_prereqs_for_contrib.sh winning 64 4 && ./verify_contrib.sh winning 64 4
+  ./download_prereqs_for_contrib.sh winning 64 5 && ./verify_contrib.sh winning 64 5
+  ./download_prereqs_for_contrib.sh winning 64 6 && ./verify_contrib.sh winning 64 6
+  ./download_prereqs_for_contrib.sh winning 64 7 && ./verify_contrib.sh winning 64 7
+  ./download_prereqs_for_contrib.sh winning 64 8 && ./verify_contrib.sh winning 64 8
+  ./download_prereqs_for_contrib.sh winning 64 9 && ./verify_contrib.sh winning 64 9
+  ./download_prereqs_for_contrib.sh winning 64 10 && ./verify_contrib.sh winning 64 10
+  ./download_prereqs_for_contrib.sh winning 64 11 && ./verify_contrib.sh winning 64 11
+  ./download_prereqs_for_contrib.sh winning 64 12 && ./verify_contrib.sh winning 64 12
+  ./download_prereqs_for_contrib.sh winning 64 13 && ./verify_contrib.sh winning 64 13
+  ./download_prereqs_for_contrib.sh winning 64 14 && ./verify_contrib.sh winning 64 14
+  ./download_prereqs_for_contrib.sh winning 64 15 && ./verify_contrib.sh winning 64 15
+  ./download_prereqs_for_contrib.sh winning 64 16 && ./verify_contrib.sh winning 64 16
+  ./download_prereqs_for_contrib.sh winning 64 17 && ./verify_contrib.sh winning 64 17
+  ./download_prereqs_for_contrib.sh winning 64 18 && ./verify_contrib.sh winning 64 18
+  ./download_prereqs_for_contrib.sh winning 64 19 && ./verify_contrib.sh winning 64 19
+  ./download_prereqs_for_contrib.sh winning 64 20 && ./verify_contrib.sh winning 64 20
+  ./download_prereqs_for_final.sh winning 64 && ./verify_final.sh winning 64
 
-  ./download_initial_generation_prereqs.sh sdr 32 && ./generate_initial.sh sdr 32 && ./download_prereqs_contrib.sh sdr 32 1 && ./verify_contrib.sh sdr 32 1
-  ./download_prereqs_contrib.sh sdr 32 2 && ./verify_contrib.sh sdr 32 2
-  ./download_prereqs_contrib.sh sdr 32 3 && ./verify_contrib.sh sdr 32 3
-  ./download_prereqs_contrib.sh sdr 32 4 && ./verify_contrib.sh sdr 32 4
-  ./download_prereqs_contrib.sh sdr 32 5 && ./verify_contrib.sh sdr 32 5
-  ./download_prereqs_contrib.sh sdr 32 6 && ./verify_contrib.sh sdr 32 6
-  ./download_prereqs_contrib.sh sdr 32 7 && ./verify_contrib.sh sdr 32 7
-  ./download_prereqs_contrib.sh sdr 32 8 && ./verify_contrib.sh sdr 32 8
-  ./download_prereqs_contrib.sh sdr 32 9 && ./verify_contrib.sh sdr 32 9
-  ./download_prereqs_contrib.sh sdr 32 10 && ./verify_contrib.sh sdr 32 10
-  ./download_prereqs_contrib.sh sdr 32 11 && ./verify_contrib.sh sdr 32 11
-  ./download_prereqs_contrib.sh sdr 32 12 && ./verify_contrib.sh sdr 32 12
-  ./download_prereqs_contrib.sh sdr 32 13 && ./verify_contrib.sh sdr 32 13
-  ./download_prereqs_contrib.sh sdr 32 14 && ./verify_contrib.sh sdr 32 14
-  ./download_prereqs_contrib.sh sdr 32 15 && ./verify_contrib.sh sdr 32 15
-  ./download_prereqs_contrib.sh sdr 32 16 && ./verify_contrib.sh sdr 32 16
-  ./download_prereqs_contrib.sh sdr 32 17 && ./verify_contrib.sh sdr 32 17
-  ./download_prereqs_final.sh sdr 32 && ./verify_final.sh sdr 32
+  ./download_prereqs_for_initial_generation.sh sdr 32 && ./generate_initial.sh sdr 32 && ./download_prereqs_for_contrib.sh sdr 32 1 && ./verify_contrib.sh sdr 32 1
+  ./download_prereqs_for_contrib.sh sdr 32 2 && ./verify_contrib.sh sdr 32 2
+  ./download_prereqs_for_contrib.sh sdr 32 3 && ./verify_contrib.sh sdr 32 3
+  ./download_prereqs_for_contrib.sh sdr 32 4 && ./verify_contrib.sh sdr 32 4
+  ./download_prereqs_for_contrib.sh sdr 32 5 && ./verify_contrib.sh sdr 32 5
+  ./download_prereqs_for_contrib.sh sdr 32 6 && ./verify_contrib.sh sdr 32 6
+  ./download_prereqs_for_contrib.sh sdr 32 7 && ./verify_contrib.sh sdr 32 7
+  ./download_prereqs_for_contrib.sh sdr 32 8 && ./verify_contrib.sh sdr 32 8
+  ./download_prereqs_for_contrib.sh sdr 32 9 && ./verify_contrib.sh sdr 32 9
+  ./download_prereqs_for_contrib.sh sdr 32 10 && ./verify_contrib.sh sdr 32 10
+  ./download_prereqs_for_contrib.sh sdr 32 11 && ./verify_contrib.sh sdr 32 11
+  ./download_prereqs_for_contrib.sh sdr 32 12 && ./verify_contrib.sh sdr 32 12
+  ./download_prereqs_for_contrib.sh sdr 32 13 && ./verify_contrib.sh sdr 32 13
+  ./download_prereqs_for_contrib.sh sdr 32 14 && ./verify_contrib.sh sdr 32 14
+  ./download_prereqs_for_contrib.sh sdr 32 15 && ./verify_contrib.sh sdr 32 15
+  ./download_prereqs_for_contrib.sh sdr 32 16 && ./verify_contrib.sh sdr 32 16
+  ./download_prereqs_for_contrib.sh sdr 32 17 && ./verify_contrib.sh sdr 32 17
+  ./download_prereqs_for_final.sh sdr 32 && ./verify_final.sh sdr 32
 
-  ./download_initial_generation_prereqs.sh sdr 64 && ./generate_initial.sh sdr 64 && ./download_prereqs_contrib.sh sdr 64 1 && ./verify_contrib.sh sdr 64 1
-  ./download_prereqs_contrib.sh sdr 64 2 && ./verify_contrib.sh sdr 64 2
-  ./download_prereqs_contrib.sh sdr 64 3 && ./verify_contrib.sh sdr 64 3
-  ./download_prereqs_contrib.sh sdr 64 4 && ./verify_contrib.sh sdr 64 4
-  ./download_prereqs_contrib.sh sdr 64 5 && ./verify_contrib.sh sdr 64 5
-  ./download_prereqs_contrib.sh sdr 64 6 && ./verify_contrib.sh sdr 64 6
-  ./download_prereqs_contrib.sh sdr 64 7 && ./verify_contrib.sh sdr 64 7
-  ./download_prereqs_contrib.sh sdr 64 8 && ./verify_contrib.sh sdr 64 8
-  ./download_prereqs_contrib.sh sdr 64 9 && ./verify_contrib.sh sdr 64 9
-  ./download_prereqs_contrib.sh sdr 64 10 && ./verify_contrib.sh sdr 64 10
-  ./download_prereqs_contrib.sh sdr 64 11 && ./verify_contrib.sh sdr 64 11
-  ./download_prereqs_contrib.sh sdr 64 12 && ./verify_contrib.sh sdr 64 12
-  ./download_prereqs_contrib.sh sdr 64 13 && ./verify_contrib.sh sdr 64 13
-  ./download_prereqs_contrib.sh sdr 64 14 && ./verify_contrib.sh sdr 64 14
-  ./download_prereqs_contrib.sh sdr 64 15 && ./verify_contrib.sh sdr 64 15
-  ./download_prereqs_contrib.sh sdr 64 16 && ./verify_contrib.sh sdr 64 16
-  ./download_prereqs_final.sh sdr 64 && ./verify_final.sh sdr 64
+  ./download_prereqs_for_initial_generation.sh sdr 64 && ./generate_initial.sh sdr 64 && ./download_prereqs_for_contrib.sh sdr 64 1 && ./verify_contrib.sh sdr 64 1
+  ./download_prereqs_for_contrib.sh sdr 64 2 && ./verify_contrib.sh sdr 64 2
+  ./download_prereqs_for_contrib.sh sdr 64 3 && ./verify_contrib.sh sdr 64 3
+  ./download_prereqs_for_contrib.sh sdr 64 4 && ./verify_contrib.sh sdr 64 4
+  ./download_prereqs_for_contrib.sh sdr 64 5 && ./verify_contrib.sh sdr 64 5
+  ./download_prereqs_for_contrib.sh sdr 64 6 && ./verify_contrib.sh sdr 64 6
+  ./download_prereqs_for_contrib.sh sdr 64 7 && ./verify_contrib.sh sdr 64 7
+  ./download_prereqs_for_contrib.sh sdr 64 8 && ./verify_contrib.sh sdr 64 8
+  ./download_prereqs_for_contrib.sh sdr 64 9 && ./verify_contrib.sh sdr 64 9
+  ./download_prereqs_for_contrib.sh sdr 64 10 && ./verify_contrib.sh sdr 64 10
+  ./download_prereqs_for_contrib.sh sdr 64 11 && ./verify_contrib.sh sdr 64 11
+  ./download_prereqs_for_contrib.sh sdr 64 12 && ./verify_contrib.sh sdr 64 12
+  ./download_prereqs_for_contrib.sh sdr 64 13 && ./verify_contrib.sh sdr 64 13
+  ./download_prereqs_for_contrib.sh sdr 64 14 && ./verify_contrib.sh sdr 64 14
+  ./download_prereqs_for_contrib.sh sdr 64 15 && ./verify_contrib.sh sdr 64 15
+  ./download_prereqs_for_contrib.sh sdr 64 16 && ./verify_contrib.sh sdr 64 16
+  ./download_prereqs_for_final.sh sdr 64 && ./verify_final.sh sdr 64
 
-  ./download_initial_generation_prereqs.sh window 32 && ./generate_initial.sh window 32 && ./download_prereqs_contrib.sh window 32 1 && ./verify_contrib.sh window 32 1
-  ./download_prereqs_contrib.sh window 32 2 && ./verify_contrib.sh window 32 2
-  ./download_prereqs_contrib.sh window 32 3 && ./verify_contrib.sh window 32 3
-  ./download_prereqs_contrib.sh window 32 4 && ./verify_contrib.sh window 32 4
-  ./download_prereqs_contrib.sh window 32 5 && ./verify_contrib.sh window 32 5
-  ./download_prereqs_contrib.sh window 32 6 && ./verify_contrib.sh window 32 6
-  ./download_prereqs_contrib.sh window 32 7 && ./verify_contrib.sh window 32 7
-  ./download_prereqs_contrib.sh window 32 8 && ./verify_contrib.sh window 32 8
-  ./download_prereqs_contrib.sh window 32 9 && ./verify_contrib.sh window 32 9
-  ./download_prereqs_contrib.sh window 32 10 && ./verify_contrib.sh window 32 10
-  ./download_prereqs_contrib.sh window 32 11 && ./verify_contrib.sh window 32 11
-  ./download_prereqs_contrib.sh window 32 12 && ./verify_contrib.sh window 32 12
-  ./download_prereqs_contrib.sh window 32 13 && ./verify_contrib.sh window 32 13
-  ./download_prereqs_contrib.sh window 32 14 && ./verify_contrib.sh window 32 14
-  ./download_prereqs_contrib.sh window 32 15 && ./verify_contrib.sh window 32 15
-  ./download_prereqs_final.sh window 32 && ./verify_final.sh window 32
+  ./download_prereqs_for_initial_generation.sh window 32 && ./generate_initial.sh window 32 && ./download_prereqs_for_contrib.sh window 32 1 && ./verify_contrib.sh window 32 1
+  ./download_prereqs_for_contrib.sh window 32 2 && ./verify_contrib.sh window 32 2
+  ./download_prereqs_for_contrib.sh window 32 3 && ./verify_contrib.sh window 32 3
+  ./download_prereqs_for_contrib.sh window 32 4 && ./verify_contrib.sh window 32 4
+  ./download_prereqs_for_contrib.sh window 32 5 && ./verify_contrib.sh window 32 5
+  ./download_prereqs_for_contrib.sh window 32 6 && ./verify_contrib.sh window 32 6
+  ./download_prereqs_for_contrib.sh window 32 7 && ./verify_contrib.sh window 32 7
+  ./download_prereqs_for_contrib.sh window 32 8 && ./verify_contrib.sh window 32 8
+  ./download_prereqs_for_contrib.sh window 32 9 && ./verify_contrib.sh window 32 9
+  ./download_prereqs_for_contrib.sh window 32 10 && ./verify_contrib.sh window 32 10
+  ./download_prereqs_for_contrib.sh window 32 11 && ./verify_contrib.sh window 32 11
+  ./download_prereqs_for_contrib.sh window 32 12 && ./verify_contrib.sh window 32 12
+  ./download_prereqs_for_contrib.sh window 32 13 && ./verify_contrib.sh window 32 13
+  ./download_prereqs_for_contrib.sh window 32 14 && ./verify_contrib.sh window 32 14
+  ./download_prereqs_for_contrib.sh window 32 15 && ./verify_contrib.sh window 32 15
+  ./download_prereqs_for_final.sh window 32 && ./verify_final.sh window 32
 
-  ./download_initial_generation_prereqs.sh window 64 && ./generate_initial.sh window 64 && ./download_prereqs_contrib.sh window 64 1 && ./verify_contrib.sh window 64 1
-  ./download_prereqs_contrib.sh window 64 2 && ./verify_contrib.sh window 64 2
-  ./download_prereqs_contrib.sh window 64 3 && ./verify_contrib.sh window 64 3
-  ./download_prereqs_contrib.sh window 64 4 && ./verify_contrib.sh window 64 4
-  ./download_prereqs_contrib.sh window 64 5 && ./verify_contrib.sh window 64 5
-  ./download_prereqs_contrib.sh window 64 6 && ./verify_contrib.sh window 64 6
-  ./download_prereqs_contrib.sh window 64 7 && ./verify_contrib.sh window 64 7
-  ./download_prereqs_contrib.sh window 64 8 && ./verify_contrib.sh window 64 8
-  ./download_prereqs_contrib.sh window 64 9 && ./verify_contrib.sh window 64 9
-  ./download_prereqs_contrib.sh window 64 10 && ./verify_contrib.sh window 64 10
-  ./download_prereqs_contrib.sh window 64 11 && ./verify_contrib.sh window 64 11
-  ./download_prereqs_contrib.sh window 64 12 && ./verify_contrib.sh window 64 12
-  ./download_prereqs_contrib.sh window 64 13 && ./verify_contrib.sh window 64 13
-  ./download_prereqs_contrib.sh window 64 14 && ./verify_contrib.sh window 64 14
-  ./download_prereqs_contrib.sh window 64 15 && ./verify_contrib.sh window 64 15
-  ./download_prereqs_final.sh window 64 && ./verify_final.sh window 64
+  ./download_prereqs_for_initial_generation.sh window 64 && ./generate_initial.sh window 64 && ./download_prereqs_for_contrib.sh window 64 1 && ./verify_contrib.sh window 64 1
+  ./download_prereqs_for_contrib.sh window 64 2 && ./verify_contrib.sh window 64 2
+  ./download_prereqs_for_contrib.sh window 64 3 && ./verify_contrib.sh window 64 3
+  ./download_prereqs_for_contrib.sh window 64 4 && ./verify_contrib.sh window 64 4
+  ./download_prereqs_for_contrib.sh window 64 5 && ./verify_contrib.sh window 64 5
+  ./download_prereqs_for_contrib.sh window 64 6 && ./verify_contrib.sh window 64 6
+  ./download_prereqs_for_contrib.sh window 64 7 && ./verify_contrib.sh window 64 7
+  ./download_prereqs_for_contrib.sh window 64 8 && ./verify_contrib.sh window 64 8
+  ./download_prereqs_for_contrib.sh window 64 9 && ./verify_contrib.sh window 64 9
+  ./download_prereqs_for_contrib.sh window 64 10 && ./verify_contrib.sh window 64 10
+  ./download_prereqs_for_contrib.sh window 64 11 && ./verify_contrib.sh window 64 11
+  ./download_prereqs_for_contrib.sh window 64 12 && ./verify_contrib.sh window 64 12
+  ./download_prereqs_for_contrib.sh window 64 13 && ./verify_contrib.sh window 64 13
+  ./download_prereqs_for_contrib.sh window 64 14 && ./verify_contrib.sh window 64 14
+  ./download_prereqs_for_contrib.sh window 64 15 && ./verify_contrib.sh window 64 15
+  ./download_prereqs_for_final.sh window 64 && ./verify_final.sh window 64
 '
 ```
 

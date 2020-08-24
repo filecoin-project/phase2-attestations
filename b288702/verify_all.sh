@@ -57,12 +57,12 @@ fi
 # Verify Phase 2 contributions.
 for i in $(seq 1 $n); do
     if [[ $i -eq 1 ]]; then
-        $dir/download_initial_generation_prereqs.sh $proof $sector_size
+        $dir/download_prereqs_for_initial_generation.sh $proof $sector_size
         $dir/generate_initial.sh $proof $sector_size
-        $dir/download_prereqs_contrib.sh $proof $sector_size $i
+        $dir/download_prereqs_for_contrib.sh $proof $sector_size $i
         $dir/verify_contrib.sh $proof $sector_size $i
     else
-        $dir/download_prereqs_contrib.sh $proof $sector_size $i
+        $dir/download_prereqs_for_contrib.sh $proof $sector_size $i
         $dir/verify_contrib.sh $proof $sector_size $i
     fi
 done
