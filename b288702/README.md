@@ -198,20 +198,20 @@ bash -c '
   ./verify_final.sh window 32
 
   ./download_initial_generation_prereqs.sh window 64 && ./generate_initial.sh window 64 && ./download_prereqs_contrib.sh window 64 1 && ./verify_contrib.sh window 64 1
-  ./download_prereqs_contrib.sh window 64 2 ./verify_contrib.sh window 64 2
-  ./download_prereqs_contrib.sh window 64 3 ./verify_contrib.sh window 64 3
-  ./download_prereqs_contrib.sh window 64 4 ./verify_contrib.sh window 64 4
-  ./download_prereqs_contrib.sh window 64 5 ./verify_contrib.sh window 64 5
-  ./download_prereqs_contrib.sh window 64 6 ./verify_contrib.sh window 64 6
-  ./download_prereqs_contrib.sh window 64 7 ./verify_contrib.sh window 64 7
-  ./download_prereqs_contrib.sh window 64 8 ./verify_contrib.sh window 64 8
-  ./download_prereqs_contrib.sh window 64 9 ./verify_contrib.sh window 64 9
-  ./download_prereqs_contrib.sh window 64 10 ./verify_contrib.sh window 64 10
-  ./download_prereqs_contrib.sh window 64 11 ./verify_contrib.sh window 64 11
-  ./download_prereqs_contrib.sh window 64 12 ./verify_contrib.sh window 64 12
-  ./download_prereqs_contrib.sh window 64 13 ./verify_contrib.sh window 64 13
-  ./download_prereqs_contrib.sh window 64 14 ./verify_contrib.sh window 64 14
-  ./download_prereqs_contrib.sh window 64 15 ./verify_contrib.sh window 64 15
+  ./download_prereqs_contrib.sh window 64 2 && ./verify_contrib.sh window 64 2
+  ./download_prereqs_contrib.sh window 64 3 && ./verify_contrib.sh window 64 3
+  ./download_prereqs_contrib.sh window 64 4 && ./verify_contrib.sh window 64 4
+  ./download_prereqs_contrib.sh window 64 5 && ./verify_contrib.sh window 64 5
+  ./download_prereqs_contrib.sh window 64 6 && ./verify_contrib.sh window 64 6
+  ./download_prereqs_contrib.sh window 64 7 && ./verify_contrib.sh window 64 7
+  ./download_prereqs_contrib.sh window 64 8 && ./verify_contrib.sh window 64 8
+  ./download_prereqs_contrib.sh window 64 9 && ./verify_contrib.sh window 64 9
+  ./download_prereqs_contrib.sh window 64 10 && ./verify_contrib.sh window 64 10
+  ./download_prereqs_contrib.sh window 64 11 && ./verify_contrib.sh window 64 11
+  ./download_prereqs_contrib.sh window 64 12 && ./verify_contrib.sh window 64 12
+  ./download_prereqs_contrib.sh window 64 13 && ./verify_contrib.sh window 64 13
+  ./download_prereqs_contrib.sh window 64 14 && ./verify_contrib.sh window 64 14
+  ./download_prereqs_contrib.sh window 64 15 && ./verify_contrib.sh window 64 15
   ./verify_final.sh window 64
 '
 ```
