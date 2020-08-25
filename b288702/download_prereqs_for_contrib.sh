@@ -109,7 +109,7 @@ if [[ $contrib -gt 1 ]]; then
     prev=$((contrib - 1))
     prev_file="${proof}_poseidon_${sector_size}gib_b288702_${prev}_small_raw"
     if [[ ! -f ${prev_file} ]]; then
-        log "downloading params: ${file}"
+        log "downloading params: ${prev_file}"
         curl --progress-bar -O "${url_base}/${prev_file}"
     fi
     # Verify checksum even if file was present, in case of incomplete download
