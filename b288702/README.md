@@ -48,7 +48,7 @@ Instructions for verifying Phase 1 will be published separately.
 
 ## Phase 2 Validation
 
-**Note: We recommend you use a machine with 96 cores, 180GB of RAM, and 50GB swap for running verification**
+**Note: The verification process is very computationally intensive. Verifying a *single* large-circuit contribution requires a peak 230GiB of memory and takes about 30 hours of single-threaded and another 200 hours of multi-threaded computation on a 2020-era cloud platform (r5a.8xlarge / AMD EPYC 7571)**
 
 1. Build `rust-fil-proofs`, please also check its [Rust installation/build instructions](https://github.com/filecoin-project/rust-fil-proofs/blob/6e38487293a2ec063688acb4a414600b1c0654f9/README.md#install-and-configure-rust):
 
@@ -57,7 +57,7 @@ You will check out the commit corresponding to the [filecoin-proofs-v5.1.1](http
 $ git clone https://github.com/filecoin-project/rust-fil-proofs.git
 $ cd rust-fil-proofs
 $ git checkout a700f68
-$ cargo build --release --bin phase2 && cp target/release/phase2 .
+$ RUSTFLAGS="-C target-cpu=native" cargo build --release --bin phase2 && cp target/release/phase2 .
 ```
 
 2. Download checksums file and verification script:
