@@ -22,6 +22,30 @@ The following are requirements for participating in Filecoin's mainnet Phase 2. 
 | Winning-PoSt-32GiB | 1GB      | 250MB          | 10s                    | 1m                    |
 | Winning-PoSt-64GiB | 1GB      | 250MB          | 10s                    | 1m                    |
 
+## Phase 1
+
+The Phase 1 output used as input to Phase 2 was derived from the [Perpetual Powers of
+Tau](https://github.com/arielgabizon/perpetualpowersoftau), by running the
+[`create_lagrange`](https://github.com/filecoin-project/powersoftau/blob/master/src/bin/create_lagrange.rs) program on
+[Challenge 19](http://trusted-setup.filecoin.io/phase1/challenge_19) ([challenge_19
+summary](https://github.com/arielgabizon/perpetualpowersoftau/blob/master/0018_GolemFactory_response/README.md)).
+
+For this ceremony, no random beacon was used, and the `phase1radix` files used as input to phase 2 were derived
+directly from the selected challenge.
+
+> Applying the random beacon, enables proving security of the MPC under the Knowledge of Exponent assumption as shown in
+> the [paper of Bowe, Gabizon and Miers](https://eprint.iacr.org/2017/1050.pdf). However, there is no known attack when
+> the random beacon is omitted; and in fact, Mary Maller showed (see [A Proof of Security for the Sapling Generation of
+> zk-SNARK Parameters in the Generic Group
+> Model](https://github.com/zcash/sapling-security-analysis/blob/master/MaryMallerUpdated.pdf) and [Reinforcing the
+> Security of the Sapling MPC](https://electriccoin.co/blog/reinforcing-the-security-of-the-sapling-mpc/)) that the MPC
+> can be proven secure in the generic group model even when the random beacon is not used. Though the generic group
+> model is a stronger assumption than the knowledge of exponent, this is arguably not a big issue in this context, as
+> the generic group model is needed in any case for the security of the Groth16 zk-SNARK [—Ariel
+> Gabizon](https://github.com/arielgabizon/perpetualpowersoftau)
+
+Instructions for verifying Phase 1 will be published separately.
+
 ## Phase 2 Validation
 
 **Note: We recommend you use a machine with 96 cores, 180GB of RAM, and 50GB swap for running verification**
@@ -51,10 +75,10 @@ $ curl -O https://raw.githubusercontent.com/filecoin-project/phase2-attestations
 
 3. Verify Phase2 contributions:
 
-In order to run the verifcation, you will need to download the relevant Phase 1 file for the circuit and run the
-verification script for that specific circuit. The verification script will verify all Phase 2 contributions made to the
-Groth16 parameters for a circuit of that specific size and check that the verified Groth16 parameters are being used by
-the Filecoin network. The commands and associated Phase 1 file for each circuit are listed below.
+In order to run the verifcation, you will need to download the relevant [Phase 1](#phase-1) file for the circuit and run
+the verification script for that specific circuit. The verification script will verify all Phase 2 contributions made to
+the Groth16 parameters for a circuit of that specific size and check that the verified Groth16 parameters are being used
+by the Filecoin network. The commands and associated Phase 1 file for each circuit are listed below.
 
 All files that need to be downloaded for the verification process are stored on IPFS with root hash `QmNwDj9iUY3yJyDUP9yGagF6vFiorXEqx74pGn6RH2uTnz` and are also available at https://trusted-setup.filecoin.io/.
 
