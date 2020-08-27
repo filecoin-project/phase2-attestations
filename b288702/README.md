@@ -56,7 +56,7 @@ verification script for that specific circuit. The verification script will veri
 Groth16 parameters for a circuit of that specific size and check that the verified Groth16 parameters are being used by
 the Filecoin network. The commands and associated Phase 1 file for each circuit are listed below.
 
-All files that need to be downloaded for the verification process are stored on IPFS with root hash `QmSES5sMRiaQEyuKLbpzrDqDtX4L2R9SzKAioXxDbHWK5t` and are also available at https://trusted-setup.filecoin.io/.
+All files that need to be downloaded for the verification process are stored on IPFS with root hash `QmNwDj9iUY3yJyDUP9yGagF6vFiorXEqx74pGn6RH2uTnz` and are also available at https://trusted-setup.filecoin.io/.
 
 Running `verify_all.sh` as illustrated here is very time-consuming, especially for the large circuits (SDR-PoRep and
 Window-PoSt). These commands are provided for reference, to clarify what must be verified. In practice, we recommend
