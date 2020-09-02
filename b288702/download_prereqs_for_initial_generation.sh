@@ -75,4 +75,4 @@ if [[ ! -f ${phase1_file} ]]; then
     curl --progress-bar -O "${url_base_phase1}/${phase1_file}"
 fi
 log 'verifying Phase 1 checksum'
-echo "${phase1_checksum} ${phase1_file}" | b2sum -c
+echo "${phase1_checksum}  ${phase1_file}" | b2sum -c

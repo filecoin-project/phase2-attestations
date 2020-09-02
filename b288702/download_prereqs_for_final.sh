@@ -70,7 +70,7 @@ if [[ ! -f './b288702.b2sums' ]]; then
     curl --progress-bar -O "${url_base}/b288702.b2sums"
 fi
 log 'verifying parameters checksums file checksum'
-echo "7931ca92df34bf0b6217692daaf2d92135fceb6caae344b10712ee997717cc612435b0a6e1e61325d5abaa62044b6f6359fd44bbe3dc4e111536bcad43c2e0ec b288702.b2sums" | b2sum -c
+echo "7931ca92df34bf0b6217692daaf2d92135fceb6caae344b10712ee997717cc612435b0a6e1e61325d5abaa62044b6f6359fd44bbe3dc4e111536bcad43c2e0ec  b288702.b2sums" | b2sum -c
 
 
 initial_large="${proof}_poseidon_${sector_size}gib_b288702_0_large"

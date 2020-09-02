@@ -72,7 +72,7 @@ if [[ ! -f ${phase1_file} ]]; then
     exit 1
 fi
 log 'verifying Phase 1 checksum'
-echo "${phase1_checksum} ${phase1_file}" | b2sum -c
+echo "${phase1_checksum}  ${phase1_file}" | b2sum -c
 
 # Generate initial Phase 2 params.
 initial_large="${proof}_poseidon_${sector_size}gib_b288702_0_large"
