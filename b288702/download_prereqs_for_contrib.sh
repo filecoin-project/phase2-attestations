@@ -83,7 +83,7 @@ if [[ ! -f './b288702.b2sums' ]]; then
     curl --progress-bar -O "${url_base}/b288702.b2sums"
 fi
 log 'verifying parameters checksums file checksum'
-echo "7931ca92df34bf0b6217692daaf2d92135fceb6caae344b10712ee997717cc612435b0a6e1e61325d5abaa62044b6f6359fd44bbe3dc4e111536bcad43c2e0ec b288702.b2sums" | b2sum -c
+echo "7931ca92df34bf0b6217692daaf2d92135fceb6caae344b10712ee997717cc612435b0a6e1e61325d5abaa62044b6f6359fd44bbe3dc4e111536bcad43c2e0ec  b288702.b2sums" | b2sum -c
 
 # Get the keyring with the public GPG keys to verify the signatures of the
 # contributions and put it into a local keyring.
@@ -92,7 +92,7 @@ if [[ ! -f './keyring.asc' ]]; then
     curl --progress-bar -O "${url_base}/keyring.asc"
 fi
 log 'verifying keyring with public GPG keys checksum'
-echo "5933fa0cebe764e02fbd394108af50169336bef01809df3d9004a0fe494bb0c48f1d67334b6b9de67b5185d0c0db78c01263d57675ce433df00a21258c845c8f keyring.asc" | b2sum -c
+echo "5933fa0cebe764e02fbd394108af50169336bef01809df3d9004a0fe494bb0c48f1d67334b6b9de67b5185d0c0db78c01263d57675ce433df00a21258c845c8f  keyring.asc" | b2sum -c
 if [[ ! -f './keyring.gpg' ]]; then
     gpg --no-default-keyring --keyring ./keyring.gpg --import keyring.asc
 else
