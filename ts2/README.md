@@ -126,8 +126,11 @@ $ rsync -vP --append <participant's files> <upload url>
 
 ## Participant Public Keys
 
-| Participant Num. | Participant Name | External Link | Backup Copy |
+| Participant Num. | Participant Name | Link to Key | Backup Copy of Key |
 | :-----: | :------: | :------: | :-----: |
 | 0 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.githubusercontent.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a/raw/2f2623c4de38a17c1334e3da5972b5b64d70715f/pubkey.asc) | [00_jake.asc](keys/00_jake.asc) |
 | 1 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.githubusercontent.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a/raw/2f2623c4de38a17c1334e3da5972b5b64d70715f/pubkey.asc) | [01_jake.asc](keys/01_jake.asc) |
 | 2 | Nemo ([@cryptonemo](https://github.com/cryptonemo)) | [Gist](https://gist.githubusercontent.com/cryptonemo/c3e3a120199de6c015d09709a6ef03f5/raw/8adfcbd060a9f58964f65fa5d081a8b84b26352e/Filecoin%2520phase2%2520signing%2520public%2520key) | [02_nemo.asc](keys/02_nemo.asc) |
+| 3 | Dig ([@dignifiedquire](https://github.com/dignifiedquire)) | [TODO](...) | [TODO](...) |
+| 4 | Magik ([@magik6k](https://github.com/magik6k)) | [TODO](...) | [TODO](...) |
+| 5 | Why ([@whyrusleeping](https://github.com/whyrusleeping)) | [TODO](...) | [TODO](...) |
