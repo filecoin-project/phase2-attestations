@@ -22,7 +22,7 @@ On Ubuntu:
 
 ```
 $ sudo apt update
-$ sudo apt install -y curl git b2sum build-essential hwloc libhwloc-dev pkg-config libssl-dev ocl-icd-opencl-dev
+$ sudo apt install -y curl git gpg b2sum rsync build-essential hwloc libhwloc-dev pkg-config libssl-dev ocl-icd-opencl-dev
 
 # Install Rust via Rustup (https://www.rust-lang.org/tools/install)
 $ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
