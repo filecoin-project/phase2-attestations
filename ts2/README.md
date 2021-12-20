@@ -5,7 +5,7 @@
 | Circuit | Initial Param-Gen | Contributing | Contribution Verification | 
 | :-----: | :------: | :------: | :------: |
 | Empty-Sector-Update 32GiB and 64GiB | 155GiB RAM, 125GiB disk, 2h runtime (64 cores) | 8GiB RAM, 40GiB Disk, 30min runtime (64 cores) | 40GiB RAM, 40GiB Disk, 1h runtime (64 cores) |
-| Empty-Sector-Update-Poseidon 32GiB and 64GiB | **TODO** RAM, **TODO** disk, 1h10m runtime (64 cores) | **TODO** RAM, **TODO** Disk, **TODO** runtime (64 cores) | **TODO** RAM, **TODO** Disk, **TODO** runtime (64 cores) |
+| Empty-Sector-Update-Poseidon 32GiB and 64GiB | **TODO** RAM, **TODO** disk, 1h10min runtime (64 cores) | **TODO** RAM, **TODO** Disk, 10min runtime (64 cores) | **TODO** RAM, **TODO** Disk, 10min runtime (64 cores) |
 
 ## Participant Instructions
 
