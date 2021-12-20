@@ -145,9 +145,9 @@ The following GPG keys are used to verify each participant's trusted-setup contr
 
 | Participant Num. | Participant Name | Link to Key | Backup Copy of Key |
 | :-----: | :------: | :------: | :-----: |
-| 0 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.githubusercontent.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a/raw/2f2623c4de38a17c1334e3da5972b5b64d70715f/pubkey.asc) | [00_jake.asc](keys/00_jake.asc) |
-| 1 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.githubusercontent.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a/raw/2f2623c4de38a17c1334e3da5972b5b64d70715f/pubkey.asc) | [01_jake.asc](keys/01_jake.asc) |
-| 2 | Nemo ([@cryptonemo](https://github.com/cryptonemo)) | [Gist](https://gist.githubusercontent.com/cryptonemo/c3e3a120199de6c015d09709a6ef03f5/raw/8adfcbd060a9f58964f65fa5d081a8b84b26352e/Filecoin%2520phase2%2520signing%2520public%2520key) | [02_nemo.asc](keys/02_nemo.asc) |
+| 0 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.github.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a) | [00_jake.asc](keys/00_jake.asc) |
+| 1 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.github.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a) | [01_jake.asc](keys/01_jake.asc) |
+| 2 | Nemo ([@cryptonemo](https://github.com/cryptonemo)) | [Gist](https://gist.github.com/cryptonemo/c3e3a120199de6c015d09709a6ef03f5) | [02_nemo.asc](keys/02_nemo.asc) |
 | 3 | Dig ([@dignifiedquire](https://github.com/dignifiedquire)) | [Gist](https://gist.github.com/dignifiedquire/a7a5a95bd3b43261c94024253a7b8482) | [03_dig.asc](keys/03_dig.asc) |
 | 4 | Magik ([@magik6k](https://github.com/magik6k)) | [Gist](https://gist.github.com/magik6k/eb94516a2404f7aefd1e881deb866705) | [04_magik.asc](keys/04_magik.asc) |
 | 5 | Why ([@whyrusleeping](https://github.com/whyrusleeping)) | [TODO](...) | [TODO](...) |
