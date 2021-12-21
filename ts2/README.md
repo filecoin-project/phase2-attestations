@@ -13,8 +13,38 @@ Filecoin's second trusted-setup (run Dec-2021 - Jan-2022) generates Groth16 keys
 
 | Circuit | Initial Param-Gen | Contributing | Contribution Verification | 
 | :-----: | :------: | :------: | :------: |
-| EmptySectorUpdate <br /> (32GiB and 64GiB) | RAM: 155GiB <br /> Disk: 125GiB <br /> Runtime (64 cores): 2h | RAM: 8GiB <br /> Disk: 40GiB <br /> Runtime (64 cores): 30min | RAM: 40GiB <br /> Disk: 40GiB <br /> Runtime (64 cores): 1h |
-| EmptySectorUpdate-Poseidon <br /> (32GiB and 64GiB) | RAM: **TODO** <br /> Disk: **TODO** <br /> Runtime (64 cores): 1h10min | RAM: **TODO** <br /> Disk: **TODO** <br /> Runtime (64 cores): 10min | RAM: **TODO** <br /> Disk: **TODO** <br /> Runtime (64 cores): 10min |
+| EmptySectorUpdate <br /> (32GiB and 64GiB) | RAM: 155GiB <br /> Disk: 125GiB <br /> Runtime (64 cores): 2h | RAM: 1GiB <br /> Disk: 40GiB <br /> Runtime (64 cores): 30min | RAM: 40GiB <br /> Disk: 40GiB <br /> Runtime (64 cores): 1h |
+| EmptySectorUpdate-Poseidon <br /> (32GiB and 64GiB) | RAM: 50GiB <br /> Disk: 35GiB <br /> Runtime (64 cores): 1h10min | RAM: 1GiB <br /> Disk: 12GiB <br /> Runtime (64 cores): 10min | RAM: 12GiB <br /> Disk: 12GiB <br /> Runtime (64 cores): 10min |
+
+Each participant for the EmptySectorUpdate circuits (32GiB and 64GiB) must download one 20GiB file, then generate and upload a second 20GiB file.
+
+Each participant for the EmptySectorUpdate-Poseidon circuits (32GiB and 64GiB) must download one 5GiB file, then generate and upload a second 5GiB file.
+
+### Full Trusted-Setup Validation and Intial Param-Gen
+
+In order to validate the full trusted-setup, a validator should generate their own copy of each circuit's initial params and check their digests against the published initial params.
+
+Before generating initial parameters for each circuit, a phase1.5 file must be downloaded. These phase1.5 files were generated during phase1 of Filecoin's first trusted-setup.
+
+| Circuit | Phase1.5 File | File Size
+| :-----: | :------: | :------: |
+| EmptySectorUpdate <br /> (32GiB and 64GiB) | [`phase1radix2m27`](https://trusted-setup.s3.amazonaws.com/challenge19/phase1radix2m27) | 72GiB |
+| EmptySectorUpdate-Poseidon <br /> (32GiB and 64GiB) | [`phase1radix2m25`](https://trusted-setup.s3.amazonaws.com/challenge19/phase1radix2m25) | 18GiB |
+
+Generating initial parameters for each circuit is a deterministic process, however it requires large computational resources. For convenience, Filecoin's trusted-setup coordinator generated each circuit's initial params.
+
+## Participant Signing Keys
+
+Each trusted-setup participant is required to sign their contribution using GPG and to publish the public-key used to verify their signatures.
+
+| Participant Num. | Participant Name | Link to Key | Backup Copy of Key |
+| :-----: | :------: | :------: | :-----: |
+| 0 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.github.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a) | [00_jake.asc](keys/00_jake.asc) |
+| 1 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.github.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a) | [01_jake.asc](keys/01_jake.asc) |
+| 2 | Nemo ([@cryptonemo](https://github.com/cryptonemo)) | [Gist](https://gist.github.com/cryptonemo/c3e3a120199de6c015d09709a6ef03f5) | [02_nemo.asc](keys/02_nemo.asc) |
+| 3 | Dig ([@dignifiedquire](https://github.com/dignifiedquire)) | [Gist](https://gist.github.com/dignifiedquire/a7a5a95bd3b43261c94024253a7b8482) | [03_dig.asc](keys/03_dig.asc) |
+| 4 | Magik ([@magik6k](https://github.com/magik6k)) | [Gist](https://gist.github.com/magik6k/eb94516a2404f7aefd1e881deb866705) | [04_magik.asc](keys/04_magik.asc) |
+| 5 | Why ([@whyrusleeping](https://github.com/whyrusleeping)) | [TODO](...) | [TODO](...) |
 
 ## Participant Instructions
 
@@ -147,16 +177,3 @@ $ gpg --homedir keyring --armor -o <filename>.contrib.sig --detach-sign <filenam
 ```
 $ rsync -vP --append <participant's files> <upload url>
 ```
-
-## Participant Public Keys
-
-The following GPG keys are used to verify each participant's trusted-setup contribution.
-
-| Participant Num. | Participant Name | Link to Key | Backup Copy of Key |
-| :-----: | :------: | :------: | :-----: |
-| 0 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.github.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a) | [00_jake.asc](keys/00_jake.asc) |
-| 1 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.github.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a) | [01_jake.asc](keys/01_jake.asc) |
-| 2 | Nemo ([@cryptonemo](https://github.com/cryptonemo)) | [Gist](https://gist.github.com/cryptonemo/c3e3a120199de6c015d09709a6ef03f5) | [02_nemo.asc](keys/02_nemo.asc) |
-| 3 | Dig ([@dignifiedquire](https://github.com/dignifiedquire)) | [Gist](https://gist.github.com/dignifiedquire/a7a5a95bd3b43261c94024253a7b8482) | [03_dig.asc](keys/03_dig.asc) |
-| 4 | Magik ([@magik6k](https://github.com/magik6k)) | [Gist](https://gist.github.com/magik6k/eb94516a2404f7aefd1e881deb866705) | [04_magik.asc](keys/04_magik.asc) |
-| 5 | Why ([@whyrusleeping](https://github.com/whyrusleeping)) | [TODO](...) | [TODO](...) |
