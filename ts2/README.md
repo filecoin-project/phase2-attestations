@@ -1,11 +1,20 @@
 # Filecoin Trusted-Setup #2
 
+Filecoin's second trusted-setup (run Dec-2021 - Jan-2022) generates Groth16 keys for four new Filecoin proofs.
+
+| Circuit | Sector-Size | Contributions |
+| :-----: | :------: | :------: |
+| EmptySectorUpdate | 32GiB | [`update-32`](update-32) |
+| EmptySectorUpdate | 64GiB | [`update-64`](update-64) |
+| EmptySectorUpdate-Poseidon | 32GiB | [`updatep-32`](updatep-32) |
+| EmptySectorUpdate-Poseidon | 64GiB | [`updatep-64`](updatep-64) |
+
 ## Hardware Requirements
 
 | Circuit | Initial Param-Gen | Contributing | Contribution Verification | 
 | :-----: | :------: | :------: | :------: |
-| Empty-Sector-Update 32GiB and 64GiB | 155GiB RAM, 125GiB disk, 2h runtime (64 cores) | 8GiB RAM, 40GiB Disk, 30min runtime (64 cores) | 40GiB RAM, 40GiB Disk, 1h runtime (64 cores) |
-| Empty-Sector-Update-Poseidon 32GiB and 64GiB | **TODO** RAM, **TODO** disk, 1h10min runtime (64 cores) | **TODO** RAM, **TODO** Disk, 10min runtime (64 cores) | **TODO** RAM, **TODO** Disk, 10min runtime (64 cores) |
+| EmptySectorUpdate <br /> (32GiB and 64GiB) | RAM: 155GiB <br /> Disk: 125GiB <br /> Runtime (64 cores): 2h | RAM: 8GiB <br /> Disk: 40GiB <br /> Runtime (64 cores): 30min | RAM: 40GiB <br /> Disk: 40GiB <br /> Runtime (64 cores): 1h |
+| EmptySectorUpdate-Poseidon <br /> (32GiB and 64GiB) | RAM: **TODO** <br /> Disk: **TODO** <br /> Runtime (64 cores): 1h10min | RAM: **TODO** <br /> Disk: **TODO** <br /> Runtime (64 cores): 10min | RAM: **TODO** <br /> Disk: **TODO** <br /> Runtime (64 cores): 10min |
 
 ## Participant Instructions
 
