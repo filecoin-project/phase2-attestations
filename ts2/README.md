@@ -2,12 +2,12 @@
 
 Filecoin's second trusted-setup (run Dec-2021 - Jan-2022) generates Groth16 keys for four new Filecoin proofs.
 
-| Circuit | Sector-Size | Contributions |
-| :-----: | :------: | :------: |
-| EmptySectorUpdate | 32GiB | [`update-32`](update-32) |
-| EmptySectorUpdate | 64GiB | [`update-64`](update-64) |
-| EmptySectorUpdate-Poseidon | 32GiB | [`updatep-32`](updatep-32) |
-| EmptySectorUpdate-Poseidon | 64GiB | [`updatep-64`](updatep-64) |
+| Circuit | Sector-Size | Contributions | Signatures | Signing Keys |
+| :-----: | :---------: | :-----------: | :--------: | :----------: |
+| EmptySectorUpdate | 32GiB | [`update-32/contribs`](update-32/contribs) | [`update-32/sigs`](update-32/sigs) | [`update-keys`](update-keys) |
+| EmptySectorUpdate | 64GiB | [`update-64/contribs`](update-64/contribs) | [`update-64/sigs`](update-64/sigs) | [`update-keys`](update-keys) |
+| EmptySectorUpdate-Poseidon | 32GiB | [`updatep-32/contribs`](updatep-32/contribs) | [`updatep-32/sigs`](updatep-32/sigs) | [`updatep-keys`](updatep-keys) |
+| EmptySectorUpdate-Poseidon | 64GiB | [`updatep-64/contribs`](updatep-64/contribs) | [`updatep-64/sigs`](updatep-64/sigs) | [`updatep-keys`](updatep-keys) |
 
 ## Hardware Requirements
 
