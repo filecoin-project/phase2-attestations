@@ -13,8 +13,10 @@ Filecoin's second trusted-setup (run Dec-2021 - Jan-2022) generates Groth16 keys
 
 | Circuit | Initial Param-Gen | Contributing | Contribution Verification | 
 | :-----: | :------: | :------: | :------: |
-| EmptySectorUpdate <br /> (32GiB and 64GiB) | RAM: 155GiB <br /> Disk: 125GiB <br /> Runtime (64 cores): 2h | RAM: 1GiB <br /> Disk: 40GiB <br /> Runtime (64 cores): 30min | RAM: 40GiB <br /> Disk: 40GiB <br /> Runtime (64 cores): 1h |
-| EmptySectorUpdate-Poseidon <br /> (32GiB and 64GiB) | RAM: 50GiB <br /> Disk: 35GiB <br /> Runtime (64 cores): 1h10min | RAM: 1GiB <br /> Disk: 12GiB <br /> Runtime (64 cores): 10min | RAM: 12GiB <br /> Disk: 12GiB <br /> Runtime (64 cores): 10min |
+| EmptySectorUpdate <br /> (32GiB and 64GiB) | RAM: 155GiB <br /> Disk: 125GiB <br /> Runtime: 2h | RAM: 1GiB <br /> Disk: 40GiB <br /> Runtime: 30min | RAM: 40GiB <br /> Disk: 40GiB <br /> Runtime: 1h |
+| EmptySectorUpdate-Poseidon <br /> (32GiB and 64GiB) | RAM: 50GiB <br /> Disk: 35GiB <br /> Runtime: 1h10min | RAM: 1GiB <br /> Disk: 12GiB <br /> Runtime: 10min | RAM: 12GiB <br /> Disk: 12GiB <br /> Runtime: 10min |
+
+- **Note:** the above runtimes were measured on a computer utilizing 64 CPUs, however 64 cores is not a hardware requirement. For all parts of phase2 (initial param-gen, contribution, verification) runtime is inversely correlated with number of CPUs available, i.e. fewer cores result in a slower runtime, whereas more cores result in a faster runtime.
 
 Each participant for the EmptySectorUpdate circuits (32GiB and 64GiB) must download one 20GiB file, then generate and upload a second 20GiB file.
 
