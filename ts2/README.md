@@ -111,18 +111,18 @@ In the above command, the file `sig_seckey.asc` is the signing private-key and t
 
 Check for missing dependencies:
 ```
-$ if ! command -v curl >/dev/null 2>&1; then 'missing: curl'; fi; \
-      if ! command -v git >/dev/null 2>&1; then 'missing: git'; fi; \
-      if ! command -v gpg >/dev/null 2>&1; then 'missing: gpg'; fi; \
-      if ! command -v b2sum >/dev/null 2>&1; then 'missing: b2sum'; fi; \
-      if ! command -v rsync >/dev/null 2>&1; then 'missing: rsync'; fi; \
-      if ! command -v pkg-config >/dev/null 2>&1; then 'missing: pkg-config'; fi; \
-      if ! command -v rustup >/dev/null 2>&1; then 'missing: rustup'; fi; \
-      if ! dpkg -s build-essential >/dev/null 2>&1; then 'missing: build-essential'; fi; \
-      if ! dpkg -s hwloc >/dev/null 2>&1; then 'missing: hwloc'; fi; \
-      if ! dpkg -s libhwloc-dev >/dev/null 2>&1; then 'missing: libhwloc-dev'; fi; \
-      if ! dpkg -s libssl-dev >/dev/null 2>&1; then 'missing: libssl-dev'; fi; \
-      if ! dpkg -s ocl-icd-opencl-dev >/dev/null 2>&1; then 'missing: ocl-icd-opencl-dev'; fi
+$ if ! command -v curl >/dev/null 2>&1; then echo 'missing: curl'; fi; \
+      if ! command -v git >/dev/null 2>&1; then echo 'missing: git'; fi; \
+      if ! command -v gpg >/dev/null 2>&1; then echo 'missing: gpg'; fi; \
+      if ! command -v b2sum >/dev/null 2>&1; then echo 'missing: b2sum'; fi; \
+      if ! command -v rsync >/dev/null 2>&1; then echo 'missing: rsync'; fi; \
+      if ! command -v pkg-config >/dev/null 2>&1; then echo 'missing: pkg-config'; fi; \
+      if ! command -v rustup >/dev/null 2>&1; then echo 'missing: rustup'; fi; \
+      if ! dpkg -s build-essential >/dev/null 2>&1; then echo 'missing: build-essential'; fi; \
+      if ! dpkg -s hwloc >/dev/null 2>&1; then echo 'missing: hwloc'; fi; \
+      if ! dpkg -s libhwloc-dev >/dev/null 2>&1; then echo 'missing: libhwloc-dev'; fi; \
+      if ! dpkg -s libssl-dev >/dev/null 2>&1; then echo 'missing: libssl-dev'; fi; \
+      if ! dpkg -s ocl-icd-opencl-dev >/dev/null 2>&1; then echo 'missing: ocl-icd-opencl-dev'; fi
 ```
 
 Install missing dependencies; note that the following does not reinstall or upgrade dependencies which already exist:
