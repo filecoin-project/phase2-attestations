@@ -158,7 +158,7 @@ At the start of their timeslot, each participant will be sent exact instructions
 
 #### 1. Receive Access to the Trusted-Setup File Server
 
-At the start of their timeslot, each participant will be given commands to download and upload files to Filecoin's trusted-setup file server.
+At the start of their timeslot each participant will be given commands to download and upload files to Filecoin's trusted-setup file server.
 
 #### 2. Start a `tmux` Session
 
