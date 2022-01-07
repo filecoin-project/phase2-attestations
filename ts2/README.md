@@ -173,7 +173,7 @@ $ tmux new -s phase2
 
 #### 3. Download the Previous Participant's Parameters
 
-Each participant will be given `download_url` where they can download the previous participant's parameters.
+Each participant will be given a `download url` where they can download the previous participant's parameters.
 
 ```
 $ rsync -vP --append -e 'ssh -i <path to SSH private-key>' <download url> .
