@@ -52,29 +52,6 @@ Before generating initial parameters for each circuit, a phase1.5 file correspon
 | EmptySectorUpdate <br /> (32GiB and 64GiB) | [`phase1radix2m27`](https://trusted-setup.s3.amazonaws.com/challenge19/phase1radix2m27) | 72GiB |
 | EmptySectorUpdate-Poseidon <br /> (32GiB and 64GiB) | [`phase1radix2m25`](https://trusted-setup.s3.amazonaws.com/challenge19/phase1radix2m25) | 18GiB |
 
-## Participant Signing Keys
-
-Each trusted-setup participant is required to sign their contribution using GPG and to publish their signing public-key to a publicly accessible location. The following public-keys can be used to verify each participant's signature.
-
-### EmptySectorUpdate Circuits (32GiB and 64GiB)
-
-| Participant Num. | Participant Name | Link to Key | Backup Copy of Key |
-| :-----: | :------: | :------: | :-----: |
-| 0 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.github.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a) | [00_jake.asc](update-keys/00_jake.asc) |
-| 1 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.github.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a) | [01_jake.asc](update-keys/01_jake.asc) |
-| 2 | Nemo ([@cryptonemo](https://github.com/cryptonemo)) | [Gist](https://gist.github.com/cryptonemo/c3e3a120199de6c015d09709a6ef03f5) | [02_nemo.asc](update-keys/02_nemo.asc) |
-| 3 | Dig ([@dignifiedquire](https://github.com/dignifiedquire)) | [Gist](https://gist.github.com/dignifiedquire/a7a5a95bd3b43261c94024253a7b8482) | [03_dig.asc](update-keys/03_dig.asc) |
-| 4 | Magik ([@magik6k](https://github.com/magik6k)) | [Gist](https://gist.github.com/magik6k/eb94516a2404f7aefd1e881deb866705) | [04_magik.asc](update-keys/04_magik.asc) |
-| 5 | Why ([@whyrusleeping](https://github.com/whyrusleeping)) | [Gist](https://gist.github.com/whyrusleeping/f6d21d8968107d2b61676bdb154095fc) | [05_why.asc](update-keys/05_why.asc) |
-
-### EmptySectorUpdate-Poseidon Circuits (32GiB and 64GiB)
-
-| Participant Num. | Participant Name | Link to Key | Backup Copy of Key |
-| :-----: | :------: | :------: | :-----: |
-| 0 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.github.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a) | [00_jake.asc](updatep-keys/00_jake.asc) |
-| 1 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.github.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a) | [01_jake.asc](updatep-keys/01_jake.asc) |
-| 2 | Nemo ([@cryptonemo](https://github.com/cryptonemo)) | [Gist](https://gist.github.com/cryptonemo/c3e3a120199de6c015d09709a6ef03f5) | [02_nemo.asc](updatep-keys/02_nemo.asc) |
-
 ## Participant Instructions
 
 **Note:** the following commands were run on Ubuntu.
@@ -265,3 +242,27 @@ The trusted-setup coordinator will give each participant an `upload_url` which c
 ```
 $ rsync -vP --append -e 'ssh -i <path to SSH private-key>' <files> <upload url>
 ```
+
+## Participant Signing Keys
+
+Each trusted-setup participant is required to sign their contribution using GPG and to publish their signing public-key to a publicly accessible location. The following public-keys can be used to verify each participant's signature.
+
+### EmptySectorUpdate Circuits (32GiB and 64GiB)
+
+| Participant Num. | Participant Name | Link to Key | Backup Copy of Key |
+| :-----: | :------: | :------: | :-----: |
+| 0 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.github.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a) | [00_jake.asc](update-keys/00_jake.asc) |
+| 1 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.github.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a) | [01_jake.asc](update-keys/01_jake.asc) |
+| 2 | Nemo ([@cryptonemo](https://github.com/cryptonemo)) | [Gist](https://gist.github.com/cryptonemo/c3e3a120199de6c015d09709a6ef03f5) | [02_nemo.asc](update-keys/02_nemo.asc) |
+| 3 | Dig ([@dignifiedquire](https://github.com/dignifiedquire)) | [Gist](https://gist.github.com/dignifiedquire/a7a5a95bd3b43261c94024253a7b8482) | [03_dig.asc](update-keys/03_dig.asc) |
+| 4 | Magik ([@magik6k](https://github.com/magik6k)) | [Gist](https://gist.github.com/magik6k/eb94516a2404f7aefd1e881deb866705) | [04_magik.asc](update-keys/04_magik.asc) |
+| 5 | Why ([@whyrusleeping](https://github.com/whyrusleeping)) | [Gist](https://gist.github.com/whyrusleeping/f6d21d8968107d2b61676bdb154095fc) | [05_why.asc](update-keys/05_why.asc) |
+
+### EmptySectorUpdate-Poseidon Circuits (32GiB and 64GiB)
+
+| Participant Num. | Participant Name | Link to Key | Backup Copy of Key |
+| :-----: | :------: | :------: | :-----: |
+| 0 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.github.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a) | [00_jake.asc](updatep-keys/00_jake.asc) |
+| 1 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.github.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a) | [01_jake.asc](updatep-keys/01_jake.asc) |
+| 2 | Nemo ([@cryptonemo](https://github.com/cryptonemo)) | [Gist](https://gist.github.com/cryptonemo/c3e3a120199de6c015d09709a6ef03f5) | [02_nemo.asc](updatep-keys/02_nemo.asc) |
+
