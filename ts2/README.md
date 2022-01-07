@@ -179,12 +179,18 @@ Each participant will be given a `download url` where they can download the prev
 $ rsync -vP --append -e 'ssh -i <path to SSH private-key>' <download url> .
 ```
 
-#### 4. Verify Checksums
+#### 4. Verify Checksums of Downloaded Files
 
-Verify the checksum of each downloaded file.
+The participant will either download a checksums file `b2sums` from our [GitHub repo](https://raw.githubusercontent.com/filecoin-project/phase2-attestations/trusted-setup-2/ts2/b2sums), trusted-setup file server, or will be sent to the participant by the trusted-setup coordinator.
 
+The participant should run the following command to ensure the integrity of their downloaded files:
 ```
-$ cat b2sums | grep <previous participant's files> | b2sum -c
+$ grep -E '<downloaded file 1>|<downloaded file 2>' b2sums | b2sum -c
+```
+which will output the following if the file digests are correct.
+```
+<downloaded file 1>: OK
+<downloaded file 2>: OK
 ```
 
 #### 5. Make Contribution
