@@ -1,8 +1,8 @@
-# Filecoin Trusted-Setup EmptySectorUpdate
+# EmptySectorUpdate Trusted-Setup
 
-Filecoin's second trusted-setup (run Dec-2021 - Jan-2022) generates Groth16 parameters for four new Filecoin proofs, namely the "EmptySectorUpdate" (also called "SnapDeals") proofs for 32GiB and 64GiB sector sizes.
+Filecoin ran a trusted-setup during December-2021 and January-2022 to generate Groth16 parameters for four new Filecoin proofs: EmptySectorUpdate (also called SnapDeals) for 32GiB and 64GiB sector sizes. Note that this trusted-setup is distinct from Filecoin's Mainnet trusted-setup which generated Groth16 parameters for proofs: SDR-PoRep, Winning-PoSt, and Window-PoSt.
 
-## Attestation Files
+## Participant Attestations
 
 Each participant in a circuit's trusted-setup downloads the previous participant's Groth16 parameters then runs the `phase2` program to contribute randomness to those parameters resulting in a new parameters file. Additionally, each contribution process writes a `.contrib` file which is used to validate the participant's contribution. Participants sign their Groth16 parameters and their `.contrib` file using GPG and publish their GPG public-key to a publicly accessible location. A backup of each participant's GPG public-key is also stored in this repo.
 
