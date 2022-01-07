@@ -207,7 +207,7 @@ Send the computed checksum to the trusted-setup coordinator (probably via Slack)
 Create a directory to store a termporary GPG keyring.
 
 ```
-$ mkdir keyring
+$ mkdir keyring && chmod 700 keyring
 ```
 
 Either import a previously generated GPG signing key (i.e. private-key) or generate a single-use GPG signing keypair:
