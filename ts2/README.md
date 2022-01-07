@@ -176,7 +176,7 @@ $ tmux new -s phase2
 Each participant will be given `download_url` where they can download the previous participant's parameters.
 
 ```
-$ rsync -vP --append [-e 'ssh -i <path to SSH private-key>']  <download url>
+$ rsync -vP --append -e 'ssh -i <path to SSH private-key>' <download url> .
 ```
 
 #### 4. Verify Checksums
@@ -257,5 +257,5 @@ $ gpg --homedir keyring --armor -o <params>.sig --detach-sign <params> \
 The trusted-setup coordinator will give each participant an `upload_url` which can be used to upload files to the trusted-setup file server.
 
 ```
-$ rsync -vP --append [-e 'ssh -i <path to SSH private-key>'] <participant files> <upload url>
+$ rsync -vP --append -e 'ssh -i <path to SSH private-key>' <files> <upload url>
 ```
