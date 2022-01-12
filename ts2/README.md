@@ -2,7 +2,7 @@
 
 Filecoin ran a trusted-setup during December-2021 and January-2022 to generate Groth16 parameters for four new Filecoin proofs: EmptySectorUpdate (also called SnapDeals) for 32GiB and 64GiB sector sizes. Note that this trusted-setup is distinct from Filecoin's Mainnet trusted-setup which generated Groth16 parameters for proofs: SDR-PoRep, Winning-PoSt, and Window-PoSt.
 
-## Participant Attestations
+## Participant Attestation Files
 
 Each participant in a circuit's trusted-setup downloads the previous participant's Groth16 parameters then runs the `phase2` program to contribute randomness to those parameters resulting in a new parameters file. Additionally, each contribution process writes a `.contrib` file which is used to validate the participant's contribution. Participants sign their Groth16 parameters and their `.contrib` file using GPG and publish their GPG public-key to a publicly accessible location. A backup of each participant's GPG public-key is also stored in this repo.
 
@@ -257,6 +257,7 @@ Each trusted-setup participant is required to sign their contribution using GPG 
 | 3 | Dig ([@dignifiedquire](https://github.com/dignifiedquire)) | [Gist](https://gist.github.com/dignifiedquire/a7a5a95bd3b43261c94024253a7b8482) | [03_dig.asc](update-keys/03_dig.asc) |
 | 4 | Magik ([@magik6k](https://github.com/magik6k)) | [Gist](https://gist.github.com/magik6k/eb94516a2404f7aefd1e881deb866705) | [04_magik.asc](update-keys/04_magik.asc) |
 | 5 | Why ([@whyrusleeping](https://github.com/whyrusleeping)) | [Gist](https://gist.github.com/whyrusleeping/f6d21d8968107d2b61676bdb154095fc) | [05_why.asc](update-keys/05_why.asc) |
+| 6 | Grandhelmsman ([@IPFS-grandhelmsman](https://github.com/IPFS-grandhelmsman)) | [Gist](https://gist.github.com/IPFS-grandhelmsman/be1a3cc62d43da2e70d089c1c491fdd7) | [06_grandhelmsman.asc](update-keys/06_grandhelmsman.asc) |
 
 ### EmptySectorUpdate-Poseidon Circuits (32GiB and 64GiB)
 
@@ -265,4 +266,4 @@ Each trusted-setup participant is required to sign their contribution using GPG 
 | 0 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.github.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a) | [00_jake.asc](updatep-keys/00_jake.asc) |
 | 1 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.github.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a) | [01_jake.asc](updatep-keys/01_jake.asc) |
 | 2 | Nemo ([@cryptonemo](https://github.com/cryptonemo)) | [Gist](https://gist.github.com/cryptonemo/c3e3a120199de6c015d09709a6ef03f5) | [02_nemo.asc](updatep-keys/02_nemo.asc) |
-
+| 3 | Grandhelmsman ([@IPFS-grandhelmsman](https://github.com/IPFS-grandhelmsman)) | [Gist](https://gist.github.com/IPFS-grandhelmsman/be1a3cc62d43da2e70d089c1c491fdd7) | [03_grandhelmsman.asc](updatep-keys/03_grandhelmsman.asc) |
