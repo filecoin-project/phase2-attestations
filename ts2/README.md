@@ -259,6 +259,7 @@ Each trusted-setup participant is required to sign their contribution using GPG 
 | 5 | Why ([@whyrusleeping](https://github.com/whyrusleeping)) | [Gist](https://gist.github.com/whyrusleeping/f6d21d8968107d2b61676bdb154095fc) | [05_why.asc](update-keys/05_why.asc) |
 | 6 | Grandhelmsman ([@IPFS-grandhelmsman](https://github.com/IPFS-grandhelmsman)) | [Gist](https://gist.github.com/IPFS-grandhelmsman/be1a3cc62d43da2e70d089c1c491fdd7) | [06_grandhelmsman.asc](update-keys/06_grandhelmsman.asc) |
 | 7 | IPFS-Force ([@force_ipfs](https://twitter.com/force_ipfs)) | [Gist](https://gist.github.com/leone-Y/080a7c8c3c479d249de35eeadd6081a4) | [07_ipfs_force.asc](update-keys/07_ipfs_force.asc) |
+| 8 | DC Tech ([@wangyancun](https://github.com/wangyancun)) | [Gist](https://gist.github.com/wangyancun/453300b6fffadc561aa71d2448d259ab) | [08_dc_tech.asc](update-keys/08_dc_tech.asc) |
 
 ### EmptySectorUpdate-Poseidon Circuits (32GiB and 64GiB)
 
@@ -269,3 +270,4 @@ Each trusted-setup participant is required to sign their contribution using GPG 
 | 2 | Nemo ([@cryptonemo](https://github.com/cryptonemo)) | [Gist](https://gist.github.com/cryptonemo/c3e3a120199de6c015d09709a6ef03f5) | [02_nemo.asc](updatep-keys/02_nemo.asc) |
 | 3 | Grandhelmsman ([@IPFS-grandhelmsman](https://github.com/IPFS-grandhelmsman)) | [Gist](https://gist.github.com/IPFS-grandhelmsman/be1a3cc62d43da2e70d089c1c491fdd7) | [03_grandhelmsman.asc](updatep-keys/03_grandhelmsman.asc) |
 | 4 | IPFS-Force ([@force_ipfs](https://twitter.com/force_ipfs)) | [Gist](https://gist.github.com/leone-Y/080a7c8c3c479d249de35eeadd6081a4) | [04_ipfs_force.asc](updatep-keys/04_ipfs_force.asc) |
+| 5 | DC Tech ([@wangyancun](https://github.com/wangyancun)) | [Gist](https://gist.github.com/wangyancun/453300b6fffadc561aa71d2448d259ab) | [05_dc_tech.asc](updatep-keys/05_dc_tech.asc) |
