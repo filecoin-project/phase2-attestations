@@ -260,6 +260,7 @@ Each trusted-setup participant is required to sign their contribution using GPG 
 | 6 | Grandhelmsman ([@IPFS-grandhelmsman](https://github.com/IPFS-grandhelmsman)) | [Gist](https://gist.github.com/IPFS-grandhelmsman/be1a3cc62d43da2e70d089c1c491fdd7) | [06_grandhelmsman.asc](update-keys/06_grandhelmsman.asc) |
 | 7 | IPFS-Force ([@force_ipfs](https://twitter.com/force_ipfs)) | [Gist](https://gist.github.com/leone-Y/080a7c8c3c479d249de35eeadd6081a4) | [07_ipfs_force.asc](update-keys/07_ipfs_force.asc) |
 | 8 | DC Tech ([@wangyancun](https://github.com/wangyancun)) | [Gist](https://gist.github.com/wangyancun/453300b6fffadc561aa71d2448d259ab) | [08_dc_tech.asc](update-keys/08_dc_tech.asc) |
+| 9 | 1475 Tech ([@joyceqingling](https://github.com/joyceqingling)) | [Gist](https://gist.github.com/joyceqingling/16e939177b4b9a6346106830f06c885a) | [09_1475.asc](update-keys/09_1475.asc) |
 
 ### EmptySectorUpdate-Poseidon Circuits (32GiB and 64GiB)
 
