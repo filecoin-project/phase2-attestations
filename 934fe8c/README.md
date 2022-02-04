@@ -283,6 +283,153 @@ The trusted-setup coordinator will give each participant an `upload_url` which c
 $ rsync -vP --append -e 'ssh -i <path to SSH private-key>' <files> <upload url>
 ```
 
+## Phase 2 Validation
+
+**Note**: The verification process is very computationally intensive. For details see in the [Hardware Requirements](#hardware-requirements) section the "Contribution Verification" requirements.
+
+1. Build `phase2`. Please follow the instruction from the [Install Dependencies and Build `phase2`](#03-install-dependencies-and-build-phase2) section and stop right before the "Build `phase2`" step. Instead do the following:
+
+```console
+$ git clone https://github.com/filecoin-project/filecoin-phase2.git
+$ cd filecoin-phase2
+$ git checkout 934fe8c6d2df2589644302579838976d070c48a7
+$ cargo build --release --bins
+$ mv target/release/filecoin-phase2 phase2
+```
+
+2. Download verification scripts:
+
+```console
+TODO vmx 2022-01-20
+```
+
+3. Verify Phase2 contributions:
+
+In order to run the verification, you will need to download the relevant Phase 1 file for the circuit and run the verification script for that specific circuit. The verification script will verify all Phase 2 contributions made to the Groth16 parameters for a circuit of that specific size and check that the verified Groth16 parameters are being used by the Filecoin network. The commands and associated Phase 1 file for each circuit are listed below.
+
+All files that need to be downloaded for the verification process are stored on IPFS with root hash `QmbcqEiRyqe9sq9zxw7b6obuGw1vpVe7SzgZ6U5CoZYRpZ` and are also available at https://trusted-setup-snapdeals.filecoin.io/.
+
+Running `verify_all.sh` as illustrated here is very time-consuming. These commands are provided for reference, to clarify what must be verified. In practice, we recommend that verifiers follow the instructions in the next section, **Verify all contributions individually**.
+
+**Empty sector upgrade**
+
+```console
+$ ./verify_all.sh update 32
+$ ./verify_all.sh poseidon 64
+```
+
+**Empty sector upgrade Poseidon**
+
+```console
+$ ./verify_all.sh update 32
+$ ./verify_all.sh poseidon 64
+```
+
+
+### Verify contributions individually (suggested alternative to section 3. above)
+
+If run sequentially, as presented below, the following command will take a very long time (months).
+
+We encourage verifiers to split the command into smaller pieces and run them in parallel on multiple machines. Each
+sub-command can be run independently, and each must be run at least once. Every sub-command must succeed for the
+verification to succeed.
+
+No precautions have been taken to ensure multiple processes running against the same storage will not clash with each
+other. Because each verification step requires two sequential contribution files, groups of contributions verified using
+the same storage should be verified sequentially. Otherwise, you risk two adjacent verifications simultaneously
+requesting the same file.
+
+```bash
+bash -c '
+  set -e
+
+  ./download_prereqs_for_initial_generation.sh update 32 && ./generate_initial.sh update 32
+  ./download_prereqs_for_contrib.sh update 32 1 && ./verify_contrib.sh update 32 1
+  ./download_prereqs_for_contrib.sh update 32 2 && ./verify_contrib.sh update 32 2
+  ./download_prereqs_for_contrib.sh update 32 3 && ./verify_contrib.sh update 32 3
+  ./download_prereqs_for_contrib.sh update 32 4 && ./verify_contrib.sh update 32 4
+  ./download_prereqs_for_contrib.sh update 32 5 && ./verify_contrib.sh update 32 5
+  ./download_prereqs_for_contrib.sh update 32 6 && ./verify_contrib.sh update 32 6
+  ./download_prereqs_for_contrib.sh update 32 7 && ./verify_contrib.sh update 32 7
+  ./download_prereqs_for_contrib.sh update 32 8 && ./verify_contrib.sh update 32 8
+  ./download_prereqs_for_contrib.sh update 32 9 && ./verify_contrib.sh update 32 9
+  ./download_prereqs_for_contrib.sh update 32 10 && ./verify_contrib.sh update 32 10
+  ./download_prereqs_for_contrib.sh update 32 11 && ./verify_contrib.sh update 32 11
+  ./download_prereqs_for_contrib.sh update 32 12 && ./verify_contrib.sh update 32 12
+  ./download_prereqs_for_contrib.sh update 32 13 && ./verify_contrib.sh update 32 13
+  ./download_prereqs_for_contrib.sh update 32 14 && ./verify_contrib.sh update 32 14
+  ./download_prereqs_for_contrib.sh update 32 15 && ./verify_contrib.sh update 32 15
+  ./download_prereqs_for_contrib.sh update 32 16 && ./verify_contrib.sh update 32 16
+  ./download_prereqs_for_contrib.sh update 32 17 && ./verify_contrib.sh update 32 17
+  ./download_prereqs_for_contrib.sh update 32 18 && ./verify_contrib.sh update 32 18
+  ./download_prereqs_for_contrib.sh update 32 19 && ./verify_contrib.sh update 32 19
+  ./download_prereqs_for_contrib.sh update 32 20 && ./verify_contrib.sh update 32 20
+  ./download_prereqs_for_final.sh update 32 && ./verify_final.sh update 32
+
+  ./download_prereqs_for_initial_generation.sh update 64 && ./generate_initial.sh update 64
+  ./download_prereqs_for_contrib.sh update 64 1 && ./verify_contrib.sh update 64 1
+  ./download_prereqs_for_contrib.sh update 64 2 && ./verify_contrib.sh update 64 2
+  ./download_prereqs_for_contrib.sh update 64 3 && ./verify_contrib.sh update 64 3
+  ./download_prereqs_for_contrib.sh update 64 4 && ./verify_contrib.sh update 64 4
+  ./download_prereqs_for_contrib.sh update 64 5 && ./verify_contrib.sh update 64 5
+  ./download_prereqs_for_contrib.sh update 64 6 && ./verify_contrib.sh update 64 6
+  ./download_prereqs_for_contrib.sh update 64 7 && ./verify_contrib.sh update 64 7
+  ./download_prereqs_for_contrib.sh update 64 8 && ./verify_contrib.sh update 64 8
+  ./download_prereqs_for_contrib.sh update 64 9 && ./verify_contrib.sh update 64 9
+  ./download_prereqs_for_contrib.sh update 64 10 && ./verify_contrib.sh update 64 10
+  ./download_prereqs_for_contrib.sh update 64 11 && ./verify_contrib.sh update 64 11
+  ./download_prereqs_for_contrib.sh update 64 12 && ./verify_contrib.sh update 64 12
+  ./download_prereqs_for_contrib.sh update 64 13 && ./verify_contrib.sh update 64 13
+  ./download_prereqs_for_contrib.sh update 64 14 && ./verify_contrib.sh update 64 14
+  ./download_prereqs_for_contrib.sh update 64 15 && ./verify_contrib.sh update 64 15
+  ./download_prereqs_for_contrib.sh update 64 16 && ./verify_contrib.sh update 64 16
+  ./download_prereqs_for_contrib.sh update 64 17 && ./verify_contrib.sh update 64 17
+  ./download_prereqs_for_contrib.sh update 64 18 && ./verify_contrib.sh update 64 18
+  ./download_prereqs_for_contrib.sh update 64 19 && ./verify_contrib.sh update 64 19
+  ./download_prereqs_for_contrib.sh update 64 20 && ./verify_contrib.sh update 64 20
+  ./download_prereqs_for_final.sh update 64 && ./verify_final.sh update 64
+
+  ./download_prereqs_for_initial_generation.sh poseidon 32 && ./generate_initial.sh poseidon 32
+  ./download_prereqs_for_contrib.sh poseidon 32 1 && ./verify_contrib.sh poseidon 32 1
+  ./download_prereqs_for_contrib.sh poseidon 32 2 && ./verify_contrib.sh poseidon 32 2
+  ./download_prereqs_for_contrib.sh poseidon 32 3 && ./verify_contrib.sh poseidon 32 3
+  ./download_prereqs_for_contrib.sh poseidon 32 4 && ./verify_contrib.sh poseidon 32 4
+  ./download_prereqs_for_contrib.sh poseidon 32 5 && ./verify_contrib.sh poseidon 32 5
+  ./download_prereqs_for_contrib.sh poseidon 32 6 && ./verify_contrib.sh poseidon 32 6
+  ./download_prereqs_for_contrib.sh poseidon 32 7 && ./verify_contrib.sh poseidon 32 7
+  ./download_prereqs_for_contrib.sh poseidon 32 8 && ./verify_contrib.sh poseidon 32 8
+  ./download_prereqs_for_contrib.sh poseidon 32 9 && ./verify_contrib.sh poseidon 32 9
+  ./download_prereqs_for_contrib.sh poseidon 32 10 && ./verify_contrib.sh poseidon 32 10
+  ./download_prereqs_for_contrib.sh poseidon 32 11 && ./verify_contrib.sh poseidon 32 11
+  ./download_prereqs_for_contrib.sh poseidon 32 12 && ./verify_contrib.sh poseidon 32 12
+  ./download_prereqs_for_contrib.sh poseidon 32 13 && ./verify_contrib.sh poseidon 32 13
+  ./download_prereqs_for_contrib.sh poseidon 32 14 && ./verify_contrib.sh poseidon 32 14
+  ./download_prereqs_for_contrib.sh poseidon 32 15 && ./verify_contrib.sh poseidon 32 15
+  ./download_prereqs_for_contrib.sh poseidon 32 16 && ./verify_contrib.sh poseidon 32 16
+  ./download_prereqs_for_contrib.sh poseidon 32 17 && ./verify_contrib.sh poseidon 32 17
+  ./download_prereqs_for_final.sh poseidon 32 && ./verify_final.sh poseidon 32
+
+  ./download_prereqs_for_initial_generation.sh poseidon 64 && ./generate_initial.sh poseidon 64
+  ./download_prereqs_for_contrib.sh poseidon 64 1 && ./verify_contrib.sh poseidon 64 1
+  ./download_prereqs_for_contrib.sh poseidon 64 2 && ./verify_contrib.sh poseidon 64 2
+  ./download_prereqs_for_contrib.sh poseidon 64 3 && ./verify_contrib.sh poseidon 64 3
+  ./download_prereqs_for_contrib.sh poseidon 64 4 && ./verify_contrib.sh poseidon 64 4
+  ./download_prereqs_for_contrib.sh poseidon 64 5 && ./verify_contrib.sh poseidon 64 5
+  ./download_prereqs_for_contrib.sh poseidon 64 6 && ./verify_contrib.sh poseidon 64 6
+  ./download_prereqs_for_contrib.sh poseidon 64 7 && ./verify_contrib.sh poseidon 64 7
+  ./download_prereqs_for_contrib.sh poseidon 64 8 && ./verify_contrib.sh poseidon 64 8
+  ./download_prereqs_for_contrib.sh poseidon 64 9 && ./verify_contrib.sh poseidon 64 9
+  ./download_prereqs_for_contrib.sh poseidon 64 10 && ./verify_contrib.sh poseidon 64 10
+  ./download_prereqs_for_contrib.sh poseidon 64 11 && ./verify_contrib.sh poseidon 64 11
+  ./download_prereqs_for_contrib.sh poseidon 64 12 && ./verify_contrib.sh poseidon 64 12
+  ./download_prereqs_for_contrib.sh poseidon 64 13 && ./verify_contrib.sh poseidon 64 13
+  ./download_prereqs_for_contrib.sh poseidon 64 14 && ./verify_contrib.sh poseidon 64 14
+  ./download_prereqs_for_contrib.sh poseidon 64 15 && ./verify_contrib.sh poseidon 64 15
+  ./download_prereqs_for_contrib.sh poseidon 64 16 && ./verify_contrib.sh poseidon 64 16
+  ./download_prereqs_for_final.sh poseidon 64 && ./verify_final.sh poseidon 64
+'
+```
+
 [729AFE30F8A2252FB161116CD23461A3F65ECA9A]: https://gist.githubusercontent.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a/raw/2f2623c4de38a17c1334e3da5972b5b64d70715f/pubkey.asc
 [FE2C636C05D4EB47B05032289116924305EE3036]: https://gist.githubusercontent.com/cryptonemo/c3e3a120199de6c015d09709a6ef03f5/raw/8adfcbd060a9f58964f65fa5d081a8b84b26352e/Filecoin%2520phase2%2520signing%2520public%2520key
 [2E35D133E063A218EDD0D30F23C5881C65EF08A4]: https://gist.githubusercontent.com/dignifiedquire/a7a5a95bd3b43261c94024253a7b8482/raw/bc2397db14c02ca9f7b9f2664af239f098f0eee6/trusted-setup-2-public-key-dignifiedquire.asc
