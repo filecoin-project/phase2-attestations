@@ -13,44 +13,46 @@ Circuits were frozen at [`rust-fil-proofs`](https://github.com/filecoin-project/
 
 The following tables list the participants for each circuit's trusted-setup. Each trusted-setup participant is required to sign their contribution and to publish their signing public-key to a publicly accessible location. The following public-keys can be used to verify each participant's signature. We have also stored a backup copy of each participant's signing public-key within this repo.
 
+A keyring with all keys linked below can be created directly from this file via `grep '^\['|cut -d ' ' -f 2|xargs -n 1 sh -c 'echo $0 && curl --silent --location $0|gpg --no-default-keyring --keyring ./keyring.gpg --import'`.
+
 ### EmptySectorUpdate 32GiB and 64GiB Circuits
 
 | Participant Number | Participant Name | Published Signing Public-Key | Backup Copy of Public-Key |
 | :-----: | :------: | :------: | :-----: |
-| 0 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.github.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a) | [00_jake.asc](update-keys/00_jake.asc) |
-| 1 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.github.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a) | [01_jake.asc](update-keys/01_jake.asc) |
-| 2 | Nemo ([@cryptonemo](https://github.com/cryptonemo)) | [Gist](https://gist.github.com/cryptonemo/c3e3a120199de6c015d09709a6ef03f5) | [02_nemo.asc](update-keys/02_nemo.asc) |
-| 3 | Dig ([@dignifiedquire](https://github.com/dignifiedquire)) | [Gist](https://gist.github.com/dignifiedquire/a7a5a95bd3b43261c94024253a7b8482) | [03_dig.asc](update-keys/03_dig.asc) |
-| 4 | Magik ([@magik6k](https://github.com/magik6k)) | [Gist](https://gist.github.com/magik6k/eb94516a2404f7aefd1e881deb866705) | [04_magik.asc](update-keys/04_magik.asc) |
-| 5 | Why ([@whyrusleeping](https://github.com/whyrusleeping)) | [Gist](https://gist.github.com/whyrusleeping/f6d21d8968107d2b61676bdb154095fc) | [05_why.asc](update-keys/05_why.asc) |
-| 6 | Grandhelmsman ([@IPFS-grandhelmsman](https://github.com/IPFS-grandhelmsman)) | [Gist](https://gist.github.com/IPFS-grandhelmsman/be1a3cc62d43da2e70d089c1c491fdd7) | [06_grandhelmsman.asc](update-keys/06_grandhelmsman.asc) |
-| 7 | IPFS-Force ([@force_ipfs](https://twitter.com/force_ipfs)) | [Gist](https://gist.github.com/leone-Y/080a7c8c3c479d249de35eeadd6081a4) | [07_ipfs_force.asc](update-keys/07_ipfs_force.asc) |
-| 8 | DC Tech ([@wangyancun](https://github.com/wangyancun)) | [Gist](https://gist.github.com/wangyancun/453300b6fffadc561aa71d2448d259ab) | [08_dc_tech.asc](update-keys/08_dc_tech.asc) |
-| 9 | Gegezai (@mingzhutek) | [Keybase](https://keybase.pub/webb_wang/public-webb.asc) | [09_gegezai.asc](update-keys/09_gegezai.asc) |
-| 10 | Lanzafame ([@lanzafame](https://github.com/lanzafame)) | [Gist](https://gist.github.com/lanzafame/0b37a6e2b60e66899bf9e655a3f35e37) | [10_lanzafame.asc](update-keys/10_lanzafame.asc) |
-| 11 | BenjaminH ([@benjaminh83](https://github.com/benjaminh83)) | [Gist](https://gist.github.com/benjaminh83/2fbff10a745ce236649d25ef5d258619) | [11_benjaminh.asc](update-keys/11_benjaminh.asc) |
-| 12 | 1475 Tech ([@joyceqingling](https://github.com/joyceqingling)) | [Gist](https://gist.github.com/joyceqingling/16e939177b4b9a6346106830f06c885a) | [12_1475_tech.asc](update-keys/12_1475_tech.asc) |
-| 13 | Factor8 Solutions ([@factor8solutions](https://github.com/Factor8Solutions)) | [Gist](https://gist.github.com/f8-ptrk/9e1b10c21b902282ca3ab86617c9934d) | [13_factor8.asc](update-keys/13_factor8.asc) |
-| 14 | Zondax ([@zondax](https://github.com/Zondax)) | [Gist](https://gist.github.com/pecorino-bot/4db4e259bd0864ae6912863eef572b19) | [14_zondax.asc](update-keys/14_zondax.asc) |
-| 15 | Linix ([@angelo_schalley](https://twitter.com/angelo_schalley)) | [Gist](https://gist.github.com/Angelo-gh3990/39c5a2c7020ebae90a5fe4998ac5f22e) | [15_linix.asc](update-keys/15_linix.asc) |
+| 0 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [729AFE30F8A2252FB161116CD23461A3F65ECA9A] | [00_jake.asc](update-keys/00_jake.asc) |
+| 1 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [729AFE30F8A2252FB161116CD23461A3F65ECA9A] | [01_jake.asc](update-keys/01_jake.asc) |
+| 2 | Nemo ([@cryptonemo](https://github.com/cryptonemo)) | [FE2C636C05D4EB47B05032289116924305EE3036] | [02_nemo.asc](update-keys/02_nemo.asc) |
+| 3 | Dig ([@dignifiedquire](https://github.com/dignifiedquire)) | [2E35D133E063A218EDD0D30F23C5881C65EF08A4] | [03_dig.asc](update-keys/03_dig.asc) |
+| 4 | Magik ([@magik6k](https://github.com/magik6k)) | [895F425CB320E9442DAA492DEA571D1207C1F47B] | [04_magik.asc](update-keys/04_magik.asc) |
+| 5 | Why ([@whyrusleeping](https://github.com/whyrusleeping)) | [431623AFFE611C75D0362ACF85E5064D34D4A903] | [05_why.asc](update-keys/05_why.asc) |
+| 6 | Grandhelmsman ([@IPFS-grandhelmsman](https://github.com/IPFS-grandhelmsman)) | [EC9ECA728FC616EEF7800D80E9659C3B605D94EA] | [06_grandhelmsman.asc](update-keys/06_grandhelmsman.asc) |
+| 7 | IPFS-Force ([@force_ipfs](https://twitter.com/force_ipfs)) | [F6EA556B12C97AE73E94BE62FD392097D41D0F73] | [07_ipfs_force.asc](update-keys/07_ipfs_force.asc) |
+| 8 | DC Tech ([@wangyancun](https://github.com/wangyancun)) | [BD9388D2AF0C6F88AFB161257E6702539B0AD989] | [08_dc_tech.asc](update-keys/08_dc_tech.asc) |
+| 9 | Gegezai (@mingzhutek) | [9EC26496FF2A468E813A1E569D50130A8AF7F8DA] | [09_gegezai.asc](update-keys/09_gegezai.asc) |
+| 10 | Lanzafame ([@lanzafame](https://github.com/lanzafame)) | [61983CF78FF7E8862DF698B3412C59E7B21C4CAA] | [10_lanzafame.asc](update-keys/10_lanzafame.asc) |
+| 11 | BenjaminH ([@benjaminh83](https://github.com/benjaminh83)) | [482C86524ABF01070B0C7100746EBAC19A93BABC] | [11_benjaminh.asc](update-keys/11_benjaminh.asc) |
+| 12 | 1475 Tech ([@joyceqingling](https://github.com/joyceqingling)) | [196B0D8AAF8D011F83FB7DEA0F6B73CC688F45D9] | [12_1475_tech.asc](update-keys/12_1475_tech.asc) |
+| 13 | Factor8 Solutions ([@factor8solutions](https://github.com/Factor8Solutions)) | [E2815BCF1FA14ACDF85937998D797C669183C5AA] | [13_factor8.asc](update-keys/13_factor8.asc) |
+| 14 | Zondax ([@zondax](https://github.com/Zondax)) | [B44CCE9C47715B00D169600602EB7F6D56F2C6BB] | [14_zondax.asc](update-keys/14_zondax.asc) |
+| 15 | Linix ([@angelo_schalley](https://twitter.com/angelo_schalley)) | [7AC6E2026575537A225F2344F064D400BF00A7E1] | [15_linix.asc](update-keys/15_linix.asc) |
 
 ### EmptySectorUpdate-Poseidon 32GiB and 64GiB Circuits
 
 | Participant Number | Participant Name | Published Signing Public-Key | Backup Copy of Public-Key |
 | :-----: | :------: | :------: | :-----: |
-| 0 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.github.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a) | [00_jake.asc](updatep-keys/00_jake.asc) |
-| 1 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [Gist](https://gist.github.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a) | [01_jake.asc](updatep-keys/01_jake.asc) |
-| 2 | Nemo ([@cryptonemo](https://github.com/cryptonemo)) | [Gist](https://gist.github.com/cryptonemo/c3e3a120199de6c015d09709a6ef03f5) | [02_nemo.asc](updatep-keys/02_nemo.asc) |
-| 3 | Grandhelmsman ([@IPFS-grandhelmsman](https://github.com/IPFS-grandhelmsman)) | [Gist](https://gist.github.com/IPFS-grandhelmsman/be1a3cc62d43da2e70d089c1c491fdd7) | [03_grandhelmsman.asc](updatep-keys/03_grandhelmsman.asc) |
-| 4 | IPFS-Force ([@force_ipfs](https://twitter.com/force_ipfs)) | [Gist](https://gist.github.com/leone-Y/080a7c8c3c479d249de35eeadd6081a4) | [04_ipfs_force.asc](updatep-keys/04_ipfs_force.asc) |
-| 5 | DC Tech ([@wangyancun](https://github.com/wangyancun)) | [Gist](https://gist.github.com/wangyancun/453300b6fffadc561aa71d2448d259ab) | [05_dc_tech.asc](updatep-keys/05_dc_tech.asc) |
-| 6 | Gegezai (@mingzhutek) | [Keybase](https://keybase.pub/webb_wang/public-webb.asc) | [06_gegezai.asc](updatep-keys/06_gegezai.asc) |
-| 7 | Lanzafame ([@lanzafame](https://github.com/lanzafame)) | [Gist](https://gist.github.com/lanzafame/0b37a6e2b60e66899bf9e655a3f35e37) | [07_lanzafame.asc](updatep-keys/07_lanzafame.asc) |
-| 8 | BenjaminH ([@benjaminh83](https://github.com/benjaminh83)) | [Gist](https://gist.github.com/benjaminh83/2fbff10a745ce236649d25ef5d258619) | [08_benjaminh.asc](updatep-keys/08_benjaminh.asc) |
-| 9 | 1475 Tech ([@joyceqingling](https://github.com/joyceqingling)) | [Gist](https://gist.github.com/joyceqingling/16e939177b4b9a6346106830f06c885a) | [09_1475_tech.asc](updatep-keys/09_1475_tech.asc) |
-| 10 | Factor8 Solutions ([@factor8solutions](https://github.com/Factor8Solutions)) | [Gist](https://gist.github.com/f8-ptrk/9e1b10c21b902282ca3ab86617c9934d) | [10_factor8.asc](updatep-keys/10_factor8.asc) |
-| 11 | Zondax ([@zondax](https://github.com/Zondax)) | [Gist](https://gist.github.com/pecorino-bot/4db4e259bd0864ae6912863eef572b19) | [11_zondax.asc](updatep-keys/11_zondax.asc) |
-| 12 | Linix ([@angelo_schalley](https://twitter.com/angelo_schalley)) | [Gist](https://gist.github.com/Angelo-gh3990/39c5a2c7020ebae90a5fe4998ac5f22e) | [12_linix.asc](updatep-keys/12_linix.asc) |
+| 0 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [729AFE30F8A2252FB161116CD23461A3F65ECA9A] | [00_jake.asc](updatep-keys/00_jake.asc) |
+| 1 | Jake ([@drpetervannostrand](https://github.com/drpetervannostrand)) | [729AFE30F8A2252FB161116CD23461A3F65ECA9A] | [01_jake.asc](updatep-keys/01_jake.asc) |
+| 2 | Nemo ([@cryptonemo](https://github.com/cryptonemo)) | [FE2C636C05D4EB47B05032289116924305EE3036] | [02_nemo.asc](updatep-keys/02_nemo.asc) |
+| 3 | Grandhelmsman ([@IPFS-grandhelmsman](https://github.com/IPFS-grandhelmsman)) | [EC9ECA728FC616EEF7800D80E9659C3B605D94EA] | [03_grandhelmsman.asc](updatep-keys/03_grandhelmsman.asc) |
+| 4 | IPFS-Force ([@force_ipfs](https://twitter.com/force_ipfs)) | [F6EA556B12C97AE73E94BE62FD392097D41D0F73] | [04_ipfs_force.asc](updatep-keys/04_ipfs_force.asc) |
+| 5 | DC Tech ([@wangyancun](https://github.com/wangyancun)) | [BD9388D2AF0C6F88AFB161257E6702539B0AD989] | [05_dc_tech.asc](updatep-keys/05_dc_tech.asc) |
+| 6 | Gegezai (@mingzhutek) | [9EC26496FF2A468E813A1E569D50130A8AF7F8DA] | [06_gegezai.asc](updatep-keys/06_gegezai.asc) |
+| 7 | Lanzafame ([@lanzafame](https://github.com/lanzafame)) | [61983CF78FF7E8862DF698B3412C59E7B21C4CAA] | [07_lanzafame.asc](updatep-keys/07_lanzafame.asc) |
+| 8 | BenjaminH ([@benjaminh83](https://github.com/benjaminh83)) | [482C86524ABF01070B0C7100746EBAC19A93BABC] | [08_benjaminh.asc](updatep-keys/08_benjaminh.asc) |
+| 9 | 1475 Tech ([@joyceqingling](https://github.com/joyceqingling)) | [196B0D8AAF8D011F83FB7DEA0F6B73CC688F45D9] | [09_1475_tech.asc](updatep-keys/09_1475_tech.asc) |
+| 10 | Factor8 Solutions ([@factor8solutions](https://github.com/Factor8Solutions)) | [E2815BCF1FA14ACDF85937998D797C669183C5AA] | [10_factor8.asc](updatep-keys/10_factor8.asc) |
+| 11 | Zondax ([@zondax](https://github.com/Zondax)) | [B44CCE9C47715B00D169600602EB7F6D56F2C6BB] | [11_zondax.asc](updatep-keys/11_zondax.asc) |
+| 12 | Linix ([@angelo_schalley](https://twitter.com/angelo_schalley)) | [7AC6E2026575537A225F2344F064D400BF00A7E1] | [12_linix.asc](updatep-keys/12_linix.asc) |
 
 ## Participant Attestation Files
 
@@ -280,3 +282,19 @@ The trusted-setup coordinator will give each participant an `upload_url` which c
 ```
 $ rsync -vP --append -e 'ssh -i <path to SSH private-key>' <files> <upload url>
 ```
+
+[729AFE30F8A2252FB161116CD23461A3F65ECA9A]: https://gist.githubusercontent.com/DrPeterVanNostrand/94c7cc9cfc80dee29f99d97b7cc4f68a/raw/2f2623c4de38a17c1334e3da5972b5b64d70715f/pubkey.asc
+[FE2C636C05D4EB47B05032289116924305EE3036]: https://gist.githubusercontent.com/cryptonemo/c3e3a120199de6c015d09709a6ef03f5/raw/8adfcbd060a9f58964f65fa5d081a8b84b26352e/Filecoin%2520phase2%2520signing%2520public%2520key
+[2E35D133E063A218EDD0D30F23C5881C65EF08A4]: https://gist.githubusercontent.com/dignifiedquire/a7a5a95bd3b43261c94024253a7b8482/raw/bc2397db14c02ca9f7b9f2664af239f098f0eee6/trusted-setup-2-public-key-dignifiedquire.asc
+[895F425CB320E9442DAA492DEA571D1207C1F47B]: https://gist.githubusercontent.com/magik6k/eb94516a2404f7aefd1e881deb866705/raw/dafb9a85aa5ffddb09b37ae6dd26c9172892d178/snappub.asc
+[431623AFFE611C75D0362ACF85E5064D34D4A903]: https://gist.githubusercontent.com/whyrusleeping/f6d21d8968107d2b61676bdb154095fc/raw/1515b21f537d90aa0bd6965261a95ac5e1972776/celebii-key.asc
+[EC9ECA728FC616EEF7800D80E9659C3B605D94EA]: https://gist.githubusercontent.com/IPFS-grandhelmsman/be1a3cc62d43da2e70d089c1c491fdd7/raw/7c75b85d4d2bb7a3fddefc791e759100c851e46f/pubkey.asc
+[F6EA556B12C97AE73E94BE62FD392097D41D0F73]: https://gist.githubusercontent.com/leone-Y/080a7c8c3c479d249de35eeadd6081a4/raw/e27bb8fc1098acd3e163f18ac67fca4f4f41c042/pubkey.asc
+[BD9388D2AF0C6F88AFB161257E6702539B0AD989]: https://gist.githubusercontent.com/wangyancun/453300b6fffadc561aa71d2448d259ab/raw/c1feb6d2811c2b12515509fe3b8384d80e260b91/pubkey.asc
+[9EC26496FF2A468E813A1E569D50130A8AF7F8DA]: https://webb_wang.keybase.pub/public-webb.asc
+[61983CF78FF7E8862DF698B3412C59E7B21C4CAA]: https://gist.githubusercontent.com/lanzafame/0b37a6e2b60e66899bf9e655a3f35e37/raw/92cd15e80fc90e0fc18a1c39ab1feec9c7dddd12/sig_pubkey.asc
+[482C86524ABF01070B0C7100746EBAC19A93BABC]: https://gist.githubusercontent.com/benjaminh83/2fbff10a745ce236649d25ef5d258619/raw/d870569e41d5c4f58302cc0a1332a0a68fbbf6d8/pubkey.asc
+[196B0D8AAF8D011F83FB7DEA0F6B73CC688F45D9]: https://gist.githubusercontent.com/joyceqingling/16e939177b4b9a6346106830f06c885a/raw/f5f9633b5edc8e4304d4bc83021d47a9faa37e38/pubkey.asc
+[E2815BCF1FA14ACDF85937998D797C669183C5AA]: https://gist.githubusercontent.com/f8-ptrk/9e1b10c21b902282ca3ab86617c9934d/raw/6868c27782d13f8f3d28a25a76bebe7046974ee6/li_tsp2_snap_pubkey
+[B44CCE9C47715B00D169600602EB7F6D56F2C6BB]: https://gist.githubusercontent.com/pecorino-bot/4db4e259bd0864ae6912863eef572b19/raw/977050de66afb4c4228eba687d0f183343330091/pubkey.asc
+[7AC6E2026575537A225F2344F064D400BF00A7E1]: https://gist.githubusercontent.com/Angelo-gh3990/39c5a2c7020ebae90a5fe4998ac5f22e/raw/5179a26da6c7c2d6ac5af1250940be56fe79c13d/sig_pubkey.asc
