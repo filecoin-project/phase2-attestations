@@ -359,11 +359,6 @@ bash -c '
   ./download_prereqs_for_contrib.sh update 32 13 && ./verify_contrib.sh update 32 13
   ./download_prereqs_for_contrib.sh update 32 14 && ./verify_contrib.sh update 32 14
   ./download_prereqs_for_contrib.sh update 32 15 && ./verify_contrib.sh update 32 15
-  ./download_prereqs_for_contrib.sh update 32 16 && ./verify_contrib.sh update 32 16
-  ./download_prereqs_for_contrib.sh update 32 17 && ./verify_contrib.sh update 32 17
-  ./download_prereqs_for_contrib.sh update 32 18 && ./verify_contrib.sh update 32 18
-  ./download_prereqs_for_contrib.sh update 32 19 && ./verify_contrib.sh update 32 19
-  ./download_prereqs_for_contrib.sh update 32 20 && ./verify_contrib.sh update 32 20
   ./download_prereqs_for_final.sh update 32 && ./verify_final.sh update 32
 
   ./download_prereqs_for_initial_generation.sh update 64 && ./generate_initial.sh update 64
@@ -382,11 +377,6 @@ bash -c '
   ./download_prereqs_for_contrib.sh update 64 13 && ./verify_contrib.sh update 64 13
   ./download_prereqs_for_contrib.sh update 64 14 && ./verify_contrib.sh update 64 14
   ./download_prereqs_for_contrib.sh update 64 15 && ./verify_contrib.sh update 64 15
-  ./download_prereqs_for_contrib.sh update 64 16 && ./verify_contrib.sh update 64 16
-  ./download_prereqs_for_contrib.sh update 64 17 && ./verify_contrib.sh update 64 17
-  ./download_prereqs_for_contrib.sh update 64 18 && ./verify_contrib.sh update 64 18
-  ./download_prereqs_for_contrib.sh update 64 19 && ./verify_contrib.sh update 64 19
-  ./download_prereqs_for_contrib.sh update 64 20 && ./verify_contrib.sh update 64 20
   ./download_prereqs_for_final.sh update 64 && ./verify_final.sh update 64
 
   ./download_prereqs_for_initial_generation.sh poseidon 32 && ./generate_initial.sh poseidon 32
@@ -402,11 +392,6 @@ bash -c '
   ./download_prereqs_for_contrib.sh poseidon 32 10 && ./verify_contrib.sh poseidon 32 10
   ./download_prereqs_for_contrib.sh poseidon 32 11 && ./verify_contrib.sh poseidon 32 11
   ./download_prereqs_for_contrib.sh poseidon 32 12 && ./verify_contrib.sh poseidon 32 12
-  ./download_prereqs_for_contrib.sh poseidon 32 13 && ./verify_contrib.sh poseidon 32 13
-  ./download_prereqs_for_contrib.sh poseidon 32 14 && ./verify_contrib.sh poseidon 32 14
-  ./download_prereqs_for_contrib.sh poseidon 32 15 && ./verify_contrib.sh poseidon 32 15
-  ./download_prereqs_for_contrib.sh poseidon 32 16 && ./verify_contrib.sh poseidon 32 16
-  ./download_prereqs_for_contrib.sh poseidon 32 17 && ./verify_contrib.sh poseidon 32 17
   ./download_prereqs_for_final.sh poseidon 32 && ./verify_final.sh poseidon 32
 
   ./download_prereqs_for_initial_generation.sh poseidon 64 && ./generate_initial.sh poseidon 64
@@ -422,10 +407,6 @@ bash -c '
   ./download_prereqs_for_contrib.sh poseidon 64 10 && ./verify_contrib.sh poseidon 64 10
   ./download_prereqs_for_contrib.sh poseidon 64 11 && ./verify_contrib.sh poseidon 64 11
   ./download_prereqs_for_contrib.sh poseidon 64 12 && ./verify_contrib.sh poseidon 64 12
-  ./download_prereqs_for_contrib.sh poseidon 64 13 && ./verify_contrib.sh poseidon 64 13
-  ./download_prereqs_for_contrib.sh poseidon 64 14 && ./verify_contrib.sh poseidon 64 14
-  ./download_prereqs_for_contrib.sh poseidon 64 15 && ./verify_contrib.sh poseidon 64 15
-  ./download_prereqs_for_contrib.sh poseidon 64 16 && ./verify_contrib.sh poseidon 64 16
   ./download_prereqs_for_final.sh poseidon 64 && ./verify_final.sh poseidon 64
 '
 ```

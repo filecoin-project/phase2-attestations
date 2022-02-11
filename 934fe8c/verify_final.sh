@@ -23,7 +23,7 @@ fi
 
 if ! command -v ./phase2 >/dev/null 2>&1
 then
-    echo "ERROR: 'phase2' from rust-fil-proofs needs to be in the current directory."
+    echo "ERROR: 'phase2' needs to be in the current directory."
     exit 1
 fi
 
