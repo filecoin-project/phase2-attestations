@@ -300,7 +300,9 @@ $ mv target/release/filecoin-phase2 phase2
 2. Download verification scripts:
 
 ```console
-TODO vmx 2022-01-20
+$ for f in verify_all.sh download_prereqs_for_initial_generation.sh generate_initial.sh download_prereqs_for_contrib.sh download_prereqs_for_final.sh verify_contrib.sh verify_final.sh; do \
+    curl --fail -O "https://raw.githubusercontent.com/filecoin-project/phase2-attestations/e7f36d7/934fe8c/${f}" && chmod +x "${f}"; \
+done
 ```
 
 3. Verify Phase2 contributions:
