@@ -51,8 +51,7 @@ if [[ ${sector_size} != '32' && ${sector_size} != '64' ]]; then
     exit 1
 fi
 
-# TODO vmx 2022-02-11: Use final URL
-url_base='https://trusted-setup-snapdeals.filecoin.io/'
+url_base='https://trusted-setup-snapdeals.filecoin.io'
 
 # Get the file containing checksums of the parameter files.
 if [[ ! -f './934fe8c.b2sums' ]]; then
