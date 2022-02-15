@@ -137,5 +137,12 @@ fi
 sig_file="${file}.contrib.sig"
 if [[ ! -f ${sig_file} ]]; then
     log "downloading signature: ${sig_file}"
-    curl --progress-bar -O "${url_base}/${sig_file}"
+    # One file had the wrong name when it was added to IPFS. Make sure we get
+    # that file and name it correctly.
+    if [[ ${proof} == 'winning' && ${sector_size} -eq 32 && ${contrib} -eq 9 ]]
+    then
+        curl --progress-bar --output "${sig_file}" "${url_base}/winning_poseidon_32gi88702_9_small_raw.contrib.sig"
+    else
+        curl --progress-bar -O "${url_base}/${sig_file}"
+    fi
 fi
