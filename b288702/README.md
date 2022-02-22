@@ -176,7 +176,7 @@ $ cargo build --release --bins && mv target/release/filecoin-phase2 phase2
 
 ```
 $ for f in verify_all.sh download_prereqs_for_initial_generation.sh generate_initial.sh download_prereqs_for_contrib.sh download_prereqs_for_final.sh verify_contrib.sh verify_final.sh; do \
-      curl -O "https://raw.githubusercontent.com/filecoin-project/phase2-attestations/7112e23/b288702/${f}" && chmod +x "${f}"; \
+      curl -O "https://raw.githubusercontent.com/filecoin-project/phase2-attestations/69136a3/b288702/${f}" && chmod +x "${f}"; \
   done
 ```
 
