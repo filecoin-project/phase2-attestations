@@ -72,6 +72,13 @@ fi
 log 'verifying parameters checksums file checksum'
 echo "7931ca92df34bf0b6217692daaf2d92135fceb6caae344b10712ee997717cc612435b0a6e1e61325d5abaa62044b6f6359fd44bbe3dc4e111536bcad43c2e0ec  b288702.b2sums" | b2sum -c
 
+# Get the final parameters metadata from the proofs implementation repository.
+if [[ ! -f './parameters.json' ]]; then
+    log "downloading final parameters metadata: parameters.json"
+    curl --fail --progress-bar -O "https://raw.githubusercontent.com/filecoin-project/rust-fil-proofs/212585d647a3f833e78dec6537d8c3696e747321/filecoin-proofs/parameters.json"
+fi
+log 'verifying parameters metadata file checksum'
+echo "942e10abe5d175ba78f32ea21043e7448772d705b71ec709c80190baaab83303e00699c9df945e3191c1fa6060dfbc3fced2ce752a1ba6be95ed08ec67c9b089  parameters.json" | b2sum -c
 
 initial_large="${proof}_poseidon_${sector_size}gib_b288702_0_large"
 if [[ ! -f ${initial_large} ]]; then

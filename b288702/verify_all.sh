@@ -67,6 +67,7 @@ for i in $(seq 1 $n); do
     fi
 done
 
+$dir/download_prereqs_for_final.sh $proof $sector_size
 $dir/verify_final.sh $proof $sector_size
 
 log "${green}success:${off} finished verifying all phase2 parameters"

@@ -127,7 +127,7 @@ if [[ ! -f ${contrib_file} ]]; then
     error "${contrib_file} is missing. Run: ./download_prereqs_contrib.sh ${proof} ${sector_size} ${contrib}"
 fi
 
-./phase2 verify $file
+./phase2 verify --check-subgroup-before $file
 
 # The first two contributions of Winning PoSt were not signed
 if [[

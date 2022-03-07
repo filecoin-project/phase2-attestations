@@ -88,7 +88,7 @@ contribs_file=$(echo -e "$split_output" | grep -o "v${version}-.*\.contribs")
 # Verify groth keys checksums.
 log 'verifying .vk checksum'
 vk_digest=$(b2sum $vk_file | head -c 32)
-vk_digest_json=$(grep -A 2 $vk_file filecoin-proofs/parameters.json | grep 'digest' | tr -d '[:punct:]' | awk '{print $2}' | head -c 32)
+vk_digest_json=$(grep -A 2 $vk_file parameters.json | grep 'digest' | tr -d '[:punct:]' | awk '{print $2}' | head -c 32)
 
 if [[ $vk_digest == $vk_digest_json ]]; then
     log "${green}success:${off} .vk digests match"
@@ -111,7 +111,7 @@ fi
 # Verify .params checksum.
 log 'verifying .params checksum'
 params_digest=$(b2sum $params_file | head -c 32)
-params_digest_json=$(grep -A 2 $params_file filecoin-proofs/parameters.json | grep 'digest' | tr -d '[:punct:]' | awk '{print $2}' | head -c 32)
+params_digest_json=$(grep -A 2 $params_file parameters.json | grep 'digest' | tr -d '[:punct:]' | awk '{print $2}' | head -c 32)
 
 if [[ $params_digest == $params_digest_json ]]; then
     log "${green}success:${off} .params digests match"
