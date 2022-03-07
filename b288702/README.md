@@ -210,7 +210,7 @@ $ ./verify_all.sh window 64
 
 ### Verify Contributions Individually
 
-If run sequentially, as presented below, the following command will take a very long time (months).
+If run sequentially, as presented below, the following command will take a long time.
 
 We encourage verifiers to split the command into smaller pieces and run them in parallel on multiple machines. Each
 sub-command can be run independently, and each must be run at least once. Every sub-command must succeed for the
